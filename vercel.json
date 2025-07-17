@@ -14,26 +14,22 @@
       "use": "@vercel/static"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/",
-      "dest": "/index.html"
+      "source": "/dallas",
+      "destination": "/dallas.html"
     },
     {
-      "src": "/dallas",
-      "dest": "/dallas.html"
+      "source": "/san-antonio",
+      "destination": "/san-antonio.html"
     },
     {
-      "src": "/san-antonio",
-      "dest": "/san-antonio.html"
+      "source": "/conroe",
+      "destination": "/conroe.html"
     },
     {
-      "src": "/conroe",
-      "dest": "/conroe.html"
-    },
-    {
-      "src": "/about",
-      "dest": "/about.html"
+      "source": "/about",
+      "destination": "/about.html"
     }
   ],
   "headers": [
