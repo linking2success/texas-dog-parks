@@ -77,101 +77,8 @@
     <section class="parks-list">
         <div class="container">
             <h2>Conroe Dog Parks Directory</h2>
-            <div class="parks-grid">
-                <!-- Carl Barton Jr. Dog Park -->
-                <div class="park-card">
-                    <div class="park-image">
-                        <img src="https://images.unsplash.com/photo-1544568100-847a948585b9?w=400&h=250&fit=crop" alt="Carl Barton Jr. Dog Park">
-                        <div class="park-badge featured">Featured</div>
-                    </div>
-                    <div class="park-content">
-                        <h3>Carl Barton Jr. Dog Park</h3>
-                        <p class="park-address"><i class="fas fa-map-marker-alt"></i> 2500 S Loop 336 W, Conroe, TX 77304</p>
-                        <div class="park-details">
-                            <div class="detail">
-                                <i class="fas fa-clock"></i>
-                                <span>6:00 AM - 10:00 PM</span>
-                            </div>
-                            <div class="detail">
-                                <i class="fas fa-dollar-sign"></i>
-                                <span>Free</span>
-                            </div>
-                            <div class="detail">
-                                <i class="fas fa-expand"></i>
-                                <span>Large (2+ acres)</span>
-                            </div>
-                        </div>
-                        <div class="park-amenities">
-                            <span class="amenity"><i class="fas fa-fence"></i> Fenced</span>
-                            <span class="amenity"><i class="fas fa-tint"></i> Water</span>
-                            <span class="amenity"><i class="fas fa-tree"></i> Shaded</span>
-                            <span class="amenity"><i class="fas fa-parking"></i> Parking</span>
-                            <span class="amenity"><i class="fas fa-bath"></i> Wash Station</span>
-                        </div>
-                        <div class="park-rating">
-                            <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <span>4.7 (45 reviews)</span>
-                        </div>
-                        <div class="park-actions">
-                            <button class="btn-map" onclick="openMap('Carl Barton Jr. Dog Park', 30.3123, -95.4567)">View Map</button>
-                            <button class="btn-directions" onclick="getDirections('Carl Barton Jr. Dog Park', 30.3123, -95.4567)">Directions</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Heritage Place Dog Park -->
-                <div class="park-card">
-                    <div class="park-image">
-                        <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=250&fit=crop" alt="Heritage Place Dog Park">
-                    </div>
-                    <div class="park-content">
-                        <h3>Heritage Place Dog Park</h3>
-                        <p class="park-address"><i class="fas fa-map-marker-alt"></i> 500 I-45 N, Conroe, TX 77301</p>
-                        <div class="park-details">
-                            <div class="detail">
-                                <i class="fas fa-clock"></i>
-                                <span>7:00 AM - 9:00 PM</span>
-                            </div>
-                            <div class="detail">
-                                <i class="fas fa-dollar-sign"></i>
-                                <span>Free</span>
-                            </div>
-                            <div class="detail">
-                                <i class="fas fa-expand"></i>
-                                <span>Medium (1.5 acres)</span>
-                            </div>
-                        </div>
-                        <div class="park-amenities">
-                            <span class="amenity"><i class="fas fa-fence"></i> Fenced</span>
-                            <span class="amenity"><i class="fas fa-tint"></i> Water</span>
-                            <span class="amenity"><i class="fas fa-tree"></i> Shaded</span>
-                            <span class="amenity"><i class="fas fa-parking"></i> Parking</span>
-                        </div>
-                        <div class="park-rating">
-                            <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                            <span>4.3 (32 reviews)</span>
-                        </div>
-                        <div class="park-actions">
-                            <button class="btn-map" onclick="openMap('Heritage Place Dog Park', 30.2987, -95.4789)">View Map</button>
-                            <button class="btn-directions" onclick="getDirections('Heritage Place Dog Park', 30.2987, -95.4789)">Directions</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- More parks would be listed here -->
-            </div>
+            <div id="conroe-map" style="width:100%;height:400px;margin-bottom:30px;"></div>
+            <div id="parks-list"></div>
         </div>
     </section>
 
@@ -301,17 +208,45 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="parks-data.js"></script>
     <script>
-        // Map and Directions Functions
-        function openMap(parkName, lat, lng) {
-            const url = `https://www.google.com/maps?q=${lat},${lng}`;
-            window.open(url, '_blank');
-        }
+    function renderConroeParks() {
+      const parks = parksData['conroe'];
+      const parksList = document.getElementById('parks-list');
+      parksList.innerHTML = parks.map(park => `
+        <div class="park-card">
+          <h3>${park.name}</h3>
+          <p><i class="fas fa-map-marker-alt"></i> ${park.address}</p>
+          <p><i class="fas fa-clock"></i> ${park.hours}</p>
+          <p>Amenities: ${park.amenities.join(', ')}</p>
+        </div>
+      `).join('');
+    }
 
-        function getDirections(parkName, lat, lng) {
-            const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
-            window.open(url, '_blank');
-        }
+    function initConroeMap() {
+      const parks = parksData['conroe'];
+      const map = new google.maps.Map(document.getElementById('conroe-map'), {
+        zoom: 11,
+        center: { lat: 30.3119, lng: -95.4561 }
+      });
+      parks.forEach(park => {
+        const marker = new google.maps.Marker({
+          position: { lat: park.lat, lng: park.lng },
+          map,
+          title: park.name
+        });
+        const infoWindow = new google.maps.InfoWindow({
+          content: `<strong>${park.name}</strong><br>${park.address}<br>${park.hours}`
+        });
+        marker.addListener('mouseover', () => infoWindow.open(map, marker));
+        marker.addListener('mouseout', () => infoWindow.close());
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      renderConroeParks();
+    });
     </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCHkUgtkd4liscYJOKOCdE2huiauHT7iM&callback=initConroeMap" async defer></script>
 </body>
 </html> 
