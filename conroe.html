@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Parks in Conroe, Texas - Best Off-Leash Dog Parks Near Conroe</title>
+    <meta name="description" content="Discover the best dog parks in Conroe, Texas. Find 5+ off-leash dog parks with maps, reviews, amenities, and directions. Perfect for your furry friend in Conroe.">
+    <meta name="keywords" content="dog parks conroe tx, dog park conroe texas, carl barton dog park conroe, conroe dog parks">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <i class="fas fa-paw"></i>
+                    <span>Texas Dog Parks</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="dallas.html">Dallas</a></li>
+                    <li><a href="san-antonio.html">San Antonio</a></li>
+                    <li><a href="conroe.html">Conroe</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- City Hero Section -->
+    <section class="city-hero">
+        <div class="city-hero-container">
+            <div class="city-hero-content">
+                <h1>Dog Parks in Conroe, Texas</h1>
+                <p>Explore 5+ beautiful dog parks in the Conroe area. From the popular Carl Barton Jr. Dog Park to hidden neighborhood gems, find the perfect spot for your furry friend.</p>
+                <div class="city-stats">
+                    <div class="stat">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Dog Parks</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">4.7/5</span>
+                        <span class="stat-label">Average Rating</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Some Open</span>
+                    </div>
+                </div>
+            </div>
+            <div class="city-hero-image">
+                <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&h=400&fit=crop" alt="Conroe Dog Parks">
+            </div>
+        </div>
+    </section>
+
+    <!-- Ad Section 1 -->
+    <section class="ad-section">
+        <div class="ad-container">
+            <div class="ad-placeholder">
+                <i class="fas fa-ad"></i>
+                <p>Local Conroe Dog Services</p>
+                <small>Veterinarians, groomers, and pet stores</small>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dog Parks List -->
+    <section class="parks-list">
+        <div class="container">
+            <h2>Conroe Dog Parks Directory</h2>
+            <div class="parks-grid">
+                <!-- Carl Barton Jr. Dog Park -->
+                <div class="park-card">
+                    <div class="park-image">
+                        <img src="https://images.unsplash.com/photo-1544568100-847a948585b9?w=400&h=250&fit=crop" alt="Carl Barton Jr. Dog Park">
+                        <div class="park-badge featured">Featured</div>
+                    </div>
+                    <div class="park-content">
+                        <h3>Carl Barton Jr. Dog Park</h3>
+                        <p class="park-address"><i class="fas fa-map-marker-alt"></i> 2500 S Loop 336 W, Conroe, TX 77304</p>
+                        <div class="park-details">
+                            <div class="detail">
+                                <i class="fas fa-clock"></i>
+                                <span>6:00 AM - 10:00 PM</span>
+                            </div>
+                            <div class="detail">
+                                <i class="fas fa-dollar-sign"></i>
+                                <span>Free</span>
+                            </div>
+                            <div class="detail">
+                                <i class="fas fa-expand"></i>
+                                <span>Large (2+ acres)</span>
+                            </div>
+                        </div>
+                        <div class="park-amenities">
+                            <span class="amenity"><i class="fas fa-fence"></i> Fenced</span>
+                            <span class="amenity"><i class="fas fa-tint"></i> Water</span>
+                            <span class="amenity"><i class="fas fa-tree"></i> Shaded</span>
+                            <span class="amenity"><i class="fas fa-parking"></i> Parking</span>
+                            <span class="amenity"><i class="fas fa-bath"></i> Wash Station</span>
+                        </div>
+                        <div class="park-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span>4.7 (45 reviews)</span>
+                        </div>
+                        <div class="park-actions">
+                            <button class="btn-map" onclick="openMap('Carl Barton Jr. Dog Park', 30.3123, -95.4567)">View Map</button>
+                            <button class="btn-directions" onclick="getDirections('Carl Barton Jr. Dog Park', 30.3123, -95.4567)">Directions</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Heritage Place Dog Park -->
+                <div class="park-card">
+                    <div class="park-image">
+                        <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=250&fit=crop" alt="Heritage Place Dog Park">
+                    </div>
+                    <div class="park-content">
+                        <h3>Heritage Place Dog Park</h3>
+                        <p class="park-address"><i class="fas fa-map-marker-alt"></i> 500 I-45 N, Conroe, TX 77301</p>
+                        <div class="park-details">
+                            <div class="detail">
+                                <i class="fas fa-clock"></i>
+                                <span>7:00 AM - 9:00 PM</span>
+                            </div>
+                            <div class="detail">
+                                <i class="fas fa-dollar-sign"></i>
+                                <span>Free</span>
+                            </div>
+                            <div class="detail">
+                                <i class="fas fa-expand"></i>
+                                <span>Medium (1.5 acres)</span>
+                            </div>
+                        </div>
+                        <div class="park-amenities">
+                            <span class="amenity"><i class="fas fa-fence"></i> Fenced</span>
+                            <span class="amenity"><i class="fas fa-tint"></i> Water</span>
+                            <span class="amenity"><i class="fas fa-tree"></i> Shaded</span>
+                            <span class="amenity"><i class="fas fa-parking"></i> Parking</span>
+                        </div>
+                        <div class="park-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span>4.3 (32 reviews)</span>
+                        </div>
+                        <div class="park-actions">
+                            <button class="btn-map" onclick="openMap('Heritage Place Dog Park', 30.2987, -95.4789)">View Map</button>
+                            <button class="btn-directions" onclick="getDirections('Heritage Place Dog Park', 30.2987, -95.4789)">Directions</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- More parks would be listed here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Ad Section 2 -->
+    <section class="ad-section">
+        <div class="ad-container">
+            <div class="ad-placeholder">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Conroe Pet Supplies</p>
+                <small>Local pet stores and online retailers</small>
+            </div>
+        </div>
+    </section>
+
+    <!-- Local Business Section -->
+    <section class="local-business">
+        <div class="container">
+            <h2>Conroe Dog Services & Businesses</h2>
+            <div class="business-grid">
+                <div class="business-card">
+                    <div class="business-image">
+                        <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=300&h=200&fit=crop" alt="Conroe Veterinary Clinic">
+                    </div>
+                    <div class="business-content">
+                        <h3>Conroe Veterinary Clinic</h3>
+                        <p class="business-address"><i class="fas fa-map-marker-alt"></i> 1234 Frazier St, Conroe, TX</p>
+                        <p class="business-phone"><i class="fas fa-phone"></i> (936) 555-0123</p>
+                        <div class="business-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.8 (89 reviews)</span>
+                        </div>
+                        <a href="#" class="btn-business">Visit Website</a>
+                    </div>
+                </div>
+
+                <div class="business-card">
+                    <div class="business-image">
+                        <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=300&h=200&fit=crop" alt="Lake Conroe Grooming">
+                    </div>
+                    <div class="business-content">
+                        <h3>Lake Conroe Grooming</h3>
+                        <p class="business-address"><i class="fas fa-map-marker-alt"></i> 5678 Davis St, Conroe, TX</p>
+                        <p class="business-phone"><i class="fas fa-phone"></i> (936) 555-0456</p>
+                        <div class="business-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>4.2 (67 reviews)</span>
+                        </div>
+                        <a href="#" class="btn-business">Visit Website</a>
+                    </div>
+                </div>
+
+                <div class="business-card">
+                    <div class="business-image">
+                        <img src="https://images.unsplash.com/photo-1601758228041-3ca9aa8be06c?w=300&h=200&fit=crop" alt="Downtown Conroe Pet Store">
+                    </div>
+                    <div class="business-content">
+                        <h3>Downtown Conroe Pet Store</h3>
+                        <p class="business-address"><i class="fas fa-map-marker-alt"></i> 9012 Simonton St, Conroe, TX</p>
+                        <p class="business-phone"><i class="fas fa-phone"></i> (936) 555-0789</p>
+                        <div class="business-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.7 (124 reviews)</span>
+                        </div>
+                        <a href="#" class="btn-business">Visit Website</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Texas Dog Parks</h3>
+                    <p>Your go-to directory for finding the best dog parks across Texas.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Popular Cities</h4>
+                    <ul>
+                        <li><a href="dallas.html">Dallas Dog Parks</a></li>
+                        <li><a href="san-antonio.html">San Antonio Dog Parks</a></li>
+                        <li><a href="conroe.html">Conroe Dog Parks</a></li>
+                        <li><a href="houston.html">Houston Dog Parks</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Get updates on new dog parks and events.</p>
+                    <div class="newsletter">
+                        <input type="email" placeholder="Enter your email">
+                        <button>Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Texas Dog Parks Directory. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Map and Directions Functions
+        function openMap(parkName, lat, lng) {
+            const url = `https://www.google.com/maps?q=${lat},${lng}`;
+            window.open(url, '_blank');
+        }
+
+        function getDirections(parkName, lat, lng) {
+            const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Parks in San Antonio, Texas - Best Off-Leash Dog Parks Near San Antonio</title>
+    <meta name="description" content="Discover the best dog parks in San Antonio, Texas. Find 12+ off-leash dog parks with maps, reviews, amenities, and directions. Perfect for your furry friend in San Antonio.">
+    <meta name="keywords" content="dog parks san antonio texas, dog parks in san antonio tx, indoor dog park san antonio, mcallister dog park san antonio">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <i class="fas fa-paw"></i>
+                    <span>Texas Dog Parks</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="dallas.html">Dallas</a></li>
+                    <li><a href="san-antonio.html">San Antonio</a></li>
+                    <li><a href="conroe.html">Conroe</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- City Hero Section -->
+    <section class="city-hero">
+        <div class="city-hero-container">
+            <div class="city-hero-content">
+                <h1>Dog Parks in San Antonio, Texas</h1>
+                <p>Explore 12+ beautiful dog parks across the San Antonio area. From the famous McAllister Park to hidden neighborhood gems, find the perfect spot for your furry friend.</p>
+                <div class="city-stats">
+                    <div class="stat">
+                        <span class="stat-number">12+</span>
+                        <span class="stat-label">Dog Parks</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">4.3/5</span>
+                        <span class="stat-label">Average Rating</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Some Open</span>
+                    </div>
+                </div>
+            </div>
+            <div class="city-hero-image">
+                <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=600&h=400&fit=crop" alt="San Antonio Dog Parks">
+            </div>
+        </div>
+    </section>
+
+    <!-- Ad Section 1 -->
+    <section class="ad-section">
+        <div class="ad-container">
+            <div class="ad-placeholder">
+                <i class="fas fa-ad"></i>
+                <p>Local San Antonio Dog Services</p>
+                <small>Veterinarians, groomers, and pet stores</small>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dog Parks List -->
+    <section class="parks-list">
+        <div class="container">
+            <h2>San Antonio Dog Parks Directory</h2>
+            <div class="parks-grid">
+                <!-- McAllister Dog Park -->
+                <div class="park-card">
+                    <div class="park-image">
+                        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400&h=250&fit=crop" alt="McAllister Dog Park">
+                        <div class="park-badge featured">Featured</div>
+                    </div>
+                    <div class="park-content">
+                        <h3>McAllister Dog Park</h3>
+                        <p class="park-address"><i class="fas fa-map-marker-alt"></i> 13102 Jones Maltsberger Rd, San Antonio, TX 78247</p>
+                        <div class="park-details">
+                            <div class="detail">
+                                <i class="fas fa-clock"></i>
+                                <span>5:00 AM - 11:00 PM</span>
+                            </div>
+                            <div class="detail">
+                                <i class="fas fa-dollar-sign"></i>
+                                <span>Free</span>
+                            </div>
+                            <div class="detail">
+                                <i class="fas fa-expand"></i>
+                                <span>Large (4+ acres)</span>
+                            </div>
+                        </div>
+                        <div class="park-amenities">
+                            <span class="amenity"><i class="fas fa-fence"></i> Fenced</span>
+                            <span class="amenity"><i class="fas fa-tint"></i> Water</span>
+                            <span class="amenity"><i class="fas fa-tree"></i> Shaded</span>
+                            <span class="amenity"><i class="fas fa-parking"></i> Parking</span>
+                            <span class="amenity"><i class="fas fa-bath"></i> Wash Station</span>
+                            <span class="amenity"><i class="fas fa-swimming-pool"></i> Creek</span>
+                        </div>
+                        <div class="park-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span>4.7 (189 reviews)</span>
+                        </div>
+                        <div class="park-actions">
+                            <button class="btn-map" onclick="openMap('McAllister Dog Park', 29.6347, -98.4567)">View Map</button>
+                            <button class="btn-directions" onclick="getDirections('McAllister Dog Park', 29.6347, -98.4567)">Directions</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phil Hardberger Dog Park -->
+                <div class="park-card">
+                    <div class="park-image">
+                        <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=250&fit=crop" alt="Phil Hardberger Dog Park">
+                    </div>
+                    <div class="park-content">
+                        <h3>Phil Hardberger Dog Park</h3>
+                        <p class="park-address"><i class="fas fa-map-marker-alt"></i> 8400 NW Military Hwy, San Antonio, TX 78231</p>
+                        <div class="park-details">
+                            <div class="detail">
+                                <i class="fas fa-clock"></i>
+                                <span>6:00 AM - 10:00 PM</span>
+                            </div>
+                            <div class="detail">
+                                <i class="fas fa-dollar-sign"></i>
+                                <span>Free</span>
+                            </div>
+                            <div class="detail">
+                                <i class="fas fa-expand"></i>
+                                <span>Large (3+ acres)</span>
+                            </div>
+                        </div>
+                        <div class="park-amenities">
+                            <span class="amenity"><i class="fas fa-fence"></i> Fenced</span>
+                            <span class="amenity"><i class="fas fa-tint"></i> Water</span>
+                            <span class="amenity"><i class="fas fa-tree"></i> Shaded</span>
+                            <span class="amenity"><i class="fas fa-parking"></i> Parking</span>
+                            <span class="amenity"><i class="fas fa-bath"></i> Wash Station</span>
+                        </div>
+                        <div class="park-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span>4.5 (156 reviews)</span>
+                        </div>
+                        <div class="park-actions">
+                            <button class="btn-map" onclick="openMap('Phil Hardberger Dog Park', 29.5678, -98.6234)">View Map</button>
+                            <button class="btn-directions" onclick="getDirections('Phil Hardberger Dog Park', 29.5678, -98.6234)">Directions</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tom Slick Dog Park -->
+                <div class="park-card">
+                    <div class="park-image">
+                        <img src="https://images.unsplash.com/photo-1544568100-847a948585b9?w=400&h=250&fit=crop" alt="Tom Slick Dog Park">
+                    </div>
+                    <div class="park-content">
+                        <h3>Tom Slick Dog Park</h3>
+                        <p class="park-address"><i class="fas fa-map-marker-alt"></i> 7400 Blanco Rd, San Antonio, TX 78216</p>
+                        <div class="park-details">
+                            <div class="detail">
+                                <i class="fas fa-clock"></i>
+                                <span>6:00 AM - 9:00 PM</span>
+                            </div>
+                            <div class="detail">
+                                <i class="fas fa-dollar-sign"></i>
+                                <span>Free</span>
+                            </div>
+                            <div class="detail">
+                                <i class="fas fa-expand"></i>
+                                <span>Medium (2 acres)</span>
+                            </div>
+                        </div>
+                        <div class="park-amenities">
+                            <span class="amenity"><i class="fas fa-fence"></i> Fenced</span>
+                            <span class="amenity"><i class="fas fa-tint"></i> Water</span>
+                            <span class="amenity"><i class="fas fa-tree"></i> Shaded</span>
+                            <span class="amenity"><i class="fas fa-parking"></i> Parking</span>
+                        </div>
+                        <div class="park-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span>4.1 (78 reviews)</span>
+                        </div>
+                        <div class="park-actions">
+                            <button class="btn-map" onclick="openMap('Tom Slick Dog Park', 29.5234, -98.4567)">View Map</button>
+                            <button class="btn-directions" onclick="getDirections('Tom Slick Dog Park', 29.5234, -98.4567)">Directions</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- More parks would be listed here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Ad Section 2 -->
+    <section class="ad-section">
+        <div class="ad-container">
+            <div class="ad-placeholder">
+                <i class="fas fa-shopping-cart"></i>
+                <p>San Antonio Pet Supplies</p>
+                <small>Local pet stores and online retailers</small>
+            </div>
+        </div>
+    </section>
+
+    <!-- Local Business Section -->
+    <section class="local-business">
+        <div class="container">
+            <h2>San Antonio Dog Services & Businesses</h2>
+            <div class="business-grid">
+                <div class="business-card">
+                    <div class="business-image">
+                        <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=300&h=200&fit=crop" alt="San Antonio Veterinary Clinic">
+                    </div>
+                    <div class="business-content">
+                        <h3>San Antonio Veterinary Clinic</h3>
+                        <p class="business-address"><i class="fas fa-map-marker-alt"></i> 1234 Broadway St, San Antonio, TX</p>
+                        <p class="business-phone"><i class="fas fa-phone"></i> (210) 555-0123</p>
+                        <div class="business-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.8 (89 reviews)</span>
+                        </div>
+                        <a href="#" class="btn-business">Visit Website</a>
+                    </div>
+                </div>
+
+                <div class="business-card">
+                    <div class="business-image">
+                        <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=300&h=200&fit=crop" alt="Alamo Grooming">
+                    </div>
+                    <div class="business-content">
+                        <h3>Alamo Grooming</h3>
+                        <p class="business-address"><i class="fas fa-map-marker-alt"></i> 5678 Fredericksburg Rd, San Antonio, TX</p>
+                        <p class="business-phone"><i class="fas fa-phone"></i> (210) 555-0456</p>
+                        <div class="business-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>4.2 (67 reviews)</span>
+                        </div>
+                        <a href="#" class="btn-business">Visit Website</a>
+                    </div>
+                </div>
+
+                <div class="business-card">
+                    <div class="business-image">
+                        <img src="https://images.unsplash.com/photo-1601758228041-3ca9aa8be06c?w=300&h=200&fit=crop" alt="River Walk Pet Store">
+                    </div>
+                    <div class="business-content">
+                        <h3>River Walk Pet Store</h3>
+                        <p class="business-address"><i class="fas fa-map-marker-alt"></i> 9012 Commerce St, San Antonio, TX</p>
+                        <p class="business-phone"><i class="fas fa-phone"></i> (210) 555-0789</p>
+                        <div class="business-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.7 (124 reviews)</span>
+                        </div>
+                        <a href="#" class="btn-business">Visit Website</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Texas Dog Parks</h3>
+                    <p>Your go-to directory for finding the best dog parks across Texas.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Popular Cities</h4>
+                    <ul>
+                        <li><a href="dallas.html">Dallas Dog Parks</a></li>
+                        <li><a href="san-antonio.html">San Antonio Dog Parks</a></li>
+                        <li><a href="conroe.html">Conroe Dog Parks</a></li>
+                        <li><a href="houston.html">Houston Dog Parks</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Get updates on new dog parks and events.</p>
+                    <div class="newsletter">
+                        <input type="email" placeholder="Enter your email">
+                        <button>Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Texas Dog Parks Directory. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Map and Directions Functions
+        function openMap(parkName, lat, lng) {
+            const url = `https://www.google.com/maps?q=${lat},${lng}`;
+            window.open(url, '_blank');
+        }
+
+        function getDirections(parkName, lat, lng) {
+            const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html> 
