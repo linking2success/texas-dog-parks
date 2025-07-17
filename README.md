@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Texas Dog Park Directory
 
 A comprehensive MVP directory website for finding dog parks across Texas, optimized for SEO and built with modern web technologies.
@@ -214,3 +215,7 @@ For questions about this project or to discuss partnerships:
 ---
 
 **Built with ❤️ for Texas dog lovers** 
+=======
+# texas-dog-parks
+Valuable resource of dog parks located in TEXAS 
+>>>>>>> 36e849576d3ccde89a37f6af2d8b39df61753e70
