@@ -3,12 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dog Parks in Conroe, Texas - Best Off-Leash Dog Parks Near Conroe</title>
-    <meta name="description" content="Discover the best dog parks in Conroe, Texas. Find 5+ off-leash dog parks with maps, reviews, amenities, and directions. Perfect for your furry friend in Conroe.">
+    <title>Dog Parks in Conroe, Texas | Best Off-Leash Dog Parks Directory</title>
+    <meta name="description" content="Find the best off-leash dog parks in Conroe, Texas. View amenities, hours, maps, and directions for every Conroe dog park. Discover the perfect spot for your furry friend!">
+    <meta property="og:title" content="Dog Parks in Conroe, Texas | Best Off-Leash Dog Parks Directory">
+    <meta property="og:description" content="Find the best off-leash dog parks in Conroe, Texas. View amenities, hours, maps, and directions for every Conroe dog park. Discover the perfect spot for your furry friend!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/conroe.html">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&h=400&fit=crop">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dog Parks in Conroe, Texas | Best Off-Leash Dog Parks Directory">
+    <meta name="twitter:description" content="Find the best off-leash dog parks in Conroe, Texas. View amenities, hours, maps, and directions for every Conroe dog park. Discover the perfect spot for your furry friend!">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&h=400&fit=crop">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Dog Parks in Conroe, Texas",
+  "itemListElement": [
+    {
+      "@type": "Park",
+      "name": "Grand Central Lake house dog park",
+      "address": "1075 Town Park Dr, Conroe, TX 77304",
+      "geo": { "@type": "GeoCoordinates", "latitude": 30.267394, "longitude": -95.472044 },
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Wheelchair accessible parking lot" },
+        { "@type": "LocationFeatureSpecification", "name": "Picnic tables" },
+        { "@type": "LocationFeatureSpecification", "name": "Dog park" },
+        { "@type": "LocationFeatureSpecification", "name": "Dogs allowed" }
+      ],
+      "openingHours": ""
+    },
+    {
+      "@type": "Park",
+      "name": "JAFRA , ZERMAT , AVON, OMNILIFE",
+      "address": "17365 Cozumel, Conroe, TX 77306",
+      "geo": { "@type": "GeoCoordinates", "latitude": 30.3105508, "longitude": -95.302879 },
+      "amenityFeature": [],
+      "openingHours": "Sunday: 9AM-5PM, Monday: 9AM-5PM, Tuesday: 9AM-5PM, Wednesday: 9AM-5PM, Thursday: 9AM-2PM, Friday: 9AM-2PM, Saturday: 9AM-5PM"
+    },
+    // ... Repeat for all Conroe parks ...
+  ]
+}
+</script>
     <meta name="keywords" content="dog parks conroe tx, dog park conroe texas, carl barton dog park conroe, conroe dog parks">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="preload" href="styles.min.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    <link rel="stylesheet" href="styles.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    <!-- Google AdSense (replace ca-pub-XXXXXXXXXXXXXXX with your publisher ID) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 </head>
 <body>
     <!-- Header -->
@@ -57,7 +109,10 @@
                 </div>
             </div>
             <div class="city-hero-image">
-                <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&h=400&fit=crop" alt="Conroe Dog Parks">
+                <picture>
+                    <source srcset="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&h=400&fit=crop&fm=webp" type="image/webp">
+                    <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&h=400&fit=crop" alt="Conroe Dog Parks" width="600" height="400">
+                </picture>
             </div>
         </div>
     </section>
@@ -77,8 +132,13 @@
     <section class="parks-list">
         <div class="container">
             <h2>Conroe Dog Parks Directory</h2>
-            <div id="conroe-map" style="width:100%;height:400px;margin-bottom:30px;"></div>
-            <div id="parks-list"></div>
+            <div id="conroe-map" class="city-map"></div>
+            <!-- Filter/Search UI -->
+            <div class="parks-filters" role="search">
+                <input type="text" id="searchInput" class="parks-search" placeholder="Search by name or address..." aria-label="Search parks">
+                <div id="amenityFilters" class="parks-amenities"></div>
+            </div>
+            <div id="parks-list" role="region" aria-label="Conroe Dog Parks List"></div>
         </div>
     </section>
 
@@ -169,9 +229,9 @@
                     <h3>Texas Dog Parks</h3>
                     <p>Your go-to directory for finding the best dog parks across Texas.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -207,46 +267,194 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- AdSense: Responsive Ad Unit (footer) -->
+    <div class="adsense-footer">
+      <!-- Replace ca-pub-XXXXXXXXXXXXXXX with your publisher ID -->
+      <ins class="adsbygoogle"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXX"
+           data-ad-slot="1234567890"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <div id="parkModalOverlay" class="park-modal-overlay hidden" tabindex="-1" aria-modal="true" role="dialog" aria-labelledby="parkModalTitle">
+  <div class="park-modal" role="document">
+    <div class="park-modal-header">
+      <h2 id="parkModalTitle"></h2>
+      <button class="park-modal-close" id="parkModalClose" aria-label="Close details">&times;</button>
+    </div>
+    <div class="park-modal-body">
+      <div class="park-modal-image" id="parkModalImage"></div>
+      <div class="park-modal-details" id="parkModalDetails"></div>
+      <div class="park-modal-amenities" id="parkModalAmenities"></div>
+      <div class="park-modal-actions" id="parkModalActions"></div>
+      <div class="park-modal-social" id="parkModalSocial"></div>
+    </div>
+  </div>
+</div>
+
+    <script src="script.min.js" defer></script>
     <script src="parks-data.js"></script>
     <script>
-    function renderConroeParks() {
-      const parks = parksData['conroe'];
-      const parksList = document.getElementById('parks-list');
-      parksList.innerHTML = parks.map(park => `
-        <div class="park-card">
-          <h3>${park.name}</h3>
-          <p><i class="fas fa-map-marker-alt"></i> ${park.address}</p>
-          <p><i class="fas fa-clock"></i> ${park.hours}</p>
-          <p>Amenities: ${park.amenities.join(', ')}</p>
+function getUniqueAmenities(parks) {
+  const amenitiesSet = new Set();
+  parks.forEach(park => (park.amenities || []).forEach(a => amenitiesSet.add(a)));
+  return Array.from(amenitiesSet).sort();
+}
+
+function renderAmenityFilters(parks) {
+  const amenityFilters = document.getElementById('amenityFilters');
+  const amenities = getUniqueAmenities(parks);
+  amenityFilters.innerHTML = amenities.map(a => `
+    <label style="display: flex; align-items: center; gap: 4px; font-size: 0.98rem;">
+      <input type="checkbox" class="amenity-checkbox" value="${a}" aria-label="Filter by ${a}"> ${a}
+    </label>
+  `).join('');
+}
+
+function renderConroeParks() {
+  const parks = parksData['conroe'];
+  const parksList = document.getElementById('parks-list');
+  const searchInput = document.getElementById('searchInput');
+  const amenityCheckboxes = document.querySelectorAll('.amenity-checkbox');
+  const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+  const selectedAmenities = Array.from(amenityCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
+
+  let filteredParks = parks.filter(park => {
+    const matchesSearch =
+      park.name.toLowerCase().includes(searchTerm) ||
+      park.address.toLowerCase().includes(searchTerm);
+    const matchesAmenities = selectedAmenities.every(a => (park.amenities || []).includes(a));
+    return matchesSearch && matchesAmenities;
+  });
+
+  parksList.innerHTML = `
+    <div class="parks-grid">
+      ${filteredParks.length ? filteredParks.map(park => `
+        <div class="park-card" tabindex="0" role="button" aria-label="View details for ${park.name}" onclick="openParkModal(${JSON.stringify(park).replace(/"/g,'&quot;')})" onkeydown="if(event.key==='Enter'){openParkModal(${JSON.stringify(park).replace(/"/g,'&quot;')})}">
+          <div class="park-image">
+            <picture>
+              <source srcset="${park.image ? park.image + '&fm=webp' : '/images/default-park.webp'}" type="image/webp">
+              <img src="${park.image || '/images/default-park.jpg'}" alt="Photo of ${park.name} in Conroe" loading="lazy" width="400" height="250">
+            </picture>
+          </div>
+          <div class="park-content">
+            <h3>${park.name}</h3>
+            <div class="park-address"><i class="fas fa-map-marker-alt"></i> ${park.address}</div>
+            <div class="park-details">
+              <div class="detail"><i class="fas fa-clock"></i> ${park.hours || 'See park for details'}</div>
+            </div>
+            <div class="park-amenities">
+              ${(park.amenities && park.amenities.length) ? park.amenities.map(a => `<span class="amenity">${a}</span>`).join('') : '<span class="amenity">No amenities listed</span>'}
+            </div>
+            <div class="park-actions">
+              <button class="btn-map" aria-label="View ${park.name} on map" onclick="window.open('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('${park.address}'))">View on Map</button>
+              <button class="btn-directions" aria-label="Get directions to ${park.name}" onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent('${park.address}'))">Directions</button>
+            </div>
+          </div>
         </div>
-      `).join('');
-    }
+      `).join('') : '<div style="padding: 30px; text-align: center; color: #888;" role="status" aria-live="polite">No parks found matching your search and filters.</div>'}
+    </div>
+  `;
+}
 
-    function initConroeMap() {
-      const parks = parksData['conroe'];
-      const map = new google.maps.Map(document.getElementById('conroe-map'), {
-        zoom: 11,
-        center: { lat: 30.3119, lng: -95.4561 }
+function initConroeMap() {
+  const parks = parksData['conroe'];
+  const map = new google.maps.Map(document.getElementById('conroe-map'), {
+    zoom: 11,
+    center: { lat: 30.3119, lng: -95.4561 }
+  });
+  parks.forEach(park => {
+    if (typeof park.lat === 'number' && typeof park.lng === 'number' && !isNaN(park.lat) && !isNaN(park.lng)) {
+      const marker = new google.maps.marker.AdvancedMarkerElement({
+        map: map,
+        position: { lat: park.lat, lng: park.lng },
+        title: park.name
       });
-      parks.forEach(park => {
-        const marker = new google.maps.Marker({
-          position: { lat: park.lat, lng: park.lng },
-          map,
-          title: park.name
-        });
-        const infoWindow = new google.maps.InfoWindow({
-          content: `<strong>${park.name}</strong><br>${park.address}<br>${park.hours}`
-        });
-        marker.addListener('mouseover', () => infoWindow.open(map, marker));
-        marker.addListener('mouseout', () => infoWindow.close());
+      const infoWindow = new google.maps.InfoWindow({
+        content: `<strong>${park.name}</strong><br>${park.address}<br>${park.hours}`
       });
+      marker.addListener('mouseover', () => infoWindow.open(map, marker));
+      marker.addListener('mouseout', () => infoWindow.close());
     }
+  });
+}
 
-    document.addEventListener('DOMContentLoaded', function() {
-      renderConroeParks();
+function openParkModal(park) {
+  document.getElementById('parkModalTitle').textContent = park.name;
+  document.getElementById('parkModalImage').innerHTML = `<picture><source srcset="${park.image ? park.image + '&fm=webp' : '/images/default-park.webp'}" type="image/webp"><img src="${park.image || '/images/default-park.jpg'}" alt="Photo of ${park.name} in Conroe" width="400" height="250"></picture>`;
+  document.getElementById('parkModalDetails').innerHTML = `
+    <div class="detail"><i class="fas fa-map-marker-alt"></i> ${park.address}</div>
+    <div class="detail"><i class="fas fa-clock"></i> ${park.hours || 'See park for details'}</div>
+  `;
+  document.getElementById('parkModalAmenities').innerHTML = (park.amenities && park.amenities.length) ? park.amenities.map(a => `<span class="park-modal-amenity">${a}</span>`).join('') : '<span class="park-modal-amenity">No amenities listed</span>';
+  document.getElementById('parkModalActions').innerHTML = `
+    <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(park.address)}" target="_blank" rel="noopener" aria-label="View ${park.name} on Google Maps">View on Map</a>
+    <a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(park.address)}" target="_blank" rel="noopener" aria-label="Get directions to ${park.name}">Directions</a>
+  `;
+  document.getElementById('parkModalSocial').innerHTML = `
+    <button aria-label="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href),'_blank')"><i class="fab fa-facebook-f"></i></button>
+    <button aria-label="Share on Twitter" onclick="window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(window.location.href)+'&text='+encodeURIComponent('Check out '+park.name+' in Conroe!'),'_blank')"><i class="fab fa-twitter"></i></button>
+    <button aria-label="Copy link" onclick="navigator.clipboard.writeText(window.location.href);this.textContent='✔';setTimeout(()=>this.innerHTML='<i class=\'fas fa-link\'></i>',1200)"><i class="fas fa-link"></i></button>
+  `;
+  document.getElementById('parkModalOverlay').classList.remove('hidden');
+  document.getElementById('parkModalOverlay').focus();
+  // Trap focus
+  document.body.style.overflow = 'hidden';
+}
+function closeParkModal() {
+  document.getElementById('parkModalOverlay').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+document.getElementById('parkModalClose').onclick = closeParkModal;
+document.getElementById('parkModalOverlay').onclick = function(e) { if(e.target === this) closeParkModal(); };
+document.addEventListener('keydown', function(e) {
+  if(document.getElementById('parkModalOverlay').classList.contains('hidden') && e.key === 'Escape') closeParkModal();
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const parks = parksData['conroe'];
+  renderAmenityFilters(parks);
+
+  // Restore state from localStorage
+  const savedSearch = localStorage.getItem('conroe_search') || '';
+  const savedAmenities = JSON.parse(localStorage.getItem('conroe_amenities') || '[]');
+  const searchInput = document.getElementById('searchInput');
+  if (searchInput) searchInput.value = savedSearch;
+  renderConroeParks();
+  // Restore amenity checkboxes
+  setTimeout(() => {
+    document.querySelectorAll('.amenity-checkbox').forEach(cb => {
+      if (savedAmenities.includes(cb.value)) cb.checked = true;
     });
+    renderConroeParks();
+  }, 0);
+
+  // Save state on input/change
+  searchInput.addEventListener('input', function() {
+    localStorage.setItem('conroe_search', searchInput.value);
+    renderConroeParks();
+    document.getElementById('parks-list').focus();
+  });
+  document.getElementById('amenityFilters').addEventListener('change', function() {
+    const checked = Array.from(document.querySelectorAll('.amenity-checkbox')).filter(cb => cb.checked).map(cb => cb.value);
+    localStorage.setItem('conroe_amenities', JSON.stringify(checked));
+    renderConroeParks();
+    document.getElementById('parks-list').focus();
+  });
+
+  // Keyboard: focus results on Enter
+  searchInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      renderConroeParks();
+      document.getElementById('parks-list').focus();
+    }
+  });
+  // Make results region focusable
+  document.getElementById('parks-list').setAttribute('tabindex', '-1');
+});
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCHkUgtkd4liscYJOKOCdE2huiauHT7iM&callback=initConroeMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCHkUgtkd4liscYJOKOCdE2huiauHT7iM&callback=initConroeMap&libraries=marker" async loading="async"></script>
 </body>
 </html> 

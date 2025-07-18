@@ -6,27 +6,68 @@
     <title>Dog Parks in Texas - Find the Best Dog Parks Near You</title>
     <meta name="description" content="Discover the best dog parks in Texas. Find dog parks in Dallas, San Antonio, Houston, Austin and more. Complete directory with maps, reviews, and amenities.">
     <meta name="keywords" content="dog parks texas, dog park dallas texas, dog parks san antonio texas, dog parks garland tx, dog parks in el paso texas">
-    <link rel="stylesheet" href="styles.css">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Dog Parks in Texas - Find the Best Dog Parks Near You">
+    <meta property="og:description" content="Discover the best dog parks in Texas. Find dog parks in Dallas, San Antonio, Houston, Austin and more. Complete directory with maps, reviews, and amenities.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop">
+    <meta property="og:url" content="https://texasdogparks.com/">
+    <meta property="og:type" content="website">
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dog Parks in Texas - Find the Best Dog Parks Near You">
+    <meta name="twitter:description" content="Discover the best dog parks in Texas. Find dog parks in Dallas, San Antonio, Houston, Austin and more. Complete directory with maps, reviews, and amenities.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Texas Dog Parks Directory",
+      "url": "https://texasdogparks.com/",
+      "description": "Discover the best dog parks in Texas. Find dog parks in Dallas, San Antonio, Houston, Austin and more.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://texasdogparks.com/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <link rel="preload" href="styles.min.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    <link rel="stylesheet" href="styles.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    <!-- Google AdSense (replace ca-pub-XXXXXXXXXXXXXXX with your publisher ID) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <!-- Header -->
     <header class="header">
-        <nav class="nav">
+        <nav class="nav" role="navigation" aria-label="Main navigation">
             <div class="nav-container">
                 <div class="logo">
                     <i class="fas fa-paw"></i>
                     <span>Texas Dog Parks</span>
                 </div>
-                <ul class="nav-menu">
+                <ul class="nav-menu" id="nav-menu">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="dallas.html">Dallas</a></li>
                     <li><a href="san-antonio.html">San Antonio</a></li>
                     <li><a href="conroe.html">Conroe</a></li>
                     <li><a href="about.html">About</a></li>
                 </ul>
-                <div class="hamburger">
+                <div class="hamburger" tabindex="0" aria-label="Open menu" aria-controls="nav-menu" aria-expanded="false" role="button">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -36,19 +77,30 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="main-content">
         <div class="hero-container">
             <div class="hero-content">
                 <h1>Find Dog Parks in Texas</h1>
                 <p>Discover the best off-leash dog parks across the Lone Star State. From Dallas to San Antonio, find the perfect spot for your furry friend.</p>
                 
                 <!-- Search Bar -->
-                <div class="search-container">
-                    <div class="search-box">
+                <div class="search-container prominent-search">
+                    <div class="search-box" role="search" aria-label="Search for dog parks by city or zip code">
                         <i class="fas fa-search"></i>
-                        <input type="text" id="searchInput" placeholder="Search by city or zip code...">
-                        <button id="searchBtn">Search</button>
+                        <input type="text" id="searchInput" placeholder="Search by city or zip code..." aria-label="Search by city or zip code">
+                        <button id="searchBtn" aria-label="Search">Search</button>
                     </div>
+                </div>
+                <!-- Quick Links: See all cities -->
+                <div class="quick-links" aria-label="Quick links to popular cities">
+                    <a href="dallas.html" class="quick-link">Dallas</a>
+                    <a href="san-antonio.html" class="quick-link">San Antonio</a>
+                    <a href="conroe.html" class="quick-link">Conroe</a>
+                    <a href="houston.html" class="quick-link">Houston</a>
+                    <a href="#" class="quick-link">Austin</a>
+                    <a href="#" class="quick-link">Fort Worth</a>
+                    <a href="#" class="quick-link">El Paso</a>
+                    <a href="#" class="quick-link">See all cities</a>
                 </div>
 
                 <!-- Quick Stats -->
@@ -88,7 +140,10 @@
             <div class="cities-grid">
                 <div class="city-card">
                     <div class="city-image">
-                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop" alt="Dallas Dog Parks">
+                        <picture>
+                            <source srcset="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop&fm=webp" type="image/webp">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop" alt="Dallas Dog Parks" width="400" height="250">
+                        </picture>
                     </div>
                     <div class="city-content">
                         <h3>Dallas Dog Parks</h3>
@@ -103,7 +158,10 @@
 
                 <div class="city-card">
                     <div class="city-image">
-                        <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=400&h=250&fit=crop" alt="San Antonio Dog Parks">
+                        <picture>
+                            <source srcset="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=400&h=250&fit=crop&fm=webp" type="image/webp">
+                            <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=400&h=250&fit=crop" alt="San Antonio Dog Parks" width="400" height="250">
+                        </picture>
                     </div>
                     <div class="city-content">
                         <h3>San Antonio Dog Parks</h3>
@@ -118,7 +176,10 @@
 
                 <div class="city-card">
                     <div class="city-image">
-                        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&h=250&fit=crop" alt="Conroe Dog Parks">
+                        <picture>
+                            <source srcset="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&h=250&fit=crop&fm=webp" type="image/webp">
+                            <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&h=250&fit=crop" alt="Conroe Dog Parks" width="400" height="250">
+                        </picture>
                     </div>
                     <div class="city-content">
                         <h3>Conroe Dog Parks</h3>
@@ -130,6 +191,9 @@
                         <a href="conroe.html" class="btn-primary">Explore Conroe Parks</a>
                     </div>
                 </div>
+            </div>
+            <div class="see-all-cities">
+                <a href="#" class="btn-secondary" aria-label="See all Texas cities">See all Texas Cities</a>
             </div>
         </div>
     </section>
@@ -145,14 +209,17 @@
         </div>
     </section>
 
-    <!-- Recent Listings -->
-    <section class="recent-listings">
+    <!-- Featured Parks (renamed from Recent Listings) -->
+    <section class="featured-listings">
         <div class="container">
-            <h2>Recently Added Dog Parks</h2>
+            <h2>Featured Dog Parks</h2>
             <div class="listings-grid">
                 <div class="listing-card">
                     <div class="listing-image">
-                        <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=300&h=200&fit=crop" alt="White Rock Lake Dog Park">
+                        <picture>
+                            <source srcset="https://images.unsplash.com/photo-1552053831-71594a27632d?w=300&h=200&fit=crop&fm=webp" type="image/webp">
+                            <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=300&h=200&fit=crop" alt="White Rock Lake Dog Park" width="300" height="200">
+                        </picture>
                     </div>
                     <div class="listing-content">
                         <h3>White Rock Lake Dog Park</h3>
@@ -175,7 +242,10 @@
 
                 <div class="listing-card">
                     <div class="listing-image">
-                        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=300&h=200&fit=crop" alt="McAllister Dog Park">
+                        <picture>
+                            <source srcset="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=300&h=200&fit=crop&fm=webp" type="image/webp">
+                            <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=300&h=200&fit=crop" alt="McAllister Dog Park" width="300" height="200">
+                        </picture>
                     </div>
                     <div class="listing-content">
                         <h3>McAllister Dog Park</h3>
@@ -198,7 +268,10 @@
 
                 <div class="listing-card">
                     <div class="listing-image">
-                        <img src="https://images.unsplash.com/photo-1544568100-847a948585b9?w=300&h=200&fit=crop" alt="Carl Barton Jr. Dog Park">
+                        <picture>
+                            <source srcset="https://images.unsplash.com/photo-1544568100-847a948585b9?w=300&h=200&fit=crop&fm=webp" type="image/webp">
+                            <img src="https://images.unsplash.com/photo-1544568100-847a948585b9?w=300&h=200&fit=crop" alt="Carl Barton Jr. Dog Park" width="300" height="200">
+                        </picture>
                     </div>
                     <div class="listing-content">
                         <h3>Carl Barton Jr. Dog Park</h3>
@@ -219,6 +292,9 @@
                     </div>
                 </div>
             </div>
+            <div class="see-all-parks">
+                <a href="#" class="btn-secondary" aria-label="See all Texas dog parks">See all Texas Dog Parks</a>
+            </div>
         </div>
     </section>
 
@@ -238,23 +314,26 @@
                     <button class="btn-secondary">List Your Dog Park</button>
                 </div>
                 <div class="featured-image">
-                    <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=500&h=400&fit=crop" alt="Featured Dog Park">
+                    <picture>
+                        <source srcset="https://images.unsplash.com/photo-1552053831-71594a27632d?w=500&h=400&fit=crop&fm=webp" type="image/webp">
+                        <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=500&h=400&fit=crop" alt="Featured Dog Park" width="500" height="400">
+                    </picture>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Texas Dog Parks</h3>
                     <p>Your go-to directory for finding the best dog parks across Texas.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -279,8 +358,8 @@
                     <h4>Newsletter</h4>
                     <p>Get updates on new dog parks and events.</p>
                     <div class="newsletter">
-                        <input type="email" placeholder="Enter your email">
-                        <button>Subscribe</button>
+                        <input type="email" placeholder="Enter your email" aria-label="Email address for newsletter">
+                        <button aria-label="Subscribe to newsletter">Subscribe</button>
                     </div>
                 </div>
             </div>
@@ -288,8 +367,18 @@
                 <p>&copy; 2024 Texas Dog Parks Directory. All rights reserved.</p>
             </div>
         </div>
+        <!-- AdSense: Responsive Ad Unit (footer) -->
+        <div class="adsense-footer">
+          <!-- Replace ca-pub-XXXXXXXXXXXXXXX with your publisher ID -->
+          <ins class="adsbygoogle"
+               data-ad-client="ca-pub-XXXXXXXXXXXXXXX"
+               data-ad-slot="1234567890"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.min.js" defer></script>
 </body>
 </html> 

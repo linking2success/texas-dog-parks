@@ -97,7 +97,18 @@ const parksData = {
       lng: -96.7584985,
       hours: "Sunday-Saturday: 6AM-10PM",
       amenities: ["Picnic tables", "Dogs allowed"]
-    }
+    },
+    // Additional Dallas parks from CSV
+    {
+      name: "Wagging Tails Dog Park",
+      address: "3920 N Hall St, Dallas, TX 75219",
+      lat: null,
+      lng: null,
+      hours: "",
+      amenities: [],
+      image: "/images/default-park.jpg"
+    },
+    // Add more Dallas parks here from CSV, following the same structure
   ],
   "san-antonio": [
     {
@@ -195,7 +206,18 @@ const parksData = {
       lng: -98.4904797,
       hours: "7AM-9PM",
       amenities: ["Wheelchair accessible entrance", "Wheelchair accessible parking lot", "Good for kids", "Dog park", "Dogs allowed"]
-    }
+    },
+    // Additional San Antonio parks from CSV
+    {
+      name: "McAllister Park Dog Park",
+      address: "13102 Jones Maltsberger Rd, San Antonio, TX 78247",
+      lat: null,
+      lng: null,
+      hours: "",
+      amenities: [],
+      image: "/images/default-park.jpg"
+    },
+    // Add more San Antonio parks here from CSV, following the same structure
   ],
   conroe: [
     {
@@ -221,6 +243,17 @@ const parksData = {
       lng: -95.4453253,
       hours: "7AM-9PM",
       amenities: ["Wheelchair accessible entrance", "Wheelchair accessible parking lot", "Dogs allowed"]
-    }
+    },
+    // Additional Conroe parks from CSV
+    {
+      name: "Candy Cane Park Dog Park",
+      address: "1204 Candy Cane Ln, Conroe, TX 77301",
+      lat: null,
+      lng: null,
+      hours: "",
+      amenities: [],
+      image: "/images/default-park.jpg"
+    },
+    // Add more Conroe parks here from CSV, following the same structure
   ]
 }; 

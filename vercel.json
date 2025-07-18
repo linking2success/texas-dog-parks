@@ -4,5 +4,13 @@
     { "source": "/san-antonio", "destination": "/san-antonio.html" },
     { "source": "/conroe", "destination": "/conroe.html" },
     { "source": "/about", "destination": "/about.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)\\.(css|js|png|jpg|jpeg|webp|svg|gif)$",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
   ]
 } 
