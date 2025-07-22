@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dog Park Details - Bark & Play Directory</title>
+  <meta name="description" content="Detailed information about this dog park including amenities, location, and contact information.">
+  <link rel="stylesheet" href="main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav-container">
+        <a href="index.html" class="logo">
+          <img src="logo.png" alt="Bark & Play Directory Logo">
+          Bark & Play Directory
+        </a>
+        
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="collections.html">Dog Parks</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="submit-dog-park.html" class="nav-cta">Submit Park</a></li>
+        </ul>
+        
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Park Details Section -->
+  <section class="park-details">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a> &gt;
+        <a href="collections.html">Dog Parks</a> &gt;
+        <span id="parkName">Park Details</span>
+      </div>
+      
+      <div class="park-hero">
+        <div class="park-image-gallery">
+          <img id="parkMainImage" src="" alt="Dog Park" class="main-image">
+        </div>
+        
+        <div class="park-info">
+          <h1 id="parkTitle">Dog Park Name</h1>
+          <div class="park-location">
+            <span>📍</span>
+            <span id="parkAddress">Address</span>
+          </div>
+          
+          <div class="park-status">
+            <span class="status-badge operational">Open</span>
+          </div>
+          
+          <div class="park-amenities" id="parkAmenities">
+            <!-- Amenities will be populated here -->
+          </div>
+          
+          <div class="park-actions">
+            <a href="#" id="directionsLink" class="btn btn-primary" target="_blank">
+              Get Directions
+            </a>
+            <a href="tel:" id="phoneLink" class="btn btn-secondary">
+              Call Park
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="park-content">
+        <div class="park-main">
+          <div class="content-section">
+            <h2>About This Park</h2>
+            <p id="parkDescription">Description will be loaded here...</p>
+          </div>
+          
+          <div class="content-section">
+            <h2>Park Features</h2>
+            <div class="features-grid" id="parkFeatures">
+              <!-- Features will be populated here -->
+            </div>
+          </div>
+          
+          <div class="content-section">
+            <h2>Park Rules & Guidelines</h2>
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-icon">🐕</span>
+                <div class="rule-content">
+                  <h4>Keep Dogs on Leash Until Inside</h4>
+                  <p>Ensure your dog is leashed until you reach the designated off-leash area.</p>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-icon">🧹</span>
+                <div class="rule-content">
+                  <h4>Clean Up After Your Dog</h4>
+                  <p>Always pick up and dispose of your dog's waste properly.</p>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-icon">👀</span>
+                <div class="rule-content">
+                  <h4>Supervise Your Dog</h4>
+                  <p>Keep a close eye on your dog and be ready to intervene if needed.</p>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-icon">💧</span>
+                <div class="rule-content">
+                  <h4>Bring Water</h4>
+                  <p>Ensure your dog stays hydrated, especially on hot days.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="park-sidebar">
+          <div class="sidebar-section">
+            <h3>Contact Information</h3>
+            <div class="contact-info">
+              <div class="contact-item">
+                <span class="contact-icon">📞</span>
+                <div>
+                  <strong>Phone:</strong>
+                  <a href="tel:" id="contactPhone">Not available</a>
+                </div>
+              </div>
+              <div class="contact-item">
+                <span class="contact-icon">🌐</span>
+                <div>
+                  <strong>Website:</strong>
+                  <a href="#" id="contactWebsite" target="_blank">Visit website</a>
+                </div>
+              </div>
+              <div class="contact-item">
+                <span class="contact-icon">📍</span>
+                <div>
+                  <strong>Address:</strong>
+                  <span id="contactAddress">Address not available</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="sidebar-section">
+            <h3>Park Hours</h3>
+            <div class="hours-info">
+              <p>Most dog parks are open from dawn to dusk, but hours may vary. Please check with the park for specific hours.</p>
+            </div>
+          </div>
+          
+          <div class="sidebar-section">
+            <h3>Nearby Parks</h3>
+            <div class="nearby-parks" id="nearbyParks">
+              <!-- Nearby parks will be populated here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Bark & Play Directory</h3>
+          <p>Your trusted guide to the best dog parks in Texas.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="collections.html">All Parks</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Get Involved</h4>
+          <ul>
+            <li><a href="submit-dog-park.html">Submit a Park</a></li>
+            <li><a href="submit-featured-dog-park.html">Featured Listing</a></li>
+            <li><a href="subscribe.html">Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Bark & Play Directory. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="parks-data.js"></script>
+  <script src="collection-single.js"></script>
+</body>
+</html> 

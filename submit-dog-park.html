@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit a Dog Park - Texas Dog Park Directory</title>
+  <meta name="description" content="Submit a new dog park or get your park featured on Texas Dog Park Directory. Help us grow the best resource for dog owners in Texas!">
+  <meta property="og:title" content="Submit a Dog Park - Texas Dog Park Directory">
+  <meta property="og:description" content="Submit a new dog park or get your park featured on Texas Dog Park Directory. Help us grow the best resource for dog owners in Texas!">
+  <meta property="og:image" content="logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://texasdogparkdirectory.com/submit-dog-park.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Submit a Dog Park - Texas Dog Park Directory">
+  <meta name="twitter:description" content="Submit a new dog park or get your park featured on Texas Dog Park Directory. Help us grow the best resource for dog owners in Texas!">
+  <meta name="twitter:image" content="logo.png">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <img src="logo.png" alt="Texas Dog Park Directory" class="logo-img">
+          <span class="logo-text">Texas Dog Park Directory</span>
+        </div>
+        <nav class="nav">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="collections.html" class="nav-link">Dog Parks</a>
+          <a href="resources.html" class="nav-link">Resources</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero hero-about">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">Submit a Dog Park</h1>
+        <p class="hero-subtitle">Help us grow the Texas Dog Park Directory! Submit a new park or get your park featured for extra visibility.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Playful Helpful Info Section -->
+  <section class="helpful-info-section">
+    <div class="container">
+      <div class="helpful-info-grid">
+        <div class="helpful-info-card">
+          <div class="helpful-info-icon">📝</div>
+          <div class="helpful-info-title">Be Detailed</div>
+          <div class="helpful-info-text">Include as much info as possible for faster approval and a better listing.</div>
+        </div>
+        <div class="helpful-info-card">
+          <div class="helpful-info-icon">📸</div>
+          <div class="helpful-info-title">Add Photos</div>
+          <div class="helpful-info-text">Photos make your park stand out and help other dog owners know what to expect.</div>
+        </div>
+        <div class="helpful-info-card">
+          <div class="helpful-info-icon">🏷️</div>
+          <div class="helpful-info-title">List Amenities</div>
+          <div class="helpful-info-text">Mention water stations, shade, separate areas, and other features.</div>
+        </div>
+        <div class="helpful-info-card">
+          <div class="helpful-info-icon">⭐</div>
+          <div class="helpful-info-title">Featured Perks</div>
+          <div class="helpful-info-text">Featured parks get priority placement, a badge, and extra promotion!</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tabbed Submission Section -->
+  <section class="submit-section">
+    <div class="container">
+      <div class="tabbed-form">
+        <div class="tab-buttons">
+          <button class="tab-btn active" data-tab="regular">Submit a Dog Park</button>
+          <button class="tab-btn" data-tab="featured">Submit a Featured Dog Park</button>
+        </div>
+        <div class="tab-content active" id="tab-regular">
+          <form class="contact-form form-max-width">
+            <div class="form-group">
+              <label for="park-name">Dog Park Name</label>
+              <input type="text" id="park-name" name="park-name" required>
+            </div>
+            <div class="form-group">
+              <label for="city">City</label>
+              <input type="text" id="city" name="city" required>
+            </div>
+            <div class="form-group">
+              <label for="address">Address</label>
+              <input type="text" id="address" name="address">
+            </div>
+            <div class="form-group">
+              <label for="amenities">Amenities (comma separated)</label>
+              <input type="text" id="amenities" name="amenities">
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea id="description" name="description" rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Park</button>
+          </form>
+        </div>
+        <div class="tab-content" id="tab-featured">
+          <form class="contact-form form-max-width">
+            <div class="form-group">
+              <label for="featured-park-name">Dog Park Name</label>
+              <input type="text" id="featured-park-name" name="featured-park-name" required>
+            </div>
+            <div class="form-group">
+              <label for="featured-city">City</label>
+              <input type="text" id="featured-city" name="featured-city" required>
+            </div>
+            <div class="form-group">
+              <label for="featured-address">Address</label>
+              <input type="text" id="featured-address" name="featured-address">
+            </div>
+            <div class="form-group">
+              <label for="featured-amenities">Amenities (comma separated)</label>
+              <input type="text" id="featured-amenities" name="featured-amenities">
+            </div>
+            <div class="form-group">
+              <label for="featured-description">Description</label>
+              <textarea id="featured-description" name="featured-description" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="featured-contact">Contact Email</label>
+              <input type="email" id="featured-contact" name="featured-contact" required>
+            </div>
+            <div class="form-group">
+              <label for="featured-benefits">Why should your park be featured?</label>
+              <textarea id="featured-benefits" name="featured-benefits" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Featured Park</button>
+            <p class="featured-benefits-note">Featured parks get priority placement, a special badge, and extra promotion on our site!</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Bark & Play Directory</h3>
+          <p>Your trusted guide to the best dog parks in Texas.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="collections.html">All Parks</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Get Involved</h4>
+          <ul>
+            <li><a href="submit-dog-park.html">Submit a Park</a></li>
+            <li><a href="submit-featured-dog-park.html">Featured Listing</a></li>
+            <li><a href="subscribe.html">Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Bark & Play Directory. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Tab switching logic
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+        this.classList.add('active');
+        document.getElementById('tab-' + this.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html> 

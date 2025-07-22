@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Dog Parks in Texas - Bark & Play Directory</title>
+  <meta name="description" content="Browse all dog parks in Texas. Search by city, amenities, and more to find the perfect park for your pup.">
+  <meta property="og:title" content="All Dog Parks in Texas - Bark & Play Directory">
+  <meta property="og:description" content="Browse all dog parks in Texas. Search by city, amenities, and more to find the perfect park for your pup.">
+  <meta property="og:image" content="logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://texasdogparkdirectory.com/collections.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="All Dog Parks in Texas - Bark & Play Directory">
+  <meta name="twitter:description" content="Browse all dog parks in Texas. Search by city, amenities, and more to find the perfect park for your pup.">
+  <meta name="twitter:image" content="logo.png">
+  <link rel="stylesheet" href="main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav-container">
+        <a href="index.html" class="logo">
+          <img src="logo.png" alt="Bark & Play Directory Logo">
+          Bark & Play Directory
+        </a>
+        
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="collections.html">Dog Parks</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="submit-dog-park.html" class="nav-cta">Submit Park</a></li>
+        </ul>
+        
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>All Dog Parks in Texas</h1>
+        <p>Discover over 3,700 dog parks across the Lone Star State. Find the perfect spot for your furry friend to play, socialize, and explore.</p>
+        
+        <!-- Search Bar -->
+        <div class="search-container">
+          <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search by park name, city, or amenities...">
+            <button type="button" id="searchBtn">Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filters Section -->
+  <section class="filters">
+    <div class="container">
+      <div class="filters-content">
+        <div class="filter-group">
+          <label for="cityFilter">City:</label>
+          <select id="cityFilter">
+            <option value="">All Cities</option>
+            <option value="Dallas">Dallas</option>
+            <option value="Houston">Houston</option>
+            <option value="Austin">Austin</option>
+            <option value="San Antonio">San Antonio</option>
+            <option value="Fort Worth">Fort Worth</option>
+            <option value="El Paso">El Paso</option>
+            <option value="Arlington">Arlington</option>
+            <option value="Corpus Christi">Corpus Christi</option>
+            <option value="Plano">Plano</option>
+            <option value="Lubbock">Lubbock</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="amenityFilter">Amenities:</label>
+          <select id="amenityFilter">
+            <option value="">All Amenities</option>
+            <option value="water">Water Available</option>
+            <option value="shade">Shade</option>
+            <option value="fenced">Fenced</option>
+            <option value="agility">Agility Equipment</option>
+            <option value="separate">Separate Areas</option>
+            <option value="parking">Parking</option>
+            <option value="benches">Benches</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="statusFilter">Status:</label>
+          <select id="statusFilter">
+            <option value="">All Status</option>
+            <option value="OPERATIONAL">Open</option>
+            <option value="CLOSED_TEMPORARILY">Temporarily Closed</option>
+            <option value="CLOSED_PERMANENTLY">Permanently Closed</option>
+          </select>
+        </div>
+        
+        <button id="clearFilters" class="btn btn-secondary">Clear Filters</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section class="results">
+    <div class="container">
+      <div class="results-header">
+        <div class="results-count">
+          <span id="resultsCount">Loading...</span> dog parks found
+        </div>
+        <div class="results-sort">
+          <label for="sortSelect">Sort by:</label>
+          <select id="sortSelect">
+            <option value="name">Name A-Z</option>
+            <option value="city">City</option>
+            <option value="rating">Rating</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="parks-grid" id="parksGrid">
+        <!-- Parks will be loaded here dynamically -->
+        <div class="loading">Loading dog parks...</div>
+      </div>
+      
+      <!-- Pagination -->
+      <div class="pagination" id="pagination">
+        <!-- Pagination controls will be added here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Bark & Play Directory</h3>
+          <p>Your trusted guide to the best dog parks in Texas.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="collections.html">All Parks</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Get Involved</h4>
+          <ul>
+            <li><a href="submit-dog-park.html">Submit a Park</a></li>
+            <li><a href="submit-featured-dog-park.html">Featured Listing</a></li>
+            <li><a href="subscribe.html">Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Bark & Play Directory. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="parks-data.js"></script>
+  <script src="collections.js"></script>
+</body>
+</html> 
