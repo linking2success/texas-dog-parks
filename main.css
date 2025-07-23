@@ -1,3 +1,4 @@
+
 :root {
   --color-primary: #4379b8;
   --color-accent: #9672ff;
@@ -304,6 +305,7 @@ body {
   margin-bottom: 2rem;
   transition: transform 0.15s, box-shadow 0.15s;
   height: 100%;
+  min-height: 350px; /* Adjust this value as needed for your design */
 }
 .park-card:hover {
   transform: translateY(-4px) scale(1.02);
@@ -1731,25 +1733,21 @@ body {
 }
 
 @media (max-width: 768px) {
-  .resource-grid {
+  .resources-grid {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 20px;
   }
   
-  .resource-main {
+  .resource-card {
     padding: 30px;
   }
   
-  .resource-hero-title {
-    font-size: 2.5rem;
-  }
-  
-  .tip-grid {
+  .checklist-grid {
     grid-template-columns: 1fr;
   }
   
-  .resource-sidebar {
-    position: static;
+  .article-title {
+    font-size: 2rem;
   }
 }
 
