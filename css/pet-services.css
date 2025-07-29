@@ -47,6 +47,194 @@
   border-bottom: 1px solid #f1f1f1;
 }
 
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.resource-card {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.resource-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.resource-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  display: block;
+  color: var(--color-primary); /* Use primary color for icons */
+}
+
+.resource-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--color-dark);
+}
+
+.resource-description {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  flex-grow: 1; /* Allow description to take available space */
+}
+
+.resource-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px; /* Space above links */
+}
+
+.resource-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--color-primary);
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.resource-link:hover {
+  background: var(--color-primary);
+  color: white;
+  transform: translateX(5px);
+}
+
+.link-arrow {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.resource-link:hover .link-arrow {
+  transform: translateX(5px);
+}
+
+/* Adjustments for the table of contents */
+.table-of-contents {
+  background-color: #f8f9fa;
+  padding: 20px 0;
+  border-bottom: 1px solid #e9ecef;
+  position: sticky;
+  top: 60px; /* Adjust based on header height */
+  z-index: 900;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.table-of-contents h3 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: var(--color-primary);
+  text-align: center;
+}
+
+.table-of-contents ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 20px;
+}
+
+.table-of-contents ul li a {
+  text-decoration: none;
+  color: var(--color-dark);
+  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.table-of-contents ul li a:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* General styles for pet-services.html */
+.city-section h2,
+.value-add-section h2 {
+  font-size: 2.2rem;
+  color: var(--color-primary);
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.city-section h3 {
+  font-size: 1.6rem;
+  color: var(--color-dark);
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.city-section h4 {
+  font-size: 1.2rem;
+  color: var(--color-secondary);
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.city-section p,
+.value-add-section p {
+  line-height: 1.7;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+.city-section ul {
+  list-style: disc;
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.city-section ul li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+  color: #444;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .table-of-contents ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .table-of-contents ul li {
+    margin-bottom: 5px;
+  }
+
+  .city-section h2,
+  .value-add-section h2 {
+    font-size: 1.8rem;
+  }
+
+  .city-section h3 {
+    font-size: 1.4rem;
+  }
+
+  .resources-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .city-section:last-of-type,
 .value-add-section:last-of-type {
   border-bottom: none;
