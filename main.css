@@ -1320,7 +1320,6 @@ body {
   height: 250px;
   object-fit: cover;
   display: block;
-  margin-bottom: 25px; /* Added margin-bottom to separate image from text */
 }
 
 .image-overlay {
@@ -1342,13 +1341,13 @@ body {
 .resources-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 40px; /* Increased gap for more spacing */
-  margin-top: 60px; /* Increased margin-top for more spacing */
+  gap: 30px;
+  margin-top: 50px;
 }
 
 .resource-card {
   background: white;
-  padding: 50px; /* Increased padding for more internal space */
+  padding: 40px;
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -1369,14 +1368,14 @@ body {
 .resource-title {
   color: var(--color-primary);
   font-size: 1.5rem;
-  margin-bottom: 20px; /* Increased margin-bottom for more spacing */
+  margin-bottom: 15px;
   font-weight: 600;
 }
 
 .resource-description {
   color: var(--color-dark);
-  line-height: 1.7; /* Slightly increased line height for better readability */
-  margin-bottom: 30px; /* Increased margin-bottom for more spacing */
+  line-height: 1.6;
+  margin-bottom: 25px;
 }
 
 .resource-links {
@@ -1413,6 +1412,25 @@ body {
   transform: translateX(5px);
 }
 
+/* Widget Container Styles */
+.widget-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0; /* Add some vertical padding */
+}
+
+.widget-container img {
+  max-width: 100%; /* Ensure images are responsive */
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .widget-container {
+    padding: 10px 0;
+  }
+}
 .featured-article {
   padding: 80px 0;
   background: white;
@@ -1732,12 +1750,12 @@ body {
 }
 
 @media (max-width: 768px) {
-  .resource-grid {
+  .resources-grid {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 20px;
   }
   
-  .resource-main {
+  .resource-card {
     padding: 30px;
   }
   
