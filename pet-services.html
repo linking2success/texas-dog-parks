@@ -1,14 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5196916620971431"
-       crossorigin="anonymous"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Complete Guide to Dog Services in Texas - Bark & Play Directory</title>
-  <meta name="description" content="Your comprehensive guide to dog services in Texas, including dog walking, pet sitting, grooming, veterinary care, and training across major Texas cities.">
-  <meta property="og:title" content="Complete Guide to Dog Services in Texas - Bark & Play Directory">
-  <meta property="og:description" content="Your comprehensive guide to dog services in Texas, including dog walking, pet sitting, grooming, veterinary care, and training across major Texas cities.">
+  <title>Dog Services in Texas | Bark & Play Directory</title>
+  <meta name="description" content="Find trusted dog walking, sitting, grooming, training, and more in Texas. Compare services and book with confidence.">
+  <meta property="og:title" content="Dog Services in Texas | Bark & Play Directory">
+  <meta property="og:description" content="Find trusted dog walking, sitting, grooming, training, and more in Texas. Compare services and book with confidence.">
   <meta property="og:image" content="logo.png">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://texasdogparkdirectory.com/pet-services.html">
@@ -16,194 +15,103 @@
   <meta name="twitter:title" content="Dog Services Texas - Bark & Play Directory">
   <meta name="twitter:description" content="Find the best dog services in Texas cities: dog walkers, pet sitters, groomers, vets, and trainers.">
   <meta name="twitter:image" content="logo.png">
-  <link rel="stylesheet" href="main.css"> <!-- Reusing main.css for general styles -->
-  <link rel="stylesheet" href="css/pet-services.css"> <!-- Specific styles for this page -->
+  <link rel="stylesheet" href="main.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5196916620971431" crossorigin="anonymous"></script>
 </head>
 <body>
   <!-- Header -->
   <header class="header">
-    <div class="container">
+    <div class="container nav-container">
+      <a href="index.html" class="logo"><img src="logo.png" alt="Bark & Play Logo">Bark & Play Directory</a>
+      <nav class="nav-menu">
+        <a href="collections.html">Dog Parks</a>
+        <a href="resources.html">Resources</a>
+        <a href="pet-services.html" class="nav-link nav-cta">Dog Services</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </div>
   </header>
 
-  <!-- Main Content -->
   <main>
     <!-- Hero Section -->
-    <section class="hero-section">
+    <section class="hero" style="background: var(--gradient-primary); color: #fff; padding: 5rem 0 3rem 0;">
       <div class="container">
-        <div class="hero-content">
-          <h1>Local, trusted dog services near you</h1>
-          <p>Book a 5-star Pet Caregiver near you</p>
-          <div class="hero-search-bar">
-            <div class="search-input">
-              <span class="icon">📍</span>
-              <input type="text" placeholder="Start typing your address...">
+        <div class="hero-content" style="grid-template-columns: 1fr; text-align: center;">
+          <div class="hero-text">
+            <h1 style="font-size:2.5rem; font-weight:800;">Find Trusted Dog Services in Texas</h1>
+            <p style="font-size:1.2rem; max-width:600px; margin:1rem auto 2rem auto;">From daily walks to emergency care, discover the best dog walkers, sitters, groomers, trainers, and more—right here in Texas.</p>
+            <div class="hero-buttons">
+              <a href="#services" class="btn btn-primary">Browse Services</a>
+              <a href="collections.html" class="btn btn-secondary">Find a Dog Park</a>
             </div>
-            <div class="search-input">
-              <span class="icon">🗓️</span>
-              <input type="text" placeholder="Select your dates">
-            </div>
-            <div class="search-input">
-              <span class="icon">🐾</span>
-              <input type="text" placeholder="No pets added">
-            </div>
-            <button class="search-button">Search</button>
-          </div>
-          <p class="hero-subtext">Do you need a Caregiver to look after your pet? <a href="#">Drop-in services.</a></p>
-        </div>
-      </div>
-    </section>
-
-    <section class="features-section">
-      <div class="container">
-        <h2>What makes Dog Services with Bark & Play so great?</h2>
-        <div class="features-grid">
-          <div class="feature-item">
-            <img src="imagesdogpardirectory/Untitled-7-min.png" alt="Experienced Caregivers">
-            <h3>Experienced Caregivers</h3>
-            <p>We've been doing this a long time, and we're good at it. Our caregivers are vetted and experienced.</p>
-          </div>
-          <div class="feature-item">
-            <img src="imagesdogpardirectory/Untitled-10-min.png" alt="Trusted by Pet Parents">
-            <h3>Trusted by Pet Parents</h3>
-            <p>Don't just take our word for it! Read reviews from thousands of happy pet parents.</p>
-          </div>
-          <div class="feature-item">
-            <img src="imagesdogpardirectory/Untitled-13-dogpark_resource_page-min.png" alt="Safety First">
-            <h3>Safety First</h3>
-            <p>Your pet's safety is our top priority. All services are insured and backed by our support team.</p>
-          </div>
-          <div class="feature-item">
-            <img src="imagesdogpardirectory/Untitled-14-dogpark_resource_page-min.png" alt="Convenient Booking">
-            <h3>Convenient Booking</h3>
-            <p>Book services in minutes through our easy-to-use platform. Manage everything from your phone.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="services-section">
+    <!-- Services Grid -->
+    <section class="resources" id="services">
       <div class="container">
-        <h2>Our Comprehensive Dog Services</h2>
-        <p>Find the perfect care for your furry friend with our wide range of services.</p>
-
-        <div class="services-grid">
-          <!-- Dog Walking Services -->
-          <div class="service-card">
-            <div class="service-icon">🚶‍♀️</div>
-            <h3 class="service-title">Dog Walking</h3>
-            <p class="service-description">Reliable and experienced dog walkers to ensure your dog gets the exercise and fresh air they need. Flexible scheduling and personalized routes.</p>
-            <div class="service-links">
-              <a href="https://www.petfinder.com/pet-care/dog-walking/" target="_blank" rel="noopener noreferrer" class="service-link">
-                <span>Learn More</span>
-                <span class="link-arrow">→</span>
-              </a>
-            </div>
+        <h2 style="margin-bottom:2rem;">Dog Services We Recommend</h2>
+        <div class="resources-grid">
+          <!-- Dog Walking -->
+          <div class="resource-card">
+            <div class="resource-icon" style="font-size:2.2rem;">🚶‍♂️</div>
+            <h3>Dog Walking</h3>
+            <p>Book a trusted walker for daily exercise and fresh air. Flexible scheduling and GPS-tracked walks.</p>
+            <a href="#wag-widget" class="btn btn-primary">Find a Walker</a>
           </div>
-
           <!-- Pet Sitting & Boarding -->
-          <div class="service-card">
-            <div class="service-icon">🏠</div>
-            <h3 class="service-title">Pet Sitting & Boarding</h3>
-            <p class="service-description">Trusted pet sitters provide in-home care or comfortable boarding facilities for when you're away. Peace of mind for you, comfort for your pet.</p>
-            <div class="service-links">
-              <a href="https://www.humanesociety.org/resources/finding-good-pet-sitter" target="_blank" rel="noopener noreferrer" class="service-link">
-                <span>Learn More</span>
-                <span class="link-arrow">→</span>
-              </a>
-            </div>
+          <div class="resource-card">
+            <div class="resource-icon" style="font-size:2.2rem;">🏠</div>
+            <h3>Pet Sitting & Boarding</h3>
+            <p>In-home pet sitting or safe, comfortable boarding for your dog while you’re away. Peace of mind for you, comfort for your pet.</p>
+            <a href="#wag-widget" class="btn btn-primary">Book a Sitter</a>
           </div>
-
-          <!-- Dog Grooming & Spa Services -->
-          <div class="service-card">
-            <div class="service-icon">🛁</div>
-            <h3 class="service-title">Dog Grooming & Spa</h3>
-            <p class="service-description">Professional grooming services to keep your dog looking and feeling their best. From basic baths to full spa treatments, we ensure a happy, healthy coat.</p>
-            <div class="service-links">
-              <a href="https://www.akc.org/expert-advice/health/dog-grooming-tips/" target="_blank" rel="noopener noreferrer" class="service-link">
-                <span>Learn More</span>
-                <span class="link-arrow">→</span>
-              </a>
-            </div>
+          <!-- Grooming -->
+          <div class="resource-card">
+            <div class="resource-icon" style="font-size:2.2rem;">🛁</div>
+            <h3>Dog Grooming</h3>
+            <p>Professional grooming to keep your dog looking and feeling their best. Bathing, haircuts, nail trims, and more.</p>
+            <a href="https://www.akc.org/expert-advice/health/dog-grooming-tips/" target="_blank" rel="noopener" class="btn btn-secondary">Grooming Tips</a>
           </div>
-
-          <!-- Veterinary Clinics & Emergency Care -->
-          <div class="service-card">
-            <div class="service-icon">⚕️</div>
-            <h3 class="service-title">Veterinary Care</h3>
-            <p class="service-description">Access to top-rated veterinary clinics and 24/7 emergency care. Comprehensive health services for your dog's well-being.</p>
-            <div class="service-links">
-              <a href="https://www.avma.org/resources/pet-owners/petcare/choosing-veterinarian" target="_blank" rel="noopener noreferrer" class="service-link">
-                <span>Learn More</span>
-                <span class="link-arrow">→</span>
-              </a>
-            </div>
+          <!-- Training -->
+          <div class="resource-card">
+            <div class="resource-icon" style="font-size:2.2rem;">🎓</div>
+            <h3>Training & Behavior</h3>
+            <p>Find a certified trainer for obedience, puppy basics, or behavior issues. Positive, science-based methods.</p>
+            <a href="https://www.ccpdt.org/dog-owners/choosing-a-trainer/" target="_blank" rel="noopener" class="btn btn-secondary">Find a Trainer</a>
           </div>
-
-          <!-- Dog Training & Behavior -->
-          <div class="service-card">
-            <div class="service-icon">🎓</div>
-            <h3 class="service-title">Dog Training & Behavior</h3>
-            <p class="service-description">Expert dog trainers using positive reinforcement to help with obedience, behavior issues, and specialized training needs.</p>
-            <div class="service-links">
-              <a href="https://www.ccpdt.org/dog-owners/choosing-a-trainer/" target="_blank" rel="noopener noreferrer" class="service-link">
-                <span>Learn More</span>
-                <span class="link-arrow">→</span>
-              </a>
-            </div>
+          <!-- Veterinary Care -->
+          <div class="resource-card">
+            <div class="resource-icon" style="font-size:2.2rem;">⚕️</div>
+            <h3>Veterinary Care</h3>
+            <p>Access top-rated vets and 24/7 emergency care. Keep your dog healthy with regular checkups and vaccinations.</p>
+            <a href="https://www.avma.org/resources/pet-owners/petcare/choosing-veterinarian" target="_blank" rel="noopener" class="btn btn-secondary">Find a Vet</a>
           </div>
-
-          <!-- Dog Daycare Centers -->
-          <div class="service-card">
-            <div class="service-icon">🐾</div>
-            <h3 class="service-title">Dog Daycare</h3>
-            <p class="service-description">Supervised play and socialization in a safe, stimulating environment. Perfect for active dogs and busy owners.</p>
-            <div class="service-links">
-              <a href="https://www.akc.org/expert-advice/home-life/dog-daycare-tips/" target="_blank" rel="noopener noreferrer" class="service-link">
-                <span>Learn More</span>
-                <span class="link-arrow">→</span>
-              </a>
-            </div>
+          <!-- Daycare -->
+          <div class="resource-card">
+            <div class="resource-icon" style="font-size:2.2rem;">🐾</div>
+            <h3>Dog Daycare</h3>
+            <p>Supervised play and socialization in a safe, stimulating environment. Perfect for active dogs and busy owners.</p>
+            <a href="https://www.akc.org/expert-advice/home-life/dog-daycare-tips/" target="_blank" rel="noopener" class="btn btn-secondary">Daycare Tips</a>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <!-- Mobile Pet Services -->
-          <div class="service-card">
-            <div class="service-icon">🚐</div>
-            <h3 class="service-title">Mobile Pet Services</h3>
-            <p class="service-description">Convenient mobile grooming, vet visits, and training that come directly to your home. Ideal for anxious pets or busy schedules.</p>
-            <div class="service-links">
-              <a href="https://www.petmd.com/dog/care/mobile-grooming-pros-and-cons" target="_blank" rel="noopener noreferrer" class="service-link">
-                <span>Learn More</span>
-                <span class="link-arrow">→</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Dealing with Texas Heat -->
-          <div class="service-card">
-            <div class="service-icon">☀️</div>
-            <h3 class="service-title">Texas Heat Safety</h3>
-            <p class="service-description">Essential tips to keep your dog safe, hydrated, and cool during extreme Texas heat. Recognize heatstroke symptoms and plan outdoor activities wisely.</p>
-            <div class="service-links">
-              <a href="https://www.avma.org/resources/pet-owners/petcare/warm-weather-safety" target="_blank" rel="noopener noreferrer" class="service-link">
-                <span>Learn More</span>
-                <span class="link-arrow">→</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Hurricane Season Pet Preparedness -->
-          <div class="service-card">
-            <div class="service-icon">🌪️</div>
-            <h3 class="service-title">Hurricane Preparedness</h3>
-            <p class="service-description">Crucial planning for pets during hurricane season. Create an emergency kit, identify pet-friendly shelters, and have an evacuation plan ready.</p>
-            <div class="service-links">
-              <a href="https://www.ready.gov/pets" target="_blank" rel="noopener noreferrer" class="service-link">
-                <span>Learn More</span>
-                <span class="link-arrow">→</span>
-              </a>
-            </div>
+    <!-- Wag.com Widget Section (to be added) -->
+    <section id="wag-widget" class="resources" style="background:#f8f9fa; padding-top:2rem;">
+      <div class="container">
+        <h2 style="margin-bottom:1.5rem;">Book Trusted Dog Walkers & Sitters Instantly</h2>
+        <!-- Place your Wag.com widget(s) here -->
+        <div style="background:#fff; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.08); padding:2rem; text-align:center;">
+          <p style="font-size:1.1rem; margin-bottom:1rem;">Use the widget below to find and book a local dog walker or sitter through Wag.com.</p>
+          <!-- Example placeholder for widget -->
+          <div style="min-height:120px; border:2px dashed #ccc; border-radius:12px; padding:1.5rem; margin-bottom:1rem;">
+            <em>Wag.com widget will appear here</em>
           </div>
         </div>
       </div>
@@ -211,15 +119,14 @@
 
     <section class="conclusion-cta">
       <div class="container">
-        <h2>Ready to Find the Perfect Service for Your Dog?</h2>
-        <p class="resource-description">We hope this comprehensive guide helps you navigate the world of dog services in Texas. From daily walks to emergency care, ensuring your dog's well-being is our top priority. Use the information and resources provided to make informed decisions and give your furry friend the best care possible.</p>
+        <h2>Ready to Give Your Dog the Best?</h2>
+        <p class="resource-description">We hope this guide helps you find the perfect care for your furry friend. Explore more resources or contact us for personalized recommendations.</p>
         <div class="cta-buttons">
           <a href="collections.html" class="btn btn-primary">Explore Dog Parks</a>
           <a href="contact.html" class="btn btn-secondary">Contact Us</a>
         </div>
       </div>
     </section>
-
   </main>
 
   <!-- Footer -->
@@ -254,6 +161,5 @@
     </div>
   </footer>
   <script src="index.js"></script>
-  <script src="js/pet-services.js"></script>
 </body>
 </html>
