@@ -20,21 +20,21 @@
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="logo.png" alt="Texas Dog Park Directory" class="logo-img">
-                    <span class="logo-text">Texas Dog Park Directory</span>
-                </div>
-                <nav class="nav">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="collections.html" class="nav-link">Dog Parks</a>
-                    <a href="resources.html" class="nav-link">Resources</a>
-                    <a href="about.html" class="nav-link active">About</a>
-                    <a href="contact.html" class="nav-link">Contact</a>
-                </nav>
-            </div>
+      <div class="container nav-container">
+        <a href="index.html" class="logo"><img src="logo.png" alt="Bark & Play Logo">Bark & Play Directory</a>
+        <nav class="nav-menu" id="mainNav">
+          <a href="collections.html">Dog Parks</a>
+          <a href="resources.html">Resources</a>
+          <a href="pet-services.html" class="nav-link nav-cta">Dog Services</a>
+          <a href="about.html" class="nav-link active">About</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <div class="hamburger" id="hamburgerMenu" aria-label="Open menu" tabindex="0">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
+      </div>
     </header>
 
     <!-- Hero Section -->
@@ -164,29 +164,57 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3 class="footer-title">Texas Dog Park Directory</h3>
-                    <p class="footer-description">Discovering the best dog parks across Texas, one paw at a time.</p>
-                </div>
-                <div class="footer-section">
-                    <h4 class="footer-subtitle">Quick Links</h4>
-                    <a href="index.html" class="footer-link">Home</a>
-                    <a href="collections.html" class="footer-link">Dog Parks</a>
-                    <a href="resources.html" class="footer-link">Resources</a>
-                    <a href="about.html" class="footer-link">About</a>
-                </div>
-                <div class="footer-section">
-                    <h4 class="footer-subtitle">Connect</h4>
-                    <a href="contact.html" class="footer-link">Contact Us</a>
-                    <a href="submit.html" class="footer-link">Submit a Park</a>
-                    <a href="subscribe.html" class="footer-link">Newsletter</a>
-                </div>
+          <div class="footer-content">
+            <div class="footer-section">
+              <h3>Bark & Play Directory</h3>
+              <p>Your trusted guide to the best dog parks in Texas.</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Texas Dog Park Directory. All rights reserved.</p>
+            <div class="footer-section">
+              <h4>Quick Links</h4>
+              <ul>
+                <li><a href="collections.html">All Parks</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+              </ul>
             </div>
+            <div class="footer-section">
+              <h4>Get Involved</h4>
+              <ul>
+                <li><a href="submit-dog-park.html">Submit a Park</a></li>
+                <li><a href="submit-featured-dog-park.html">Featured Listing</a></li>
+                <li><a href="subscribe.html">Newsletter</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p>&copy; 2024 Bark & Play Directory. All rights reserved.</p>
+          </div>
         </div>
     </footer>
 </body>
+<script>
+  // Hamburger menu toggle
+  const hamburger = document.getElementById('hamburgerMenu');
+  const navMenu = document.getElementById('mainNav');
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('open');
+    hamburger.classList.toggle('open');
+  });
+  hamburger.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      navMenu.classList.toggle('open');
+      hamburger.classList.toggle('open');
+    }
+  });
+  // Close menu on link click (mobile)
+  document.querySelectorAll('.nav-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 900) {
+        navMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+      }
+    });
+  });
+</script>
 </html> 

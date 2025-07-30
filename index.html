@@ -23,21 +23,19 @@
   <header class="header">
     <div class="container">
       <nav class="nav-container">
-        <a href="index.html" class="logo">
-          <img src="logo.png" alt="Bark & Play Directory Logo">
-          Bark & Play Directory
-        </a>
-        
-        <ul class="nav-menu">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="collections.html">Dog Parks</a></li>
-          <li><a href="resources.html">Resources</a></li>
-          <li><a href="adoption.html">Adoption</a></li>
-          <li><a href="pet-services.html">Dog Services</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="submit-dog-park.html" class="nav-cta">Submit Park</a></li>
-        </ul>
+        <a href="index.html" class="logo"><img src="logo.png" alt="Bark & Play Logo">Bark & Play Directory</a>
+        <nav class="nav-menu" id="mainNav">
+          <a href="collections.html">Dog Parks</a>
+          <a href="resources.html">Resources</a>
+          <a href="pet-services.html" class="nav-link nav-cta">Dog Services</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <div class="hamburger" id="hamburgerMenu" aria-label="Open menu" tabindex="0">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
         
         <div class="hamburger">
           <span></span>
@@ -199,5 +197,29 @@
   </footer>
   <script src="parks-data.js"></script>
   <script src="index.js"></script>
+  <script>
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('hamburgerMenu');
+    const navMenu = document.getElementById('mainNav');
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
+      hamburger.classList.toggle('open');
+    });
+    hamburger.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        navMenu.classList.toggle('open');
+        hamburger.classList.toggle('open');
+      }
+    });
+    // Close menu on link click (mobile)
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 900) {
+          navMenu.classList.remove('open');
+          hamburger.classList.remove('open');
+        }
+      });
+    });
+  </script>
 </body>
 </html> 
