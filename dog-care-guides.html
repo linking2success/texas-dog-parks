@@ -104,7 +104,19 @@
   <section class="treatment-guides" style="background: linear-gradient(90deg, #f8fafc 60%, #eaf6fb 100%); padding: 3rem 0 2rem 0;">
     <div class="container">
       <h2 style="font-size:2rem; font-weight:800; text-align:center; margin-bottom:2rem; color:#4379b8;">Most Popular Treatment Guides</h2>
-      <div class="treatment-guides-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:1.5rem; max-width:1100px; margin:0 auto;">
+      <div class="treatment-guides-grid" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1.5rem; max-width:1100px; margin:0 auto;">
+<style>
+@media (max-width: 900px) {
+  .treatment-guides-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 600px) {
+  .treatment-guides-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
         <!-- ...all guide cards as before... -->
         <a href="https://wagwalking.com/treatment/natural-urinary-tract-infection-remedies" target="_blank" class="treatment-guide-card" style="background:#fff6f6; border-radius:14px; box-shadow:0 4px 16px rgba(255,0,80,0.07); padding:1.2rem; text-align:center; text-decoration:none; color:#c0392b; transition:box-shadow .2s; display:flex; flex-direction:column; align-items:center;">
           <span style="font-size:2rem;">🍒</span>
