@@ -24,7 +24,7 @@ jobs:
           if ! git diff --quiet ads.txt; then
             git add ads.txt
             git commit -m "Update ads.txt from Ezoic"
-            git pull --rebase
+            git pull --rebase origin main
             git push
           else
             echo "No changes to ads.txt"
