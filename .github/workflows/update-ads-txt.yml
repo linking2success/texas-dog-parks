@@ -2,8 +2,11 @@ name: Update ads.txt from Ezoic
 
 on:
   schedule:
-    - cron: '0 3 * * *' # Every day at 3:00 AM UTC
+    - cron: '0 3 * * *'
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   update-ads-txt:
@@ -11,11 +14,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Download latest ads.txt from Ezoic
         run: |
           curl -L https://srv.adstxtmanager.com/19390/dog-park.info -o ads.txt
-
       - name: Commit and push if changed
         run: |
           git config --global user.name 'github-actions[bot]'
@@ -23,7 +24,7 @@ jobs:
           if ! git diff --quiet ads.txt; then
             git add ads.txt
             git commit -m "Update ads.txt from Ezoic"
-            git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/linking2success/texas-dog-parks.git HEAD:${{ github.ref }}
+            git push
           else
             echo "No changes to ads.txt"
           fi
