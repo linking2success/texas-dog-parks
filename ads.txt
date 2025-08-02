@@ -1,2 +1,1 @@
-// filepath: c:\texas_dog_park_directory\ads.txt
-google.com, pub-5196916620971431, DIRECT, f08c47fec0942fa0
+
