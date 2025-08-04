@@ -6,5 +6,7 @@ Disallow: /*.csv$
 Disallow: /*.pdf$
 Disallow: /collection-single.html
 Disallow: /resource-single.html
+Disallow: /state/
+Disallow: /dog-parks-by-state/
 
 Sitemap: https://dog-park.info/sitemap.xml

@@ -1,2 +1,6 @@
 # Ezoic/AdstxtManager 301 Redirect for ads.txt
 Redirect 301 /ads.txt https://srv.adstxtmanager.com/19390/dog-park.info
+
+# Redirect legacy/non-existent URLs to appropriate pages
+Redirect 301 /state/north-carolina/ /collections.html
+Redirect 301 /dog-parks-by-state/ /collections.html
