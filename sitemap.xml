@@ -6,7 +6,7 @@
   
   <!-- Homepage -->
   <url>
-    <loc>https://texasdogparkdirectory.com/</loc>
+    <loc>https://dog-park.info/</loc>
     <lastmod>2025-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -14,56 +14,56 @@
   
   <!-- Main Pages -->
   <url>
-    <loc>https://texasdogparkdirectory.com/collections.html</loc>
+    <loc>https://dog-park.info/collections.html</loc>
     <lastmod>2025-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://texasdogparkdirectory.com/adoption.html</loc>
+    <loc>https://dog-park.info/adoption.html</loc>
     <lastmod>2025-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://texasdogparkdirectory.com/resources.html</loc>
+    <loc>https://dog-park.info/resources.html</loc>
     <lastmod>2025-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://texasdogparkdirectory.com/pet-services.html</loc>
+    <loc>https://dog-park.info/pet-services.html</loc>
     <lastmod>2025-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://texasdogparkdirectory.com/dog-care-guides.html</loc>
+    <loc>https://dog-park.info/dog-care-guides.html</loc>
     <lastmod>2025-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://texasdogparkdirectory.com/about.html</loc>
+    <loc>https://dog-park.info/about.html</loc>
     <lastmod>2025-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://texasdogparkdirectory.com/contact.html</loc>
+    <loc>https://dog-park.info/contact.html</loc>
     <lastmod>2025-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://texasdogparkdirectory.com/submit-dog-park.html</loc>
+    <loc>https://dog-park.info/submit-dog-park.html</loc>
     <lastmod>2025-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -71,14 +71,14 @@
   
   <!-- Template Pages (lower priority as they're accessed via other pages) -->
   <url>
-    <loc>https://texasdogparkdirectory.com/collection-single.html</loc>
+    <loc>https://dog-park.info/collection-single.html</loc>
     <lastmod>2025-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   
   <url>
-    <loc>https://texasdogparkdirectory.com/resource-single.html</loc>
+    <loc>https://dog-park.info/resource-single.html</loc>
     <lastmod>2025-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>

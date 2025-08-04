@@ -5,4 +5,4 @@ Disallow: /js/
 Disallow: /*.csv$
 Disallow: /*.pdf$
 
-Sitemap: https://texasdogparkdirectory.com/sitemap.xml
+Sitemap: https://dog-park.info/sitemap.xml
