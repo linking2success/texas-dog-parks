@@ -1,6 +1,19 @@
 # Ezoic/AdstxtManager 301 Redirect for ads.txt
 Redirect 301 /ads.txt https://srv.adstxtmanager.com/19390/dog-park.info
 
+# Force HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Remove www (if it exists)
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# Redirect index.html to root
+RewriteCond %{THE_REQUEST} /index\.html[\s?] [NC]
+RewriteRule ^index\.html$ / [R=301,L]
+
 # Redirect legacy/non-existent URLs to appropriate pages
 Redirect 301 /state/north-carolina/ /collections.html
 Redirect 301 /dog-parks-by-state/ /collections.html
