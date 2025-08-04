@@ -4,5 +4,7 @@ Disallow: /css/
 Disallow: /js/
 Disallow: /*.csv$
 Disallow: /*.pdf$
+Disallow: /collection-single.html
+Disallow: /resource-single.html
 
 Sitemap: https://dog-park.info/sitemap.xml
