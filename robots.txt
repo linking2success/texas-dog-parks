@@ -1,3 +1,8 @@
 User-agent: *
 Allow: /
-Sitemap: https://dog-park.info/sitemap.xml
+Disallow: /css/
+Disallow: /js/
+Disallow: /*.csv$
+Disallow: /*.pdf$
+
+Sitemap: https://texasdogparkdirectory.com/sitemap.xml
