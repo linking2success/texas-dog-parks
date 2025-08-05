@@ -14,6 +14,10 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 RewriteCond %{THE_REQUEST} /index\.html[\s?] [NC]
 RewriteRule ^index\.html$ / [R=301,L]
 
+# Block access to CGI directories
+RewriteRule ^cgi-bin/ - [F,L]
+RewriteRule ^cgi-sys/ - [F,L]
+
 # Redirect legacy/non-existent URLs to appropriate pages
 Redirect 301 /state/north-carolina/ /collections.html
 Redirect 301 /dog-parks-by-state/ /collections.html

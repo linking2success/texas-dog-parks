@@ -8,5 +8,7 @@ Disallow: /collection-single.html
 Disallow: /resource-single.html
 Disallow: /state/
 Disallow: /dog-parks-by-state/
+Disallow: /cgi-bin/
+Disallow: /cgi-sys/
 
 Sitemap: https://dog-park.info/sitemap.xml
