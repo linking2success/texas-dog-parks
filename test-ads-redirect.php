@@ -1,9 +1,10 @@
 <?php
 // Test file to check if ads.txt redirect is working
 // Visit: https://dog-park.info/test-ads-redirect.php
+// Note: This is running on Vercel with vercel.json redirects
 
-echo "<h2>Ads.txt Redirect Test</h2>";
-echo "<p>Testing if ads.txt redirect is working...</p>";
+echo "<h2>Ads.txt Redirect Test (Vercel)</h2>";
+echo "<p>Testing if ads.txt redirect is working on Vercel...</p>";
 
 // Test the redirect
 $url = "https://dog-park.info/ads.txt";
