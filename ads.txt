@@ -1,0 +1,2 @@
+# This file redirects to Ezoic Ads.txt Manager
+# Redirect handled by .htaccess

@@ -1,8 +1,13 @@
 # Enable RewriteEngine
 RewriteEngine On
 
-# Ezoic/AdstxtManager 301 Redirect for ads.txt (FIRST PRIORITY)
+# Ezoic/AdstxtManager 301 Redirect for ads.txt (MULTIPLE METHODS FOR COMPATIBILITY)
+# Method 1: RewriteRule
 RewriteRule ^ads\.txt$ https://srv.adstxtmanager.com/19390/dog-park.info [R=301,L]
+# Method 2: RedirectMatch
+RedirectMatch 301 ^/ads\.txt$ https://srv.adstxtmanager.com/19390/dog-park.info
+# Method 3: Simple Redirect
+Redirect 301 /ads.txt https://srv.adstxtmanager.com/19390/dog-park.info
 
 # Force HTTPS
 RewriteCond %{HTTPS} off
