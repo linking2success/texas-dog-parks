@@ -1,3 +1,0 @@
-google.com, pub-5196916620971431, DIRECT, f08c47fec0942fa0
-ezoic.com, 19390, DIRECT
-google.com, pub-9840791050722502, RESELLER, f08c47fec0942fa0

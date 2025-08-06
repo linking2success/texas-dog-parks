@@ -1,11 +1,6 @@
-# Enable RewriteEngine
+# Ezoic Ads.txt Redirect - MUST BE FIRST LINE
 RewriteEngine On
-
-# Force ads.txt to be served as plain text
-<Files "ads.txt">
-    ForceType text/plain
-    Header set Content-Type "text/plain"
-</Files>
+RewriteRule ^ads\.txt$ https://srv.adstxtmanager.com/19390/dog-park.info [R=301,L]
 
 # Force HTTPS
 RewriteCond %{HTTPS} off
