@@ -1,3 +1,5 @@
+Redirect 301 /ads.txt https://srv.adstxtmanager.com/19390/dog-park.info
+
 # Ezoic Ads.txt Redirect - MUST BE FIRST LINE
 RewriteEngine On
 RewriteRule ^ads\.txt$ https://srv.adstxtmanager.com/19390/dog-park.info [R=301,L]
