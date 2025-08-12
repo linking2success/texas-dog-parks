@@ -10,6 +10,81 @@
   margin-left: 1.5rem;
   z-index: 1100;
 }
+
+/* Enhanced Navigation Dropdown */
+.nav-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-dark);
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.nav-dropdown-toggle:hover {
+  background: rgba(67, 121, 184, 0.1);
+  color: var(--color-primary);
+}
+
+.dropdown-arrow {
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.nav-dropdown:hover .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  min-width: 220px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  padding: 1rem 0;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.nav-dropdown:hover .nav-dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav-dropdown-content a {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  color: var(--color-dark);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.nav-dropdown-content a:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+.nav-divider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 0.5rem 1rem;
+}
+
 .hamburger span {
   display: block;
   height: 4px;
@@ -57,6 +132,29 @@
   .nav-menu a:last-child {
     border-bottom: none;
   }
+  
+  /* Mobile Navigation Dropdown Adjustments */
+  .nav-dropdown-content {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    background: transparent;
+    padding-left: 2rem;
+    display: none;
+  }
+  
+  .nav-dropdown:hover .nav-dropdown-content,
+  .nav-dropdown.active .nav-dropdown-content {
+    display: block;
+  }
+  
+  .nav-dropdown-content a {
+    color: white;
+    border-left: 2px solid rgba(255, 255, 255, 0.2);
+  }
+  
   .hamburger {
     display: flex;
   }
