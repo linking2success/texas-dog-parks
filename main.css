@@ -3405,3 +3405,49 @@ body {
         min-width: 35px;
     }
 }
+
+/* Google Maps Section */
+.map-section {
+  padding: 3rem 0;
+  background: #f8f9fa;
+}
+
+.map-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.map-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.map-header p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.map-container {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+#google-map {
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+}
+
+/* Responsive adjustments for map */
+@media (max-width: 768px) {
+  #google-map {
+    height: 300px !important;
+  }
+  
+  .map-header h2 {
+    font-size: 1.5rem;
+  }
+}

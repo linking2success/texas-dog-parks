@@ -22,40 +22,33 @@
 <body>
   <!-- Header -->
   <header class="header">
-    <div class="container">
-      <nav class="nav-container">
-        <a href="../index.html" class="logo"><img src="../logo.png" alt="Bark & Play Logo">Bark & Play Directory</a>
-        <nav class="nav-menu" id="mainNav">
-          <div class="nav-dropdown">
-            <a href="#" class="nav-dropdown-toggle">
-              Dog Parks <span class="dropdown-arrow">▼</span>
-            </a>
-            <div class="nav-dropdown-content">
-              <a href="../collections.html">All Dog Parks</a>
-              <a href="../indoor-dog-parks.html">Indoor Parks</a>
-              <div class="nav-divider"></div>
-              <a href="houston.html" class="active">Houston Indoor Parks</a>
-              <a href="austin.html">Austin Indoor Parks</a>
-              <a href="dallas.html">Dallas Indoor Parks</a>
-              <a href="san-antonio.html">San Antonio Indoor Parks</a>
-              <a href="fort-worth.html">Fort Worth Indoor Parks</a>
-            </div>
-          </div>
-          <a href="../adoption.html">Adoption</a>
-          <a href="../resources.html">Resources</a>
-          <a href="../pet-services.html">Dog Services</a>
-          <a href="../dog-care-guides.html">Dog Care Guides</a>
-          <a href="../about.html">About</a>
-          <a href="../contact.html">Contact</a>
-        </nav>
-        <div class="hamburger" id="hamburgerMenu" aria-label="Open menu" tabindex="0">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+    <div class="container nav-container">
+      <a href="../index.html" class="logo"><img src="../logo.png" alt="Bark & Play Logo">Bark & Play Directory</a>
+      <nav class="nav-menu" id="mainNav">
+        <a href="../collections.html">Dog Parks</a>
+        <a href="../adoption.html">Adoption</a>
+        <a href="../resources.html">Resources</a>
+        <a href="../pet-services.html">Dog Services</a>
+        <a href="../dog-care-guides.html">Dog Care Guides</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
       </nav>
+      <div class="hamburger" id="hamburgerMenu" aria-label="Open menu" tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
   </header>
+
+  <!-- Breadcrumb -->
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="../index.html">Home</a> / 
+      <a href="../indoor-dog-parks.html">Indoor Dog Parks</a> / 
+      <span>Houston</span>
+    </nav>
+  </div>
 
   <!-- Hero Section -->
   <section class="hero">
@@ -98,21 +91,6 @@
         </div>
         
         <button id="clearFilters" class="btn btn-secondary">Clear Filters</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Google Map Section -->
-  <section class="map-section">
-    <div class="container">
-      <div class="map-header">
-        <h2>Houston Indoor Dog Parks Map</h2>
-        <p>View all indoor dog facilities on the map</p>
-      </div>
-      <div class="map-container">
-        <div id="google-map" style="width: 100%; height: 400px; background: #f5f5f5; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #666;">
-          <p>Interactive map will load here</p>
-        </div>
       </div>
     </div>
   </section>
@@ -204,8 +182,8 @@
         async loadParksData() {
             try {
                 // Filter for Houston indoor parks only
-                this.parks = indoorParksData.filter(park => 
-                    park.city && park.city.toLowerCase().includes('houston')
+                this.parks = indoorDogParks.filter(park => 
+                    park.City && park.City.toLowerCase().includes('houston')
                 );
                 this.filteredParks = [...this.parks];
                 this.updateResultsCount();
@@ -217,7 +195,7 @@
         }
         
         populateAreaFilter() {
-            const areas = [...new Set(this.parks.map(park => park.city).filter(Boolean))].sort();
+            const areas = [...new Set(this.parks.map(park => park.Area).filter(Boolean))].sort();
             const areaFilter = document.getElementById('areaFilter');
             areas.forEach(area => {
                 const option = document.createElement('option');
@@ -272,20 +250,20 @@
                 // Search filter
                 if (this.currentFilters.search) {
                     const searchTerm = this.currentFilters.search.toLowerCase();
-                    const searchableText = `${park.name} ${park.city} ${park.description || ''}`.toLowerCase();
+                    const searchableText = `${park.Name} ${park.Area} ${park.Description || ''}`.toLowerCase();
                     if (!searchableText.includes(searchTerm)) {
                         return false;
                     }
                 }
                 
                 // Area filter
-                if (this.currentFilters.area && park.city !== this.currentFilters.area) {
+                if (this.currentFilters.area && park.Area !== this.currentFilters.area) {
                     return false;
                 }
                 
                 // Amenity filter
                 if (this.currentFilters.amenity) {
-                    const description = (park.description || '').toLowerCase();
+                    const description = (park.Description || '').toLowerCase();
                     if (!description.includes(this.currentFilters.amenity)) {
                         return false;
                     }
@@ -321,9 +299,9 @@
             this.filteredParks.sort((a, b) => {
                 switch (sortBy) {
                     case 'name':
-                        return a.name.localeCompare(b.name);
+                        return a.Name.localeCompare(b.Name);
                     case 'area':
-                        return (a.city || '').localeCompare(b.city || '');
+                        return (a.Area || '').localeCompare(b.Area || '');
                     default:
                         return 0;
                 }
@@ -373,31 +351,31 @@
                 '../imagesdogpardirectory/dopark_content_card.png'
             ];
             
-            const imageUrl = park.photo || localImages[i % localImages.length];
+            const imageUrl = localImages[i % localImages.length];
             const amenities = this.extractAmenities(park);
             const amenityIcons = this.createAmenityIcons(amenities.length ? amenities : ['Indoor Play']);
             
             let description = '';
-            if (park.description && park.description.length > 10) {
-                description = park.description.substring(0, 120) + (park.description.length > 120 ? '...' : '');
+            if (park.Description && park.Description.length > 10) {
+                description = park.Description.substring(0, 120) + (park.Description.length > 120 ? '...' : '');
             } else {
-                description = `Indoor dog facility in ${park.city || 'Houston'}`;
+                description = `Indoor dog facility in ${park.Area || 'Houston'}`;
             }
             
             return `
                 <div class="park-card">
                     <div class="park-image">
-                        <img src="${imageUrl}" alt="${park.name}">
+                        <img src="${imageUrl}" alt="${park.Name}">
                     </div>
                     <div class="park-content">
-                        <h3>${park.name}</h3>
+                        <h3>${park.Name}</h3>
                         <div class="park-location">
                             <span>📍</span>
-                            <span>${park.city || 'Houston'}, TX</span>
+                            <span>${park.Area || 'Houston'}, TX</span>
                         </div>
                         <p class="park-description">${description}</p>
                         ${amenityIcons ? `<div class="park-amenities-icons">${amenityIcons}</div>` : ''}
-                        <a href="${park.website || '#'}" class="park-link" target="_blank">View Details</a>
+                        <a href="${park.Website || '#'}" class="park-link" target="_blank">View Details</a>
                     </div>
                 </div>
             `;
@@ -405,7 +383,7 @@
         
         extractAmenities(park) {
             const amenities = [];
-            const description = (park.description || '').toLowerCase();
+            const description = (park.Description || '').toLowerCase();
             
             if (description.includes('daycare') || description.includes('day care')) {
                 amenities.push('Daycare');
