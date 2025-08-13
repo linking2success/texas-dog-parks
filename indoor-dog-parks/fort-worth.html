@@ -25,7 +25,11 @@
                     <ul class="nav-links">
                         <li><a href="../index.html">Home</a></li>
                         <li class="nav-dropdown">
-                            <a href="#" class="dropdown-toggle">Dog Parks ▼</a>
+                            <a href="#" class="nav-dropdown-toggle">Dog Parks
+                                <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.9999 1.16994C10.8126 0.983692 10.5591 0.87915 10.2946 0.87915C10.0301 0.87915 9.77666 0.983692 9.58927 1.16994L5.99993 4.71994L2.41059 1.16994C2.22334 0.983692 1.96999 0.87915 1.7055 0.87915C1.441 0.87915 1.18765 0.983692 1.00041 1.16994C0.813161 1.35719 0.708618 1.61053 0.708618 1.87503C0.708618 2.13952 0.813161 2.39287 1.00041 2.58011L5.29493 6.83011C5.48218 7.01736 5.73552 7.1219 5.99993 7.1219C6.26434 7.1219 6.51768 7.01736 6.70493 6.83011L10.9999 2.58011C11.1872 2.39287 11.2917 2.13952 11.2917 1.87503C11.2917 1.61053 11.1872 1.35719 10.9999 1.16994Z" fill="currentColor"/>
+                                </svg>
+                            </a>
                             <div class="nav-dropdown-content">
                                 <a href="../indoor-dog-parks.html">All Indoor Parks</a>
                                 <a href="houston.html">Houston Indoor Parks</a>
@@ -110,12 +114,15 @@
     <!-- Parks Grid -->
     <section class="parks-section">
         <div class="container">
-            <div class="section-header">
+            <div class="results-header">
                 <h2>Indoor Dog Parks in Fort Worth</h2>
-                <p id="results-count">Showing 31 indoor dog parks and facilities</p>
+                <p id="results-count">Showing indoor dog parks and facilities</p>
             </div>
             <div id="parks-grid" class="parks-grid">
                 <!-- Parks will be loaded here by JavaScript -->
+            </div>
+            <div class="pagination-container">
+                <!-- Pagination will be added by JavaScript -->
             </div>
             <div id="no-results" class="no-results" style="display: none;">
                 <p>No parks found matching your criteria. Try adjusting your filters.</p>
@@ -148,6 +155,6 @@
     </footer>
 
     <script src="../indoor-parks-data-full.js"></script>
-    <script src="../js/fort-worth-indoor-parks.js"></script>
+    <script src="../js/shared-indoor-parks.js"></script>
 </body>
 </html>

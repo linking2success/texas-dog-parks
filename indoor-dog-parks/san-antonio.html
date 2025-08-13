@@ -25,7 +25,7 @@
                     <ul class="nav-links">
                         <li><a href="../index.html">Home</a></li>
                         <li class="nav-dropdown">
-                            <a href="#" class="dropdown-toggle">Dog Parks ▼</a>
+                            <a href="#" class="nav-dropdown-toggle">Dog Parks <span class="dropdown-arrow">▼</span></a>
                             <div class="nav-dropdown-content">
                                 <a href="../indoor-dog-parks.html">All Indoor Parks</a>
                                 <a href="houston.html">Houston Indoor Parks</a>
@@ -113,13 +113,22 @@
         <div class="container">
             <div class="section-header">
                 <h2>Indoor Dog Parks in San Antonio</h2>
-                <p id="results-count">Showing 34 indoor dog parks and facilities</p>
+                <div class="results-header">
+                    <div class="results-count">
+                        <span id="results-count">Showing 34 indoor dog parks and facilities</span>
+                    </div>
+                </div>
             </div>
             <div id="parks-grid" class="parks-grid">
                 <!-- Parks will be loaded here by JavaScript -->
             </div>
             <div id="no-results" class="no-results" style="display: none;">
                 <p>No parks found matching your criteria. Try adjusting your filters.</p>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination" id="pagination">
+                <!-- Pagination controls will be added here -->
             </div>
         </div>
     </section>
@@ -149,6 +158,6 @@
     </footer>
 
     <script src="../indoor-parks-data-full.js"></script>
-    <script src="../js/san-antonio-indoor-parks.js"></script>
+    <script src="../js/shared-indoor-parks.js"></script>
 </body>
 </html>
