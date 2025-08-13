@@ -1,228 +1,252 @@
 // Indoor Dog Parks JavaScript Functionality
-// Handles park display, filtering, and interactive features
-
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize the indoor parks page
-  initializeIndoorParks();
+    loadFeaturedIndoorParks();
+    initializeFilters();
+    initializeMap();
 });
 
-function initializeIndoorParks() {
-  loadFeaturedParks();
-  setupLoadMoreButton();
-  setupCityNavigation();
-  
-  // Initialize map placeholder (ready for Google Maps integration)
-  setupMapPlaceholder();
+// Load featured indoor parks
+function loadFeaturedIndoorParks() {
+    const grid = document.getElementById('indoorParksGrid');
+    if (!grid) return;
+
+    // Get first 6 parks as featured
+    const featuredParks = indoorParksData.slice(0, 6);
+    
+    grid.innerHTML = featuredParks.map(park => createParkCard(park)).join('');
 }
 
-function loadFeaturedParks() {
-  const parksContainer = document.getElementById('indoorParksGrid');
-  if (!parksContainer) return;
-  
-  // Get featured parks from multiple cities
-  const featuredParks = getFeaturedParks();
-  
-  parksContainer.innerHTML = '';
-  featuredParks.forEach(park => {
-    const parkCard = createParkCard(park);
-    parksContainer.appendChild(parkCard);
-  });
-}
-
-function getFeaturedParks() {
-  // Get top parks from each city for featured section
-  const allParks = IndoorParksUtils.getAllParks();
-  
-  // For now, return first 6 parks as featured
-  // In production, you might have a "featured" flag in your data
-  return allParks.slice(0, 6);
-}
-
+// Create park card HTML
 function createParkCard(park) {
-  const card = document.createElement('div');
-  card.className = 'park-card';
-  
-  // Format amenities with icons
-  const amenityTags = park.amenities ? park.amenities.map(amenity => {
-    const icon = indoorDogParksData.amenityIcons[amenity] || '🐕';
-    return `<span class="amenity-tag">${icon} ${amenity}</span>`;
-  }).join('') : '';
-  
-  // Format hours display
-  const todayHours = getTodaysHours(park.hours);
-  const isOpenNow = IndoorParksUtils.isOpen(park.hours);
-  const statusClass = isOpenNow ? 'open' : 'closed';
-  const statusText = isOpenNow ? 'Open Now' : 'Closed';
-  
-  card.innerHTML = `
-    <div class="park-image">
-      <img src="${park.photo || 'imagesdogpardirectory/Untitled-16-dopark_content_card-min.png'}" 
-           alt="${park.name}" 
-           onerror="this.src='imagesdogpardirectory/Untitled-16-dopark_content_card-min.png'">
-      <div class="park-status ${statusClass}">${statusText}</div>
-    </div>
-    <div class="park-content">
-      <h3 class="park-title">${park.name}</h3>
-      <div class="park-location">
-        <span class="location-icon">📍</span>
-        <span>${park.city}, TX</span>
-      </div>
-      <div class="park-description">
-        <p>${park.description || 'Indoor dog park with climate-controlled environment.'}</p>
-      </div>
-      <div class="park-amenities">
-        ${amenityTags}
-      </div>
-      <div class="park-hours">
-        <strong>Today:</strong> ${todayHours}
-      </div>
-      <div class="park-actions">
-        <a href="${park.mapLink}" target="_blank" class="btn btn-primary btn-sm">
-          🗺️ Directions
-        </a>
-        ${park.phone ? `<a href="tel:${park.phone}" class="btn btn-secondary btn-sm">📞 Call</a>` : ''}
-        ${park.website ? `<a href="${park.website}" target="_blank" class="btn btn-secondary btn-sm">🌐 Website</a>` : ''}
-      </div>
-    </div>
-  `;
-  
-  return card;
+    const formatHours = (hours) => {
+        if (!hours) return 'Hours vary';
+        if (hours.Monday === 'Open 24 hours') return '24/7 Access';
+        if (hours.Monday === 'Closed') return 'Limited Hours';
+        return hours.Monday || 'Contact for hours';
+    };
+
+    const getAmenityIcons = (amenities) => {
+        const iconMap = {
+            'Climate Controlled': '🌡️',
+            'Daycare': '🏠',
+            'Indoor Play': '🎾',
+            '24/7 Access': '🕒',
+            'Professional Staff': '👨‍⚕️',
+            'Boarding': '🛏️',
+            'Grooming': '✂️',
+            'Training': '🎓'
+        };
+        
+        return amenities.slice(0, 4).map(amenity => {
+            const icon = iconMap[amenity] || '✅';
+            return `<span class="amenity-icon" title="${amenity}">${icon}</span>`;
+        }).join('');
+    };
+
+    return `
+        <div class="park-card indoor-park-card" data-city="${park.city.toLowerCase()}">
+            <div class="park-image">
+                <img src="${park.photo}" alt="${park.name}" loading="lazy">
+                <div class="park-status ${park.status.toLowerCase()}">${park.status}</div>
+            </div>
+            <div class="park-content">
+                <h3 class="park-name">${park.name}</h3>
+                <div class="park-location">
+                    <span class="location-icon">📍</span>
+                    <span>${park.city}, ${park.state}</span>
+                </div>
+                
+                <div class="park-description">
+                    <p>${park.description || 'Indoor dog park with climate-controlled facilities'}</p>
+                </div>
+
+                <div class="park-amenities">
+                    ${getAmenityIcons(park.amenities)}
+                </div>
+
+                <div class="park-details">
+                    <div class="park-hours">
+                        <span class="hours-icon">🕒</span>
+                        <span>${formatHours(park.hours)}</span>
+                    </div>
+                    ${park.phone ? `
+                        <div class="park-phone">
+                            <span class="phone-icon">📞</span>
+                            <a href="tel:${park.phone}">${park.phone}</a>
+                        </div>
+                    ` : ''}
+                </div>
+
+                <div class="park-actions">
+                    <a href="${park.mapLink}" target="_blank" class="btn btn-primary btn-small">
+                        View on Map
+                    </a>
+                    ${park.website ? `
+                        <a href="${park.website}" target="_blank" class="btn btn-secondary btn-small">
+                            Visit Website
+                        </a>
+                    ` : ''}
+                </div>
+            </div>
+        </div>
+    `;
 }
 
-function getTodaysHours(hours) {
-  if (!hours) return 'Hours not available';
-  
-  const today = new Date().toLocaleDateString('en-US', { weekday: 'long' });
-  const todayHours = hours[today];
-  
-  if (!todayHours) return 'Hours not available';
-  if (todayHours === 'Closed') return 'Closed';
-  if (todayHours === 'Open 24 hours') return 'Open 24 hours';
-  
-  return todayHours;
-}
-
-function setupLoadMoreButton() {
-  const loadMoreBtn = document.getElementById('loadMoreParks');
-  if (!loadMoreBtn) return;
-  
-  let currentPage = 1;
-  const parksPerPage = 6;
-  
-  loadMoreBtn.addEventListener('click', function() {
-    const allParks = IndoorParksUtils.getAllParks();
-    const startIndex = currentPage * parksPerPage;
-    const endIndex = startIndex + parksPerPage;
-    const nextParks = allParks.slice(startIndex, endIndex);
+// Initialize filters
+function initializeFilters() {
+    const cityFilter = document.getElementById('cityFilter');
+    const hoursFilter = document.getElementById('hoursFilter');
     
-    if (nextParks.length === 0) {
-      loadMoreBtn.style.display = 'none';
-      return;
+    if (cityFilter) {
+        cityFilter.addEventListener('change', applyFilters);
     }
     
-    const parksContainer = document.getElementById('indoorParksGrid');
-    nextParks.forEach(park => {
-      const parkCard = createParkCard(park);
-      parksContainer.appendChild(parkCard);
-    });
-    
-    currentPage++;
-    
-    // Hide button if no more parks
-    if (endIndex >= allParks.length) {
-      loadMoreBtn.style.display = 'none';
+    if (hoursFilter) {
+        hoursFilter.addEventListener('change', applyFilters);
     }
-  });
 }
 
-function setupCityNavigation() {
-  // Add click tracking for city cards
-  const cityCards = document.querySelectorAll('.city-card');
-  cityCards.forEach(card => {
-    card.addEventListener('click', function(e) {
-      // Allow normal link navigation
-      if (e.target.tagName !== 'A') {
-        const link = card.querySelector('a.btn');
-        if (link) {
-          window.location.href = link.href;
+// Apply filters to park display
+function applyFilters() {
+    const cityFilter = document.getElementById('cityFilter');
+    const hoursFilter = document.getElementById('hoursFilter');
+    const parkCards = document.querySelectorAll('.park-card');
+    
+    const selectedCity = cityFilter ? cityFilter.value : '';
+    const selectedHours = hoursFilter ? hoursFilter.value : '';
+    
+    parkCards.forEach(card => {
+        let showCard = true;
+        
+        // City filter
+        if (selectedCity) {
+            const cardCity = card.dataset.city;
+            if (selectedCity === 'houston' && !cardCity.includes('houston') && !cardCity.includes('spring') && !cardCity.includes('cypress')) {
+                showCard = false;
+            } else if (selectedCity === 'austin' && !cardCity.includes('austin')) {
+                showCard = false;
+            } else if (selectedCity === 'dallas' && !cardCity.includes('dallas')) {
+                showCard = false;
+            } else if (selectedCity === 'san-antonio' && !cardCity.includes('san antonio')) {
+                showCard = false;
+            } else if (selectedCity === 'fort-worth' && !cardCity.includes('fort worth')) {
+                showCard = false;
+            }
         }
-      }
+        
+        // Hours filter
+        if (selectedHours && showCard) {
+            const hoursText = card.querySelector('.park-hours span:last-child').textContent;
+            if (selectedHours === '24-hours' && !hoursText.includes('24/7')) {
+                showCard = false;
+            } else if (selectedHours === 'extended' && hoursText.includes('Limited')) {
+                showCard = false;
+            } else if (selectedHours === 'business' && hoursText.includes('24/7')) {
+                showCard = false;
+            }
+        }
+        
+        card.style.display = showCard ? 'block' : 'none';
     });
-  });
 }
 
-function setupMapPlaceholder() {
-  const mapContainer = document.getElementById('indoor-parks-map');
-  if (!mapContainer) return;
-  
-  // Placeholder functionality - replace with actual Google Maps implementation
-  mapContainer.addEventListener('click', function() {
-    // For now, show alert - replace with actual map initialization
-    alert('Interactive map feature coming soon! \n\nThis will show all indoor dog park locations with:\n• Clickable markers\n• Park details popup\n• Driving directions\n• Current status');
-  });
-  
-  // Add hover effect
-  mapContainer.style.cursor = 'pointer';
-  mapContainer.style.transition = 'all 0.3s ease';
-  
-  mapContainer.addEventListener('mouseenter', function() {
-    mapContainer.style.background = '#e8e8e8';
-  });
-  
-  mapContainer.addEventListener('mouseleave', function() {
-    mapContainer.style.background = '#f0f0f0';
-  });
-}
-
-// Utility functions for park filtering and search
-const IndoorParksUI = {
-  filterByCity: function(city) {
-    const parks = IndoorParksUtils.getParksByCity(city);
-    const container = document.getElementById('indoorParksGrid');
-    if (!container) return;
+// Initialize map placeholder
+function initializeMap() {
+    const mapContainer = document.getElementById('texas-indoor-parks-map');
+    if (!mapContainer) return;
     
-    container.innerHTML = '';
-    parks.forEach(park => {
-      const card = createParkCard(park);
-      container.appendChild(card);
-    });
-  },
-  
-  filterByAmenity: function(amenity) {
-    const allParks = IndoorParksUtils.getAllParks();
-    const filteredParks = allParks.filter(park => 
-      park.amenities && park.amenities.includes(amenity)
+    // Add some interactive behavior to the map placeholder
+    setTimeout(() => {
+        const placeholder = mapContainer.querySelector('.map-placeholder');
+        if (placeholder) {
+            placeholder.innerHTML = `
+                <div class="map-placeholder-content">
+                    <h3>🗺️ Texas Indoor Dog Parks Map</h3>
+                    <p>Interactive map showing ${indoorParksData.length}+ indoor dog park locations</p>
+                    <div class="map-stats">
+                        <div class="map-stat">
+                            <span class="stat-number">${indoorParksData.length}+</span>
+                            <span class="stat-label">Locations</span>
+                        </div>
+                        <div class="map-stat">
+                            <span class="stat-number">${indoorParkCities.length}</span>
+                            <span class="stat-label">Cities</span>
+                        </div>
+                        <div class="map-stat">
+                            <span class="stat-number">5</span>
+                            <span class="stat-label">Metro Areas</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="showMapModal()">
+                        View Full Map
+                    </button>
+                </div>
+            `;
+        }
+    }, 1000);
+}
+
+// Show map modal (placeholder for future Google Maps integration)
+function showMapModal() {
+    alert('Interactive map feature coming soon! For now, use the "View on Map" buttons on individual park cards to see locations.');
+}
+
+// Search functionality
+function searchIndoorParks(query) {
+    if (!query) {
+        loadFeaturedIndoorParks();
+        return;
+    }
+    
+    const filteredParks = indoorParksData.filter(park => 
+        park.name.toLowerCase().includes(query.toLowerCase()) ||
+        park.city.toLowerCase().includes(query.toLowerCase()) ||
+        park.description.toLowerCase().includes(query.toLowerCase()) ||
+        park.amenities.some(amenity => amenity.toLowerCase().includes(query.toLowerCase()))
     );
     
-    const container = document.getElementById('indoorParksGrid');
-    if (!container) return;
-    
-    container.innerHTML = '';
-    filteredParks.forEach(park => {
-      const card = createParkCard(park);
-      container.appendChild(card);
-    });
-  },
-  
-  searchParks: function(query) {
-    const allParks = IndoorParksUtils.getAllParks();
-    const searchResults = allParks.filter(park => {
-      const searchText = `${park.name} ${park.city} ${park.description || ''} ${(park.amenities || []).join(' ')}`.toLowerCase();
-      return searchText.includes(query.toLowerCase());
-    });
-    
-    const container = document.getElementById('indoorParksGrid');
-    if (!container) return;
-    
-    container.innerHTML = '';
-    searchResults.forEach(park => {
-      const card = createParkCard(park);
-      container.appendChild(card);
-    });
-  }
-};
-
-// Export for use in other scripts
-if (typeof window !== 'undefined') {
-  window.IndoorParksUI = IndoorParksUI;
+    const grid = document.getElementById('indoorParksGrid');
+    if (grid) {
+        grid.innerHTML = filteredParks.map(park => createParkCard(park)).join('');
+    }
 }
+
+// Get parks by city (utility function)
+function getParksByCity(cityName) {
+    return indoorParksData.filter(park => 
+        park.city.toLowerCase().includes(cityName.toLowerCase())
+    );
+}
+
+// Analytics tracking (placeholder)
+function trackParkView(parkId, parkName) {
+    // This would integrate with Google Analytics or similar
+    console.log(`Park viewed: ${parkName} (ID: ${parkId})`);
+}
+
+// Initialize page-specific functionality
+function initializePage() {
+    // Add smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+    
+    // Add loading animation
+    const cards = document.querySelectorAll('.park-card');
+    cards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+        card.classList.add('fade-in');
+    });
+}
+
+// Initialize everything when DOM is ready
+document.addEventListener('DOMContentLoaded', initializePage);
