@@ -56,6 +56,36 @@
     <link rel="stylesheet" href="../main.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://barkandplaydirectory.com/indoor-dog-parks/austin.html">
+    
+    <!-- Google Maps JavaScript API -->
+    <script
+        async
+        defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJ-_i6_HA19KEcYNELpvc7pXhNYAh09k8&libraries=geometry">
+    </script>
+    
+    <!-- Initialize map when page loads -->
+    <script>
+        window.addEventListener('load', function() {
+            // Wait for Google Maps API to be available
+            function checkGoogleMaps() {
+                if (typeof google !== 'undefined' && google.maps) {
+                    console.log('Google Maps API loaded, initializing Austin map...');
+                    initializeAustinMap();
+                } else {
+                    console.log('Waiting for Google Maps API...');
+                    setTimeout(checkGoogleMaps, 100);
+                }
+            }
+            checkGoogleMaps();
+        });
+        
+        // Handle Google Maps API errors
+        window.gm_authFailure = function() {
+            console.error('Google Maps API authentication failed!');
+            document.getElementById('google-map').innerHTML = '<div style="padding: 20px; text-align: center; color: #ff0000;">Map authentication failed. Please check your API key.</div>';
+        };
+    </script>
 </head>
 <body>
     <!-- Header -->
@@ -177,12 +207,12 @@
         <div class="container">
             <div class="section-header">
                 <h2>Austin Indoor Dog Parks Map</h2>
-                <p>Interactive map showing all indoor dog park locations</p>
+                <p>Interactive map showing all indoor dog park locations across the Austin metro area</p>
             </div>
-            <div id="map-container" class="map-container">
-                <div class="map-placeholder">
-                    <p>🗺️ Interactive map will be loaded here</p>
-                    <p>Showing all 63+ indoor dog parks across Austin metro area</p>
+            <div id="google-map" class="google-map" style="height: 500px; width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <div style="padding: 40px; text-align: center; color: #666; background: #f9f9f9; border-radius: 12px; height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                    <h3>Loading Austin Indoor Dog Parks Map...</h3>
+                    <p>Please wait while we load the interactive map showing all indoor dog facilities in the Austin metro area.</p>
                 </div>
             </div>
         </div>
@@ -253,6 +283,14 @@
                 <div class="tip-card">
                     <h3>🏊 Post-Swimming</h3>
                     <p>After lake activities at Lady Bird Lake or Barton Springs, indoor facilities are perfect for clean, dry playtime.</p>
+                </div>
+                <div class="tip-card">
+                    <h3>💰 Budget-Friendly Options</h3>
+                    <p>Many Austin indoor facilities offer day passes, monthly memberships, and first-time visitor discounts. Compare rates to find the best deal for your needs.</p>
+                </div>
+                <div class="tip-card">
+                    <h3>🌧️ Rainy Day Protocol</h3>
+                    <p>Austin's sudden storms make indoor parks lifesavers. Keep a backup list of your favorite indoor spots for unexpected weather changes.</p>
                 </div>
             </div>
         </div>

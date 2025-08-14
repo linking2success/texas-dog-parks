@@ -268,6 +268,142 @@ function openInMaps(name, address) {
     window.open(`https://www.google.com/maps/search/${query}`, '_blank');
 }
 
+// Google Maps functionality for Austin
+let map;
+let markers = [];
+
+function initializeAustinMap() {
+    console.log('Initializing Austin map...');
+    // Center the map on Austin
+    const austinCenter = { lat: 30.2672, lng: -97.7431 };
+    
+    const mapElement = document.getElementById("google-map");
+    if (!mapElement) {
+        console.error('Map element not found!');
+        return;
+    }
+
+    // Check if Google Maps is available
+    if (typeof google === 'undefined') {
+        console.error('Google Maps API not loaded!');
+        mapElement.innerHTML = '<div style="padding: 40px; text-align: center; color: #666; background: #f9f9f9; border-radius: 12px;"><h3>Map Loading Issue</h3><p>The Google Maps API could not be loaded. Please check your internet connection and try refreshing the page.</p></div>';
+        return;
+    }
+    
+    try {
+        map = new google.maps.Map(mapElement, {
+            zoom: 10,
+            center: austinCenter,
+            styles: [
+                {
+                    "featureType": "poi",
+                    "elementType": "labels",
+                    "stylers": [{"visibility": "off"}]
+                }
+            ]
+        });
+
+        console.log('Austin map created successfully!');
+        
+        // Wait for parks data to load, then add markers
+        function waitForParksData() {
+            console.log('Checking for Austin parks data...');
+            if (typeof indoorParksData !== 'undefined' && indoorParksData.length > 0) {
+                console.log('Parks data loaded, filtering Austin parks...');
+                const austinParks = indoorParksData.filter(park => {
+                    const cityLower = (park.city || '').toLowerCase();
+                    const austinCities = ['austin', 'round rock', 'cedar park', 'leander', 'pflugerville', 
+                                        'lakeway', 'bee cave', 'dripping springs', 'manor', 'elgin'];
+                    return austinCities.some(city => cityLower.includes(city));
+                });
+                console.log('Found', austinParks.length, 'Austin parks');
+                if (austinParks.length > 0) {
+                    addMarkersToMap(austinParks);
+                } else {
+                    console.log('No Austin parks found in data');
+                }
+            } else {
+                console.log('Parks data not ready yet, trying again...');
+                setTimeout(waitForParksData, 500);
+            }
+        }
+        
+        // Start checking for parks data
+        waitForParksData();
+    } catch (error) {
+        console.error('Error creating Austin map:', error);
+        mapElement.innerHTML = '<div style="padding: 40px; text-align: center; color: #666; background: #f9f9f9; border-radius: 12px;"><h3>Map Error</h3><p>There was an error loading the map. Error: ' + error.message + '</p></div>';
+    }
+}
+
+function addMarkersToMap(parks) {
+    console.log('Adding markers to Austin map for', parks.length, 'parks');
+    // Clear existing markers
+    markers.forEach(marker => marker.setMap(null));
+    markers = [];
+
+    parks.forEach((park, index) => {
+        console.log('Processing Austin park:', park.name, 'lat:', park.latitude, 'lng:', park.longitude);
+        if (park.latitude && park.longitude) {
+            const marker = new google.maps.Marker({
+                position: { lat: parseFloat(park.latitude), lng: parseFloat(park.longitude) },
+                map: map,
+                title: park.name,
+                icon: {
+                    url: 'data:image/svg+xml;base64,' + btoa(`
+                        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="16" r="12" fill="#6b3ded" stroke="#fff" stroke-width="2"/>
+                            <text x="16" y="20" text-anchor="middle" fill="white" font-size="16">🐾</text>
+                        </svg>
+                    `),
+                    scaledSize: new google.maps.Size(32, 32)
+                }
+            });
+
+            const infoWindow = new google.maps.InfoWindow({
+                content: `
+                    <div style="max-width: 300px;">
+                        <h3 style="margin: 0 0 8px 0; color: #333;">${park.name}</h3>
+                        <p style="margin: 0 0 8px 0; color: #666;">${park.address || park.city + ', TX'}</p>
+                        ${park.phone ? `<p style="margin: 0 0 8px 0;"><strong>Phone:</strong> ${park.phone}</p>` : ''}
+                        ${park.website ? `<p style="margin: 0;"><a href="${park.website}" target="_blank" style="color: #6b3ded;">Visit Website</a></p>` : ''}
+                    </div>
+                `
+            });
+
+            marker.addListener('click', () => {
+                // Close any open info windows
+                markers.forEach(m => {
+                    if (m.infoWindow) m.infoWindow.close();
+                });
+                infoWindow.open(map, marker);
+            });
+
+            marker.infoWindow = infoWindow;
+            markers.push(marker);
+            console.log('Added marker for Austin park:', park.name);
+        } else {
+            console.log('Skipping Austin park with missing coordinates:', park.name);
+        }
+    });
+
+    console.log('Total Austin markers added:', markers.length);
+
+    // Fit map to show all markers
+    if (markers.length > 0) {
+        const bounds = new google.maps.LatLngBounds();
+        markers.forEach(marker => bounds.extend(marker.getPosition()));
+        map.fitBounds(bounds);
+        
+        // Don't zoom in too much for single markers
+        google.maps.event.addListenerOnce(map, 'bounds_changed', () => {
+            if (map.getZoom() > 15) {
+                map.setZoom(12);
+            }
+        });
+    }
+}
+
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Initializing Austin Indoor Parks Manager...');
