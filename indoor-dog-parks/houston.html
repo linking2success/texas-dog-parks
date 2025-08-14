@@ -449,7 +449,13 @@
                         </div>
                         <p class="park-description">${description}</p>
                         ${amenityIcons ? `<div class="park-amenities-icons">${amenityIcons}</div>` : ''}
-                        <a href="${park.website || '#'}" class="park-link" target="_blank">View Details</a>
+                        ${park.website ? 
+                            `<a href="${park.website}" class="park-link" target="_blank">Visit Website</a>` :
+                            `<div class="park-contact">
+                                ${park.phone ? `<p><strong>📞</strong> ${park.phone}</p>` : ''}
+                                ${park.address ? `<p><strong>📍</strong> ${park.address}</p>` : ''}
+                            </div>`
+                        }
                     </div>
                 </div>
             `;
@@ -599,19 +605,27 @@
             console.log('Map created successfully!');
             
             // Wait for parks data to load, then add markers
-            setTimeout(() => {
-                if (houstonParksManager && houstonParksManager.parks) {
-                    console.log('Adding markers for', houstonParksManager.parks.length, 'parks');
-                    addMarkersToMap(houstonParksManager.parks);
+            function waitForParksData() {
+                console.log('Checking for parks data...');
+                if (typeof indoorParksData !== 'undefined' && indoorParksData.length > 0) {
+                    console.log('Parks data loaded, filtering Houston parks...');
+                    const houstonParks = indoorParksData.filter(park => 
+                        park.city && park.city.toLowerCase().includes('houston')
+                    );
+                    console.log('Found', houstonParks.length, 'Houston parks');
+                    if (houstonParks.length > 0) {
+                        addMarkersToMap(houstonParks);
+                    } else {
+                        console.log('No Houston parks found in data');
+                    }
                 } else {
                     console.log('Parks data not ready yet, trying again...');
-                    setTimeout(() => {
-                        if (houstonParksManager && houstonParksManager.parks) {
-                            addMarkersToMap(houstonParksManager.parks);
-                        }
-                    }, 2000);
+                    setTimeout(waitForParksData, 500);
                 }
-            }, 1000);
+            }
+            
+            // Start checking for parks data
+            waitForParksData();
         } catch (error) {
             console.error('Error creating map:', error);
             mapElement.innerHTML = '<div style="padding: 40px; text-align: center; color: #666; background: #f9f9f9; border-radius: 12px;"><h3>Map Error</h3><p>There was an error loading the map. Error: ' + error.message + '</p></div>';
@@ -619,11 +633,13 @@
     }
 
     function addMarkersToMap(parks) {
+        console.log('Adding markers to map for', parks.length, 'parks');
         // Clear existing markers
         markers.forEach(marker => marker.setMap(null));
         markers = [];
 
         parks.forEach((park, index) => {
+            console.log('Processing park:', park.name, 'lat:', park.latitude, 'lng:', park.longitude);
             if (park.latitude && park.longitude) {
                 const marker = new google.maps.Marker({
                     position: { lat: parseFloat(park.latitude), lng: parseFloat(park.longitude) },
@@ -661,8 +677,13 @@
 
                 marker.infoWindow = infoWindow;
                 markers.push(marker);
+                console.log('Added marker for:', park.name);
+            } else {
+                console.log('Skipping park with missing coordinates:', park.name);
             }
         });
+
+        console.log('Total markers added:', markers.length);
 
         // Fit map to show all markers
         if (markers.length > 0) {
@@ -681,7 +702,8 @@
 
     // Update map when filters change
     function updateMapMarkers() {
-        if (houstonParksManager && houstonParksManager.filteredParks) {
+        if (houstonParksManager && houstonParksManager.filteredParks && map) {
+            console.log('Updating map markers for', houstonParksManager.filteredParks.length, 'filtered parks');
             addMarkersToMap(houstonParksManager.filteredParks);
         }
     }
