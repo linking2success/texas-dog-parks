@@ -138,80 +138,24 @@ function loadFeaturedIndoorParks() {
 
 // Create park card HTML
 function createParkCard(park) {
-    const formatHours = (hours) => {
-        if (!hours) return 'Hours vary';
-        if (hours.Monday === 'Open 24 hours') return '24/7 Access';
-        if (hours.Monday === 'Closed') return 'Limited Hours';
-        return hours.Monday || 'Contact for hours';
-    };
-
-    const getAmenityIcons = (amenities) => {
-        const iconMap = {
-            'Climate Controlled': '🌡️',
-            'Daycare': '🏠',
-            'Indoor Play': '🎾',
-            '24/7 Access': '🕒',
-            'Professional Staff': '👨‍⚕️',
-            'Boarding': '🛏️',
-            'Grooming': '✂️',
-            'Training': '🎓',
-            'Parking': '🅿️',
-            'Restrooms': '🚻',
-            'Water': '💧',
-            'Air Conditioning': '❄️'
-        };
-        
-        return amenities.slice(0, 6).map(amenity => {
-            const icon = iconMap[amenity] || '✅';
-            return `<div class="amenity-icon" title="${amenity}"><span>${icon}</span><span>${amenity}</span></div>`;
-        }).join('');
-    };
-
     return `
-        <div class="park-card" data-city="${park.city.toLowerCase()}">
+        <div class="park-card">
             <div class="park-image">
-                <img src="${park.photo}" alt="${park.name}" loading="lazy">
-                <div class="park-status-badge ${park.status.toLowerCase().replace(/\s+/g, '-')}">${park.status}</div>
+                <img src="${park.photo || 'imagesdogpardirectory/dopark_content_card.png'}" alt="${park.name}" loading="lazy">
             </div>
             <div class="park-content">
-                <h3 class="park-name">${park.name}</h3>
-                <div class="park-location">
-                    <span class="location-icon">📍</span>
-                    <span>${park.city}, ${park.state}</span>
+                <h3>${park.name}</h3>
+                <p class="park-location">${park.city}, TX</p>
+                <p class="park-description">${park.description || 'Climate-controlled indoor dog facility with professional amenities and safe play areas.'}</p>
+                <div class="park-stats">
+                    <span class="park-status">${park.status || 'Open'}</span>
+                    ${park.phone ? `<span class="park-phone">${park.phone}</span>` : ''}
                 </div>
-                
-                <div class="park-description">
-                    <p>${park.description || 'Climate-controlled indoor dog park with professional facilities'}</p>
-                </div>
-
-                <div class="park-amenities">
-                    ${getAmenityIcons(park.amenities)}
-                </div>
-
-                <div class="park-details">
-                    <div class="park-hours">
-                        <span class="hours-icon">🕒</span>
-                        <span>${formatHours(park.hours)}</span>
-                    </div>
-                    ${park.phone ? `
-                        <div class="park-phone">
-                            <span class="phone-icon">📞</span>
-                            <a href="tel:${park.phone}">${park.phone}</a>
-                        </div>
-                    ` : ''}
-                </div>
-
-                <div class="park-actions">
-                    <a href="collection-single.html?park=${encodeURIComponent(park.name)}" class="btn btn-primary">
-                        View Details
-                    </a>
-                    <a href="${park.mapLink}" target="_blank" class="btn btn-secondary">
-                        Get Directions
-                    </a>
-                </div>
+                <a href="collection-single.html?park=${encodeURIComponent(park.name)}" class="btn btn-primary">View Details</a>
             </div>
         </div>
     `;
+}
 }
 
 // Initialize filters
