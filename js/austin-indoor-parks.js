@@ -353,7 +353,7 @@ function addMarkersToMap(parks) {
                     url: 'data:image/svg+xml;base64,' + btoa(`
                         <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="16" cy="16" r="12" fill="#6b3ded" stroke="#fff" stroke-width="2"/>
-                            <text x="16" y="20" text-anchor="middle" fill="white" font-size="16">🐾</text>
+                            <circle cx="16" cy="16" r="6" fill="#fff"/>
                         </svg>
                     `),
                     scaledSize: new google.maps.Size(32, 32)
