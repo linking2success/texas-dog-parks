@@ -1,50 +1,30 @@
 class FortWorthIndoorParksManager {
     constructor() {
+        this.parks = [];
+        this.filteredParks = [];
+        this.currentPage = 1;
+        this.parksPerPage = 12;
+        this.currentFilters = {
+            search: '',
+            area: '',
+            amenity: ''
+        };
         this.map = null;
         this.markers = [];
-        this.parkDescriptions = [
-            "This premier indoor dog facility in Fort Worth combines Cowtown hospitality with modern climate-controlled comfort.",
-            "A favorite among Fort Worth dog owners, featuring Western charm and professional staff dedicated to pet wellness.",
-            "Located in the heart of Fort Worth, this indoor park provides year-round comfort with true Texas hospitality.",
-            "Experience top-tier indoor dog recreation where Fort Worth's friendly atmosphere meets specialized pet amenities.",
-            "Fort Worth's most popular indoor dog destination, known for its welcoming community and clean facilities.",
-            "A modern indoor dog park offering spacious play areas with that distinctive Fort Worth character.",
-            "This upscale indoor facility embodies Fort Worth's attention to detail with thoughtfully designed play zones.",
-            "Professional indoor dog care with experienced staff and premium amenities throughout Fort Worth.",
-            "A well-maintained indoor space where Fort Worth dogs can exercise comfortably in any weather.",
-            "Fort Worth families love this indoor dog park for its safe environment and engaging social activities.",
-            "Featuring specialized indoor equipment with climate-controlled comfort perfect for Texas weather.",
-            "This trusted Fort Worth location offers consistent quality and reliable indoor dog recreation services.",
-            "A community favorite providing excellent indoor facilities with that signature Fort Worth friendly service.",
-            "Modern indoor dog park with innovative design and unwavering focus on canine comfort and safety.",
-            "Fort Worth's premier destination for indoor dog socialization and exercise in comfortable surroundings.",
-            "This established facility combines traditional dog park fun with Fort Worth's commitment to quality.",
-            "A spacious indoor environment designed specifically for active dogs and their devoted Fort Worth families.",
-            "Professional indoor dog services emphasizing cleanliness and safety with Fort Worth's renowned hospitality.",
-            "Conveniently located in Fort Worth, offering reliable indoor dog recreation and community connections.",
-            "This indoor facility stands out for Fort Worth's attention to detail and unwavering commitment to pets."
-        ];
-        this.currentDescriptionIndex = 0;
-    }
-
-    getNextDescription() {
-        const description = this.parkDescriptions[this.currentDescriptionIndex];
-        this.currentDescriptionIndex = (this.currentDescriptionIndex + 1) % this.parkDescriptions.length;
-        return description;
-    }
-
-    async initializeMap() {
-        console.log('FortWorthIndoorParksManager: Starting map initialization');
         
+        this.init();
+    }
+    
+    async init() {
+        await this.loadParksData();
+        this.displayParks();
+    }
+    
+    async loadParksData() {
         try {
-            // Wait for Google Maps to be available
-            if (typeof google === 'undefined' || !google.maps) {
-                console.log('Google Maps not yet loaded, waiting...');
-                await this.waitForGoogleMaps();
-            }
-
+            console.log('Loading Fort Worth parks data...');
             // Filter for Fort Worth area parks
-            const fortWorthParks = window.indoorParksData?.filter(park => 
+            this.parks = indoorParksData.filter(park => 
                 park.city && (
                     park.city.toLowerCase().includes('fort worth') ||
                     park.city.toLowerCase().includes('arlington') ||
@@ -77,11 +57,201 @@ class FortWorthIndoorParksManager {
                     park.city.toLowerCase().includes('pantego') ||
                     park.city.toLowerCase().includes('dalworthington gardens')
                 )
-            ) || [];
+            );
+            
+            this.filteredParks = [...this.parks];
+            console.log(`Loaded ${this.parks.length} Fort Worth area parks`);
+            
+        } catch (error) {
+            console.error('Error loading parks data:', error);
+            this.parks = [];
+            this.filteredParks = [];
+        }
+    }
+    
+    displayParks() {
+        const parksGrid = document.getElementById('park-listings');
+        if (!parksGrid) return;
+        
+        const startIndex = (this.currentPage - 1) * this.parksPerPage;
+        const endIndex = startIndex + this.parksPerPage;
+        const parksToShow = this.filteredParks.slice(startIndex, endIndex);
+        
+        if (parksToShow.length === 0) {
+            parksGrid.innerHTML = '<div class="no-results"><p>No parks found matching your criteria.</p></div>';
+            return;
+        }
+        
+        parksGrid.innerHTML = parksToShow.map((park, i) => this.createParkCard(park, i)).join('');
+        this.createPagination();
+    }
+    
+    createParkCard(park, i) {
+        const localImages = [
+            'https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=200&fit=crop',
+            '../imagesdogpardirectory/Untitled-3-dopark_content_card-min.png',
+            '../imagesdogpardirectory/Untitled-6-dopark_content_card-min.png',
+            '../imagesdogpardirectory/Untitled-7-min.png',
+            '../imagesdogpardirectory/Untitled-8-dopark_content_card-min.png',
+            '../imagesdogpardirectory/Untitled-9-dopark_content_card-min.png',
+            '../imagesdogpardirectory/Untitled-10-min.png',
+            '../imagesdogpardirectory/Untitled-11-dopark_content_card-min.png',
+            '../imagesdogpardirectory/Untitled-16-dopark_content_card-min.png',
+            '../imagesdogpardirectory/Untitled-17-dopark_content_card-min.png',
+            '../imagesdogpardirectory/Untitled-18-dopark_content_card-min.png',
+            '../imagesdogpardirectory/dopark_content_card.png'
+        ];
+        
+        const imageUrl = park.photo || localImages[i % localImages.length];
+        const amenities = this.extractAmenities(park);
+        const amenityIcons = this.createAmenityIcons(amenities.length ? amenities : ['Indoor Play']);
+        
+        let description = '';
+        if (park.description && park.description.length > 10) {
+            description = park.description.substring(0, 120) + (park.description.length > 120 ? '...' : '');
+        } else {
+            description = `Indoor dog facility in ${park.city || 'Fort Worth'}`;
+        }
+        
+        return `
+            <div class="park-card">
+                <div class="park-image">
+                    <img src="${imageUrl}" alt="${park.name}">
+                </div>
+                <div class="park-content">
+                    <h3>${park.name}</h3>
+                    <div class="park-location">
+                        <span>📍</span>
+                        <span>${park.city || 'Fort Worth'}, TX</span>
+                    </div>
+                    <p class="park-description">${description}</p>
+                    ${amenityIcons ? `<div class="park-amenities-icons">${amenityIcons}</div>` : ''}
+                    <a href="../collection-single.html?park=${encodeURIComponent(park.name)}" class="park-link">
+                        View Details
+                    </a>
+                </div>
+            </div>
+        `;
+    }
+    
+    extractAmenities(park) {
+        const amenities = [];
+        
+        // Check for common amenities based on park data
+        if (park.amenities) {
+            if (typeof park.amenities === 'string') {
+                return park.amenities.split(',').map(a => a.trim()).slice(0, 4);
+            } else if (Array.isArray(park.amenities)) {
+                return park.amenities.slice(0, 4);
+            }
+        }
+        
+        // Default amenities for indoor parks
+        const defaultAmenities = ['Indoor Play', 'Climate Control', 'Safe Environment', 'Supervised Play'];
+        return defaultAmenities.slice(0, 4);
+    }
+    
+    createAmenityIcons(amenities) {
+        const iconMap = {
+            'Indoor Play': '🏠',
+            'Climate Control': '❄️',
+            'Safe Environment': '🛡️',
+            'Supervised Play': '👥',
+            'Parking': '🅿️',
+            'Water': '💧',
+            'Treats': '🦴',
+            'Training': '🎓',
+            'Grooming': '✂️',
+            'Daycare': '🏫',
+            'Boarding': '🏨',
+            'Agility': '🏃',
+            'Small Dogs': '🐕',
+            'Large Dogs': '🐕‍🦺',
+            'Puppies': '🐶',
+            'Senior Dogs': '🦮'
+        };
+        
+        return amenities.slice(0, 4).map(amenity => {
+            const icon = iconMap[amenity] || iconMap[Object.keys(iconMap).find(key => 
+                amenity.toLowerCase().includes(key.toLowerCase())
+            )] || '🐕';
+            return `<span class="amenity-icon" title="${amenity}">${icon}</span>`;
+        }).join('');
+    }
+    
+    createPagination() {
+        const totalPages = Math.ceil(this.filteredParks.length / this.parksPerPage);
+        const pagination = document.getElementById('pagination');
+        
+        if (!pagination || totalPages <= 1) {
+            if (pagination) pagination.innerHTML = '';
+            return;
+        }
+        
+        let paginationHTML = '';
+        
+        // Previous button
+        paginationHTML += `
+            <button class="pagination-btn ${this.currentPage === 1 ? 'disabled' : ''}" 
+                    onclick="window.fortWorthParksManager.goToPage(${this.currentPage - 1})"
+                    ${this.currentPage === 1 ? 'disabled' : ''}>
+                ← Previous
+            </button>
+        `;
+        
+        // Page numbers
+        for (let i = 1; i <= totalPages; i++) {
+            if (i === 1 || i === totalPages || (i >= this.currentPage - 2 && i <= this.currentPage + 2)) {
+                paginationHTML += `
+                    <button class="pagination-btn ${i === this.currentPage ? 'active' : ''}" 
+                            onclick="window.fortWorthParksManager.goToPage(${i})">
+                        ${i}
+                    </button>
+                `;
+            } else if (i === this.currentPage - 3 || i === this.currentPage + 3) {
+                paginationHTML += '<span class="pagination-ellipsis">...</span>';
+            }
+        }
+        
+        // Next button
+        paginationHTML += `
+            <button class="pagination-btn ${this.currentPage === totalPages ? 'disabled' : ''}" 
+                    onclick="window.fortWorthParksManager.goToPage(${this.currentPage + 1})"
+                    ${this.currentPage === totalPages ? 'disabled' : ''}>
+                Next →
+            </button>
+        `;
+        
+        pagination.innerHTML = paginationHTML;
+    }
+    
+    goToPage(page) {
+        const totalPages = Math.ceil(this.filteredParks.length / this.parksPerPage);
+        if (page < 1 || page > totalPages) return;
+        
+        this.currentPage = page;
+        this.displayParks();
+        
+        // Scroll to parks section
+        document.querySelector('.parks-section').scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+        });
+    }
 
-            console.log(`Found ${fortWorthParks.length} Fort Worth area indoor parks`);
+    async initializeMap() {
+        console.log('FortWorthIndoorParksManager: Starting map initialization');
+        
+        try {
+            // Wait for Google Maps to be available
+            if (typeof google === 'undefined' || !google.maps) {
+                console.log('Google Maps not yet loaded, waiting...');
+                await this.waitForGoogleMaps();
+            }
 
-            if (fortWorthParks.length === 0) {
+            console.log(`Found ${this.parks.length} Fort Worth area indoor parks for map`);
+
+            if (this.parks.length === 0) {
                 console.warn('No Fort Worth area parks found in data');
                 this.showMapError('No Fort Worth area indoor dog parks found in our database.');
                 return;
@@ -112,10 +282,7 @@ class FortWorthIndoorParksManager {
             console.log('Map created successfully');
 
             // Add markers for each park
-            this.addMarkersToMap(fortWorthParks);
-
-            // Display parks list
-            this.displayParksList(fortWorthParks);
+            this.addMarkersToMap(this.parks);
 
             console.log('Fort Worth indoor parks map initialization complete');
 
@@ -168,7 +335,7 @@ class FortWorthIndoorParksManager {
                     <div style="max-width: 300px; padding: 10px;">
                         <h3 style="color: #2c3e50; margin: 0 0 10px 0; font-size: 16px;">${park.name}</h3>
                         <p style="color: #7f8c8d; margin: 0 0 10px 0; font-size: 14px; line-height: 1.4;">
-                            ${this.getNextDescription()}
+                            Indoor dog facility in ${park.city || 'Fort Worth'} offering climate-controlled comfort and safe play.
                         </p>
                         ${park.address ? `<p style="color: #34495e; margin: 0 0 8px 0; font-size: 13px;"><strong>📍 Address:</strong> ${park.address}</p>` : ''}
                         ${park.phone ? `<p style="color: #34495e; margin: 0 0 8px 0; font-size: 13px;"><strong>📞 Phone:</strong> ${park.phone}</p>` : ''}
@@ -203,37 +370,6 @@ class FortWorthIndoorParksManager {
         });
 
         console.log(`Successfully added ${this.markers.length} markers to Fort Worth map`);
-    }
-
-    displayParksList(parks) {
-        const listingsContainer = document.getElementById('park-listings');
-        if (!listingsContainer) {
-            console.warn('Park listings container not found');
-            return;
-        }
-
-        listingsContainer.innerHTML = '';
-
-        parks.forEach(park => {
-            const parkCard = document.createElement('div');
-            parkCard.className = 'park-card';
-            parkCard.innerHTML = `
-                <div class="park-content">
-                    <h3 class="park-name">${park.name}</h3>
-                    <p class="park-description">${this.getNextDescription()}</p>
-                    <div class="park-info">
-                        ${park.address ? `<p class="park-address"><span class="icon">📍</span> ${park.address}</p>` : ''}
-                        ${park.phone ? `<p class="park-phone"><span class="icon">📞</span> ${park.phone}</p>` : ''}
-                    </div>
-                    <div class="park-actions">
-                        <a href="collection-single.html?park=${encodeURIComponent(park.name)}" class="btn btn-primary">View Details</a>
-                    </div>
-                </div>
-            `;
-            listingsContainer.appendChild(parkCard);
-        });
-
-        console.log(`Displayed ${parks.length} Fort Worth parks in listings`);
     }
 
     showMapError(message) {
