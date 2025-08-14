@@ -1,250 +1,323 @@
 // Austin Indoor Dog Parks JavaScript
-document.addEventListener('DOMContentLoaded', function() {
-    // Filter Austin parks from the full dataset
-    const austinParks = indoorParksData.filter(park => 
-        park.metro_area === 'Austin Metro' || 
-        park.city.toLowerCase().includes('austin') ||
-        park.city.toLowerCase().includes('round rock') ||
-        park.city.toLowerCase().includes('cedar park') ||
-        park.city.toLowerCase().includes('leander') ||
-        park.city.toLowerCase().includes('pflugerville') ||
-        park.city.toLowerCase().includes('lakeway') ||
-        park.city.toLowerCase().includes('bee cave') ||
-        park.city.toLowerCase().includes('dripping springs') ||
-        park.city.toLowerCase().includes('manor') ||
-        park.city.toLowerCase().includes('elgin')
-    );
+// Austin-specific functionality with unique descriptions and fixed buttons
 
-    let filteredParks = [...austinParks];
-
-    // Initialize the page
-    displayParks(filteredParks);
-    updateResultsCount(filteredParks.length);
-
-    // Search functionality
-    window.searchParks = function() {
-        const searchTerm = document.getElementById('park-search').value.toLowerCase();
-        const areaFilter = document.getElementById('area-filter').value;
-        const typeFilter = document.getElementById('type-filter').value;
-
-        filteredParks = austinParks.filter(park => {
-            const matchesSearch = !searchTerm || 
-                park.name.toLowerCase().includes(searchTerm) ||
-                park.city.toLowerCase().includes(searchTerm) ||
-                park.address.toLowerCase().includes(searchTerm);
-
-            const matchesArea = !areaFilter || getAreaCategory(park.city).includes(areaFilter);
-            const matchesType = !typeFilter || categorizeBusinessType(park.name).includes(typeFilter);
-
-            return matchesSearch && matchesArea && matchesType;
-        });
-
-        displayParks(filteredParks);
-        updateResultsCount(filteredParks.length);
-    };
-
-    // Clear filters
-    window.clearFilters = function() {
-        document.getElementById('park-search').value = '';
-        document.getElementById('area-filter').value = '';
-        document.getElementById('type-filter').value = '';
-        filteredParks = [...austinParks];
-        displayParks(filteredParks);
-        updateResultsCount(filteredParks.length);
-    };
-
-    // Add event listeners for real-time filtering
-    document.getElementById('park-search').addEventListener('input', searchParks);
-    document.getElementById('area-filter').addEventListener('change', searchParks);
-    document.getElementById('type-filter').addEventListener('change', searchParks);
-});
-
-function displayParks(parks) {
-    const grid = document.getElementById('parks-grid');
-    const noResults = document.getElementById('no-results');
-    
-    if (parks.length === 0) {
-        grid.style.display = 'none';
-        noResults.style.display = 'block';
-        return;
+class AustinIndoorParksManager {
+    constructor() {
+        this.allParks = [];
+        this.austinParks = [];
+        this.filteredParks = [];
+        this.currentPage = 1;
+        this.parksPerPage = 12;
+        
+        // Austin-specific unique descriptions
+        this.austinDescriptions = [
+            "Keep Austin weird with this climate-controlled indoor dog paradise perfect for hot Texas days!",
+            "A favorite spot for Austin pups to stay cool and socialize in air-conditioned comfort.",
+            "Where Live Music Capital dogs come to play when it's too hot to handle outside!",
+            "Beat the heat at this premier indoor facility designed for active Austin dogs.",
+            "Climate-controlled fun for your furry friend in the heart of Austin's dog-loving community.",
+            "Indoor playtime perfection where Austin dogs can exercise safely year-round.",
+            "A cool oasis for hot dogs - literally! Perfect for escaping Austin's summer heat.",
+            "Where Austin's four-legged residents enjoy premium indoor recreation and socialization.",
+            "Keep your pup comfortable and entertained at this modern indoor dog facility.",
+            "Austin's go-to spot for climate-controlled canine fun and community.",
+            "Indoor dog park excellence designed specifically for Austin's unique climate needs.",
+            "A safe haven from Texas weather where dogs can play, learn, and socialize indoors.",
+            "Professional indoor dog care and play in the heart of Austin's pet-friendly culture.",
+            "Climate-controlled comfort meets Austin's laid-back vibe at this indoor dog destination.",
+            "Where responsible Austin pet parents bring their dogs for safe indoor exercise.",
+            "Indoor dog paradise with all the amenities Austin pups need to stay happy and healthy.",
+            "Beat the elements at this state-of-the-art indoor facility for Austin's beloved dogs.",
+            "Austin's premier destination for indoor canine recreation and professional care.",
+            "Keep your dog cool, comfortable, and entertained at this top-rated indoor facility.",
+            "Where Austin dogs discover the joy of climate-controlled indoor play and socialization."
+        ];
+        
+        this.init();
     }
     
-    grid.style.display = 'grid';
-    noResults.style.display = 'none';
+    async init() {
+        await this.loadParksData();
+        this.displayParks();
+    }
     
-    grid.innerHTML = parks.map(park => createParkCard(park)).join('');
-}
-
-function createParkCard(park) {
-    const rating = park.rating ? parseFloat(park.rating) : 0;
-    const reviewCount = park.user_ratings_total || 0;
-    const hours = formatHours(park.hours);
-    const businessType = categorizeBusinessType(park.name);
-    const area = getAustinArea(park.city);
-    
-    return `
-        <div class="park-card">
-            <div class="park-header">
-                <h3 class="park-name">${park.name}</h3>
-                <div class="park-badges">
-                    <span class="badge badge-type">${businessType}</span>
-                    <span class="badge badge-area">${area}</span>
-                </div>
-            </div>
+    async loadParksData() {
+        try {
+            console.log('Loading Austin parks data...');
+            // Filter for Austin metro area parks
+            this.allParks = indoorParksData || [];
+            this.austinParks = this.allParks.filter(park => {
+                const cityLower = (park.city || '').toLowerCase();
+                const austinCities = ['austin', 'round rock', 'cedar park', 'leander', 'pflugerville', 
+                                    'lakeway', 'bee cave', 'dripping springs', 'manor', 'elgin'];
+                return austinCities.some(city => cityLower.includes(city));
+            });
             
-            <div class="park-info">
-                <div class="park-location">
-                    <span class="icon">📍</span>
-                    <span>${park.address}, ${park.city}</span>
-                </div>
-                
-                ${rating > 0 ? `
-                <div class="park-rating">
-                    <span class="icon">⭐</span>
-                    <span>${rating.toFixed(1)} (${reviewCount} reviews)</span>
-                </div>
-                ` : ''}
-                
-                ${hours ? `
-                <div class="park-hours">
-                    <span class="icon">🕒</span>
-                    <span>${hours}</span>
-                </div>
-                ` : ''}
-                
-                ${park.phone ? `
-                <div class="park-phone">
-                    <span class="icon">📞</span>
-                    <span>${park.phone}</span>
-                </div>
-                ` : ''}
-            </div>
-            
-            <div class="park-actions">
-                ${park.website ? `
-                    <a href="${park.website}" target="_blank" class="btn btn-primary">Visit Website</a>
-                ` : ''}
-                <button onclick="openInMaps('${park.name}', '${park.address}, ${park.city}')" class="btn btn-secondary">
-                    Get Directions
-                </button>
-            </div>
-        </div>
-    `;
-}
-
-function getAustinArea(city) {
-    const cityLower = city.toLowerCase();
-    
-    if (cityLower.includes('downtown') || cityLower === 'austin') {
-        // Determine if it's downtown vs other Austin areas based on address patterns
-        return 'Austin';
-    } else if (cityLower.includes('round rock')) {
-        return 'Round Rock';
-    } else if (cityLower.includes('cedar park')) {
-        return 'Cedar Park';
-    } else if (cityLower.includes('leander')) {
-        return 'Leander';
-    } else if (cityLower.includes('pflugerville')) {
-        return 'Pflugerville';
-    } else if (cityLower.includes('lakeway')) {
-        return 'Lakeway';
-    } else if (cityLower.includes('bee cave')) {
-        return 'Bee Cave';
-    } else if (cityLower.includes('dripping springs')) {
-        return 'Dripping Springs';
-    } else if (cityLower.includes('manor')) {
-        return 'Manor';
-    } else if (cityLower.includes('elgin')) {
-        return 'Elgin';
-    } else {
-        return 'Austin Metro';
-    }
-}
-
-function getAreaCategory(city) {
-    const area = getAustinArea(city);
-    const cityLower = city.toLowerCase();
-    
-    if (area === 'Austin') {
-        // Determine specific Austin area
-        if (cityLower.includes('south')) return 'southaustin';
-        if (cityLower.includes('north')) return 'northaustin';
-        if (cityLower.includes('east')) return 'eastaustin';
-        if (cityLower.includes('west')) return 'westaustin';
-        return 'downtown'; // Default Austin to downtown
-    }
-    
-    if (area === 'Round Rock') return 'roundrock';
-    if (area === 'Cedar Park') return 'cedar-park';
-    if (area === 'Leander') return 'leander';
-    if (area === 'Pflugerville') return 'pflugerville';
-    if (area === 'Lakeway') return 'lakeway';
-    
-    return 'other';
-}
-
-function categorizeBusinessType(name) {
-    const nameLower = name.toLowerCase();
-    
-    if (nameLower.includes('daycare') || nameLower.includes('day care')) {
-        return 'Dog Daycare';
-    } else if (nameLower.includes('training') || nameLower.includes('obedience')) {
-        return 'Training Facility';
-    } else if (nameLower.includes('boarding') || nameLower.includes('kennel')) {
-        return 'Boarding Facility';
-    } else if (nameLower.includes('play') || nameLower.includes('park') || nameLower.includes('recreation')) {
-        return 'Play Center';
-    } else if (nameLower.includes('grooming')) {
-        return 'Grooming & Play';
-    } else {
-        return 'Indoor Facility';
-    }
-}
-
-function formatHours(hoursData) {
-    if (!hoursData || !Array.isArray(hoursData) || hoursData.length === 0) {
-        return null;
-    }
-    
-    // Get today's hours
-    const today = new Date().getDay(); // 0 = Sunday, 1 = Monday, etc.
-    const todayHours = hoursData.find(h => h.day === today);
-    
-    if (todayHours) {
-        if (todayHours.is_closed) {
-            return 'Closed today';
-        } else {
-            return `Open: ${todayHours.open} - ${todayHours.close}`;
+            console.log('Found', this.austinParks.length, 'Austin area parks');
+            this.filteredParks = [...this.austinParks];
+            this.updateResultsCount();
+        } catch (error) {
+            console.error('Error loading Austin parks data:', error);
+            this.showError('Unable to load parks data. Please try again later.');
         }
     }
     
-    return 'Hours vary';
-}
-
-function updateResultsCount(count) {
-    const resultsElement = document.getElementById('results-count');
-    if (count === austinParks.length) {
-        resultsElement.textContent = `Showing all ${count} indoor dog parks and facilities`;
-    } else {
-        resultsElement.textContent = `Showing ${count} of ${austinParks.length} indoor dog parks`;
+    displayParks() {
+        const startIndex = (this.currentPage - 1) * this.parksPerPage;
+        const endIndex = startIndex + this.parksPerPage;
+        const parksToShow = this.filteredParks.slice(startIndex, endIndex);
+        
+        const grid = document.getElementById('parks-grid');
+        const noResults = document.getElementById('no-results');
+        
+        if (parksToShow.length === 0) {
+            if (grid) grid.style.display = 'none';
+            if (noResults) noResults.style.display = 'block';
+            return;
+        }
+        
+        if (grid) {
+            grid.style.display = 'grid';
+            grid.innerHTML = parksToShow.map((park, i) => this.createParkCard(park, startIndex + i)).join('');
+        }
+        if (noResults) noResults.style.display = 'none';
+        
+        this.setupPagination();
+    }
+    
+    createParkCard(park, i) {
+        const localImages = [
+            'https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=200&fit=crop',
+            '../imagesdogpardirectory/Untitled-3-dopark_content_card-min.png',
+            '../imagesdogpardirectory/Untitled-6-dopark_content_card-min.png',
+            '../imagesdogpardirectory/Untitled-7-min.png',
+            '../imagesdogpardirectory/Untitled-8-dopark_content_card-min.png',
+            '../imagesdogpardirectory/Untitled-9-dopark_content_card-min.png',
+            '../imagesdogpardirectory/Untitled-10-min.png',
+            '../imagesdogpardirectory/Untitled-11-dopark_content_card-min.png',
+            '../imagesdogpardirectory/Untitled-16-dopark_content_card-min.png',
+            '../imagesdogpardirectory/Untitled-17-dopark_content_card-min.png',
+            '../imagesdogpardirectory/Untitled-18-dopark_content_card-min.png',
+            '../imagesdogpardirectory/dopark_content_card.png'
+        ];
+        
+        const imageUrl = park.photo || localImages[i % localImages.length];
+        const amenities = this.extractAmenities(park);
+        const amenityIcons = this.createAmenityIcons(amenities.length ? amenities : ['Indoor Play', 'Climate Control']);
+        
+        // Use unique Austin-specific descriptions
+        let description = '';
+        if (park.description && park.description.length > 20 && 
+            !park.description.toLowerCase().includes('great place for dogs to play')) {
+            description = park.description.substring(0, 120) + (park.description.length > 120 ? '...' : '');
+        } else {
+            description = this.austinDescriptions[i % this.austinDescriptions.length];
+        }
+        
+        return `
+            <div class="park-card">
+                <div class="park-image">
+                    <img src="${imageUrl}" alt="${park.name}" loading="lazy">
+                </div>
+                <div class="park-content">
+                    <h3>${park.name}</h3>
+                    <div class="park-location">
+                        <span>📍</span>
+                        <span>${park.city || 'Austin'}, TX</span>
+                    </div>
+                    <p class="park-description">${description}</p>
+                    ${amenityIcons ? `<div class="park-amenities-icons">${amenityIcons}</div>` : ''}
+                    <div class="park-actions">
+                        ${park.website ? 
+                            `<a href="${park.website}" class="park-link" target="_blank">Visit Website</a>` :
+                            `<div class="park-contact">
+                                ${park.phone ? `<p><strong>📞</strong> ${park.phone}</p>` : ''}
+                                ${park.address ? `<p><strong>📍</strong> ${park.address}</p>` : ''}
+                            </div>`
+                        }
+                        <button onclick="openInMaps('${park.name.replace(/'/g, "\\'")}', '${(park.address || '').replace(/'/g, "\\'")} ${park.city || 'Austin'}, TX')" class="park-link secondary">
+                            Get Directions
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+    
+    extractAmenities(park) {
+        const amenities = [];
+        
+        // Always include basic indoor amenities
+        amenities.push('Indoor Play');
+        amenities.push('Climate Control');
+        
+        // Check business name and description for specific amenities
+        const name = (park.name || '').toLowerCase();
+        const desc = (park.description || '').toLowerCase();
+        const combined = name + ' ' + desc;
+        
+        if (combined.includes('daycare') || combined.includes('day care')) amenities.push('Daycare');
+        if (combined.includes('training') || combined.includes('obedience')) amenities.push('Training');
+        if (combined.includes('boarding') || combined.includes('kennel')) amenities.push('Boarding');
+        if (combined.includes('grooming') || combined.includes('bath')) amenities.push('Grooming');
+        if (combined.includes('agility')) amenities.push('Agility');
+        if (combined.includes('socialization')) amenities.push('Socialization');
+        
+        return amenities.slice(0, 3); // Limit to 3 amenities for clean display
+    }
+    
+    createAmenityIcons(amenities) {
+        if (!amenities || amenities.length === 0) return '';
+        
+        const iconMap = {
+            'indoor play': '🏠',
+            'climate control': '❄️',
+            'daycare': '🐕‍🦺',
+            'training': '🎓',
+            'boarding': '🏨',
+            'grooming': '✂️',
+            'agility': '🎯',
+            'socialization': '🤝',
+            'exercise': '🏃‍♂️',
+            'supervision': '👀',
+            'safe': '🛡️',
+            'water': '💧',
+            'parking': '🚗'
+        };
+        
+        return amenities.map(amenity => {
+            const key = amenity.toLowerCase();
+            const icon = iconMap[key] || '🐾';
+            return `<div class="amenity-icon" title="${amenity}"><span>${icon}</span><span>${amenity}</span></div>`;
+        }).join('');
+    }
+    
+    setupPagination() {
+        const totalPages = Math.ceil(this.filteredParks.length / this.parksPerPage);
+        const pagination = document.getElementById('pagination');
+        
+        if (!pagination || totalPages <= 1) {
+            if (pagination) pagination.innerHTML = '';
+            return;
+        }
+        
+        let paginationHTML = '';
+        
+        // Previous button
+        if (this.currentPage > 1) {
+            paginationHTML += `<button onclick="austinParksManager.goToPage(${this.currentPage - 1})" class="pagination-btn">« Previous</button>`;
+        }
+        
+        // Page numbers
+        for (let i = 1; i <= totalPages; i++) {
+            if (i === this.currentPage) {
+                paginationHTML += `<button class="pagination-btn active">${i}</button>`;
+            } else if (i === 1 || i === totalPages || (i >= this.currentPage - 1 && i <= this.currentPage + 1)) {
+                paginationHTML += `<button onclick="austinParksManager.goToPage(${i})" class="pagination-btn">${i}</button>`;
+            } else if (i === this.currentPage - 2 || i === this.currentPage + 2) {
+                paginationHTML += `<span class="pagination-ellipsis">...</span>`;
+            }
+        }
+        
+        // Next button
+        if (this.currentPage < totalPages) {
+            paginationHTML += `<button onclick="austinParksManager.goToPage(${this.currentPage + 1})" class="pagination-btn">Next »</button>`;
+        }
+        
+        pagination.innerHTML = paginationHTML;
+    }
+    
+    goToPage(page) {
+        this.currentPage = page;
+        this.displayParks();
+        
+        // Scroll to top of parks section
+        const parksSection = document.querySelector('.parks-section');
+        if (parksSection) {
+            parksSection.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    }
+    
+    updateResultsCount() {
+        const resultsElement = document.getElementById('results-count');
+        if (resultsElement) {
+            const total = this.austinParks.length;
+            resultsElement.textContent = `Showing ${total} indoor dog parks and facilities`;
+        }
+    }
+    
+    showError(message) {
+        const grid = document.getElementById('parks-grid');
+        if (grid) {
+            grid.innerHTML = `
+                <div class="error-message">
+                    <h3>Unable to Load Parks</h3>
+                    <p>${message}</p>
+                </div>
+            `;
+        }
     }
 }
 
+// Global function for opening maps
 function openInMaps(name, address) {
     const query = encodeURIComponent(`${name} ${address}`);
     window.open(`https://www.google.com/maps/search/${query}`, '_blank');
 }
 
-// Dropdown functionality
+// Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('Initializing Austin Indoor Parks Manager...');
+    window.austinParksManager = new AustinIndoorParksManager();
+    
+    // Setup navigation dropdown functionality
     const dropdown = document.querySelector('.nav-dropdown');
-    const dropdownContent = dropdown.querySelector('.nav-dropdown-content');
+    if (dropdown) {
+        const dropdownContent = dropdown.querySelector('.nav-dropdown-content');
+        const dropdownToggle = dropdown.querySelector('.nav-dropdown-toggle');
+        
+        dropdownToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+        });
+        
+        dropdown.addEventListener('mouseenter', function() {
+            dropdownContent.style.display = 'block';
+        });
+        
+        dropdown.addEventListener('mouseleave', function() {
+            dropdownContent.style.display = 'none';
+        });
+    }
     
-    dropdown.addEventListener('mouseenter', function() {
-        dropdownContent.style.display = 'block';
-    });
+    // Setup hamburger menu
+    const hamburger = document.getElementById('hamburgerMenu');
+    const navMenu = document.getElementById('mainNav');
     
-    dropdown.addEventListener('mouseleave', function() {
-        dropdownContent.style.display = 'none';
-    });
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('open');
+            hamburger.classList.toggle('open');
+        });
+        
+        hamburger.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                navMenu.classList.toggle('open');
+                hamburger.classList.toggle('open');
+            }
+        });
+        
+        // Close menu on link click (mobile)
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 900) {
+                    navMenu.classList.remove('open');
+                    hamburger.classList.remove('open');
+                }
+            });
+        });
+    }
 });
