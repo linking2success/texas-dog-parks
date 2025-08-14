@@ -51,16 +51,15 @@ class ParkDetailsManager {
         document.title = `${this.park.name} - Bark & Play Directory`;
         
         // Update breadcrumb and back navigation
-        document.getElementById('parkName').textContent = this.park.name;
-        // Setup smart navigation system
-  setupSmartNavigation();
-  
-  // Setup mobile dropdown functionality
-  setupMobileDropdowns();
-}
-        
-        // Update main image
-        const mainImage = document.getElementById('parkMainImage');
+document.getElementById('parkName').textContent = this.park.name;
+// Setup smart navigation system
+this.setupSmartNavigation();
+
+// Setup mobile dropdown functionality
+setupMobileDropdowns();
+
+// Update main image
+const mainImage = document.getElementById('parkMainImage');
         mainImage.src = this.park.photo || 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=200&fit=crop';
         mainImage.alt = this.park.name;
         
