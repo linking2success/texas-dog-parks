@@ -3630,6 +3630,26 @@ body {
   }
 }
 
+/* San Antonio specific tips layout - 3x2 grid */
+.san-antonio-tips .tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .san-antonio-tips .tips-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .san-antonio-tips .tips-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 /* Map Error Styles */
 .map-error {
   display: flex;
