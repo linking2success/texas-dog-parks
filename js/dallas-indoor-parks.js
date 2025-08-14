@@ -256,13 +256,3 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Dallas indoor parks page loaded, initializing manager...');
     window.dallasParksManager = new DallasIndoorParksManager();
 });
-
-// Global function for Google Maps callback
-function initDallasParksMap() {
-    console.log('Google Maps loaded, initializing Dallas parks map...');
-    if (window.dallasParksManager) {
-        window.dallasParksManager.initializeMap();
-    } else {
-        console.error('Dallas parks manager not found');
-    }
-}

@@ -71,7 +71,9 @@
             function checkGoogleMaps() {
                 if (typeof google !== 'undefined' && google.maps) {
                     console.log('Google Maps API loaded, initializing Dallas map...');
-                    initializeDallasMap();
+                    if (window.dallasParksManager) {
+                        window.dallasParksManager.initializeMap();
+                    }
                 } else {
                     console.log('Waiting for Google Maps API...');
                     setTimeout(checkGoogleMaps, 100);

@@ -12,8 +12,35 @@
     <link rel="canonical" href="https://barkandplaydirectory.com/indoor-dog-parks/fort-worth.html">
     
     <!-- Google Maps JavaScript API -->
-    <script async defer 
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq5N2wPKnNLz2yNJI_I1-NR4KnA3pNHBo&callback=initFortWorthParksMap">
+    <script
+        async
+        defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJ-_i6_HA19KEcYNELpvc7pXhNYAh09k8&libraries=geometry">
+    </script>
+    
+    <!-- Initialize map when page loads -->
+    <script>
+        window.addEventListener('load', function() {
+            // Wait for Google Maps API to be available
+            function checkGoogleMaps() {
+                if (typeof google !== 'undefined' && google.maps) {
+                    console.log('Google Maps API loaded, initializing Fort Worth map...');
+                    if (window.fortWorthParksManager) {
+                        window.fortWorthParksManager.initializeMap();
+                    }
+                } else {
+                    console.log('Waiting for Google Maps API...');
+                    setTimeout(checkGoogleMaps, 100);
+                }
+            }
+            checkGoogleMaps();
+        });
+        
+        // Handle Google Maps API errors
+        window.gm_authFailure = function() {
+            console.error('Google Maps API authentication failed!');
+            document.getElementById('google-map').innerHTML = '<div style="padding: 20px; text-align: center; color: #ff0000;">Map authentication failed. Please check your API key.</div>';
+        };
     </script>
 </head>
 <body>

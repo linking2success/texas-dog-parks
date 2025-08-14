@@ -254,13 +254,3 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Fort Worth indoor parks page loaded, initializing manager...');
     window.fortWorthParksManager = new FortWorthIndoorParksManager();
 });
-
-// Global function for Google Maps callback
-function initFortWorthParksMap() {
-    console.log('Google Maps loaded, initializing Fort Worth parks map...');
-    if (window.fortWorthParksManager) {
-        window.fortWorthParksManager.initializeMap();
-    } else {
-        console.error('Fort Worth parks manager not found');
-    }
-}

@@ -254,13 +254,3 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('San Antonio indoor parks page loaded, initializing manager...');
     window.sanAntonioParksManager = new SanAntonioIndoorParksManager();
 });
-
-// Global function for Google Maps callback
-function initSanAntonioParksMap() {
-    console.log('Google Maps loaded, initializing San Antonio parks map...');
-    if (window.sanAntonioParksManager) {
-        window.sanAntonioParksManager.initializeMap();
-    } else {
-        console.error('San Antonio parks manager not found');
-    }
-}
