@@ -20,14 +20,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Google Maps JavaScript API -->
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJ-_i6_HA19KEcYNELpvc7pXhNYAh09k8&callback=initMap&libraries=geometry"></script>
+  <script
+    async
+    defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJ-_i6_HA19KEcYNELpvc7pXhNYAh09k8&libraries=geometry">
+  </script>
   
-  <!-- Make initMap function globally accessible -->
+  <!-- Initialize map when page loads -->
   <script>
-    window.initMap = function() {
-      console.log('Google Maps API loaded, initializing map...');
-      initializeHoustonMap();
-    };
+    window.addEventListener('load', function() {
+      // Wait for Google Maps API to be available
+      function checkGoogleMaps() {
+        if (typeof google !== 'undefined' && google.maps) {
+          console.log('Google Maps API loaded, initializing map...');
+          initializeHoustonMap();
+        } else {
+          console.log('Waiting for Google Maps API...');
+          setTimeout(checkGoogleMaps, 100);
+        }
+      }
+      checkGoogleMaps();
+    });
     
     // Handle Google Maps API errors
     window.gm_authFailure = function() {
