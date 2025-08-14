@@ -127,18 +127,9 @@ class AustinIndoorParksManager {
                     </div>
                     <p class="park-description">${description}</p>
                     ${amenityIcons ? `<div class="park-amenities-icons">${amenityIcons}</div>` : ''}
-                    <div class="park-actions">
-                        ${park.website ? 
-                            `<a href="${park.website}" class="park-link" target="_blank">Visit Website</a>` :
-                            `<div class="park-contact">
-                                ${park.phone ? `<p><strong>📞</strong> ${park.phone}</p>` : ''}
-                                ${park.address ? `<p><strong>📍</strong> ${park.address}</p>` : ''}
-                            </div>`
-                        }
-                        <button onclick="openInMaps('${park.name.replace(/'/g, "\\'")}', '${(park.address || '').replace(/'/g, "\\'")} ${park.city || 'Austin'}, TX')" class="park-link secondary">
-                            Get Directions
-                        </button>
-                    </div>
+                    <a href="../collection-single.html?park=${encodeURIComponent(park.name)}" class="park-link">
+                        View Details
+                    </a>
                 </div>
             </div>
         `;

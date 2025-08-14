@@ -14,14 +14,28 @@ class ParkDetailsManager {
         // Get park name from URL parameter
         const urlParams = new URLSearchParams(window.location.search);
         const parkSlug = urlParams.get('slug');
+        const parkName = urlParams.get('park');
         
-        if (!parkSlug) {
+        if (!parkSlug && !parkName) {
             this.showError('No park specified');
             return;
         }
         
-        // Find the park in our data
-        this.park = TEXAS_DOG_PARKS.find(park => park.slug === parkSlug);
+        // Try to find the park in regular parks data first
+        if (typeof TEXAS_DOG_PARKS !== 'undefined') {
+            if (parkSlug) {
+                this.park = TEXAS_DOG_PARKS.find(park => park.slug === parkSlug);
+            } else if (parkName) {
+                this.park = TEXAS_DOG_PARKS.find(park => park.name === decodeURIComponent(parkName));
+            }
+        }
+        
+        // If not found in regular parks, try indoor parks data
+        if (!this.park && typeof indoorParksData !== 'undefined') {
+            if (parkName) {
+                this.park = indoorParksData.find(park => park.name === decodeURIComponent(parkName));
+            }
+        }
         
         if (!this.park) {
             this.showError('Park not found');
@@ -47,11 +61,13 @@ class ParkDetailsManager {
         // Update park title
         document.getElementById('parkTitle').textContent = this.park.name;
         
-        // Update address
-        document.getElementById('parkAddress').textContent = this.park.full_address || `${this.park.city}, TX`;
+        // Update address - handle both regular and indoor park formats
+        const address = this.park.full_address || this.park.address || `${this.park.city}, TX`;
+        document.getElementById('parkAddress').textContent = address;
         
-        // Update description
-        document.getElementById('parkDescription').textContent = this.park.description;
+        // Update description - handle both regular and indoor park formats
+        const description = this.park.description || this.park.about || 'Indoor dog facility with climate-controlled environment for year-round play and exercise.';
+        document.getElementById('parkDescription').textContent = description;
         
         // Update amenities
         this.displayAmenities();
@@ -192,10 +208,11 @@ class ParkDetailsManager {
             phoneDisplay.textContent = 'Not available';
         }
         
-        // Website
+        // Website - handle both regular parks (site) and indoor parks (website)
         const websiteLink = document.getElementById('contactWebsite');
-        if (this.park.site) {
-            websiteLink.href = this.park.site;
+        const websiteUrl = this.park.site || this.park.website;
+        if (websiteUrl) {
+            websiteLink.href = websiteUrl;
             websiteLink.textContent = 'Visit website';
         } else {
             websiteLink.href = '#';
@@ -204,7 +221,8 @@ class ParkDetailsManager {
         
         // Address
         const addressDisplay = document.getElementById('contactAddress');
-        addressDisplay.textContent = this.park.full_address || `${this.park.city}, TX`;
+        const address = this.park.full_address || this.park.address || `${this.park.city}, TX`;
+        addressDisplay.textContent = address;
     }
     
     updateActionButtons() {
@@ -257,7 +275,17 @@ class ParkDetailsManager {
     
     loadNearbyParks() {
         const nearbyContainer = document.getElementById('nearbyParks');
-        const nearbyParks = TEXAS_DOG_PARKS
+        let allParks = [];
+        
+        // Combine regular parks and indoor parks
+        if (typeof TEXAS_DOG_PARKS !== 'undefined') {
+            allParks = allParks.concat(TEXAS_DOG_PARKS);
+        }
+        if (typeof indoorParksData !== 'undefined') {
+            allParks = allParks.concat(indoorParksData);
+        }
+        
+        const nearbyParks = allParks
             .filter(park => park.city === this.park.city && park.name !== this.park.name)
             .slice(0, 3);
         
@@ -266,13 +294,19 @@ class ParkDetailsManager {
             return;
         }
         
-        nearbyContainer.innerHTML = nearbyParks.map(park => `
-            <div class="nearby-park-item">
-                <h4>${park.name}</h4>
-                <p>${park.city}, TX</p>
-                <a href="collection-single.html?slug=${park.slug}" class="nearby-park-link">View Details →</a>
-            </div>
-        `).join('');
+        nearbyContainer.innerHTML = nearbyParks.map(park => {
+            const linkUrl = park.slug ? 
+                `collection-single.html?slug=${park.slug}` : 
+                `collection-single.html?park=${encodeURIComponent(park.name)}`;
+            
+            return `
+                <div class="nearby-park-item">
+                    <h4>${park.name}</h4>
+                    <p>${park.city}, TX</p>
+                    <a href="${linkUrl}" class="nearby-park-link">View Details →</a>
+                </div>
+            `;
+        }).join('');
     }
     
     setupEventListeners() {
