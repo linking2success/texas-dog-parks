@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="../main.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://barkandplaydirectory.com/indoor-dog-parks/fort-worth.html">
+    
+    <!-- Google Maps JavaScript API -->
+    <script async defer 
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq5N2wPKnNLz2yNJI_I1-NR4KnA3pNHBo&callback=initFortWorthParksMap">
+    </script>
 </head>
 <body>
     <!-- Header -->
@@ -63,75 +68,116 @@
         <div class="container">
             <div class="hero-content">
                 <h1>Fort Worth Indoor Dog Parks</h1>
-                <p class="hero-subtitle">Keep Cowtown's dogs cool with 31+ climate-controlled dog play areas across Fort Worth</p>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">31+</span>
-                        <span class="stat-label">Indoor Facilities</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">12+</span>
-                        <span class="stat-label">Neighborhoods</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">Year-Round</span>
-                        <span class="stat-label">Climate Control</span>
-                    </div>
-                </div>
+                <p class="hero-subtitle">Discover Cowtown's premier indoor dog facilities where Western hospitality meets modern climate control. These carefully selected indoor parks provide year-round comfort for your four-legged partner, offering safe play spaces that beat the Texas heat and weather any storm.</p>
             </div>
         </div>
     </section>
 
-    <!-- Search and Filter -->
-    <section class="search-section">
+    <!-- Why Indoor Parks in Fort Worth -->
+    <section class="why-indoor-section">
         <div class="container">
-            <div class="search-controls">
-                <div class="search-box">
-                    <input type="text" id="park-search" placeholder="Search parks by name or location...">
-                    <button type="button" onclick="searchParks()">Search</button>
+            <div class="section-header">
+                <h2>Why Indoor Dog Parks Are Essential in Fort Worth</h2>
+                <p>Fort Worth's extreme weather and urban growth make indoor facilities increasingly important</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🌡️</div>
+                    <h3>Extreme Heat Relief</h3>
+                    <p>Fort Worth's blazing summers often surpass 100°F with high humidity. Indoor parks provide essential climate-controlled exercise space.</p>
                 </div>
-                <div class="filter-controls">
-                    <select id="area-filter">
-                        <option value="">All Areas</option>
-                        <option value="downtown">Downtown Fort Worth</option>
-                        <option value="northside">North Fort Worth</option>
-                        <option value="southside">South Fort Worth</option>
-                        <option value="eastside">East Fort Worth</option>
-                        <option value="westside">West Fort Worth</option>
-                    </select>
-                    <select id="type-filter">
-                        <option value="">All Types</option>
-                        <option value="daycare">Dog Daycare</option>
-                        <option value="training">Training Facility</option>
-                        <option value="play-center">Play Center</option>
-                        <option value="boarding">Boarding Facility</option>
-                    </select>
-                    <button type="button" onclick="clearFilters()">Clear Filters</button>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⛈️</div>
+                    <h3>Severe Weather Shelter</h3>
+                    <p>Fort Worth faces frequent severe thunderstorms, hail, and tornado risks. Indoor facilities offer protected play during dangerous weather.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">❄️</div>
+                    <h3>Winter Weather Safety</h3>
+                    <p>Ice storms and freezing conditions can make outdoor parks hazardous. Indoor facilities ensure safe year-round exercise.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🏢</div>
+                    <h3>Urban Expansion</h3>
+                    <p>As Fort Worth grows, indoor facilities provide crucial exercise space for apartment living and dense urban neighborhoods.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Parks Grid -->
+    <!-- Parks Listings -->
     <section class="parks-section">
         <div class="container">
-            <div class="results-header">
+            <div class="section-header">
                 <h2>Indoor Dog Parks in Fort Worth</h2>
-                <p id="results-count">Showing indoor dog parks and facilities</p>
+                <p>Discover the best indoor dog facilities across Cowtown</p>
             </div>
-            <div id="parks-grid" class="parks-grid">
+            <div id="park-listings" class="parks-grid">
                 <!-- Parks will be loaded here by JavaScript -->
-            </div>
-            <div class="pagination-container">
-                <!-- Pagination will be added by JavaScript -->
-            </div>
-            <div id="no-results" class="no-results" style="display: none;">
-                <p>No parks found matching your criteria. Try adjusting your filters.</p>
+                <div style="padding: 40px; text-align: center; color: #666;">
+                    <p>Loading Fort Worth indoor dog parks...</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Fort Worth Indoor Dog Parks Map</h2>
+                <p>Interactive map showing all indoor dog park locations across Fort Worth</p>
+            </div>
+            <div id="google-map" class="google-map" style="height: 500px; width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <div style="padding: 40px; text-align: center; color: #666; background: #f9f9f9; border-radius: 12px; height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                    <h3>Loading Fort Worth Indoor Dog Parks Map...</h3>
+                    <p>Please wait while we load the interactive map showing all indoor dog facilities in Fort Worth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fort Worth Specific Tips -->
+    <section class="tips-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Fort Worth Indoor Dog Park Tips</h2>
+                <p>Cowtown wisdom for making the most of indoor dog facilities</p>
+            </div>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-icon">🤠</div>
+                    <h3>Cowtown Character</h3>
+                    <p>Fort Worth's indoor facilities often maintain that Western hospitality. Expect friendly staff and welcoming atmospheres at most locations.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🚗</div>
+                    <h3>Easy Highway Access</h3>
+                    <p>Take advantage of Fort Worth's excellent highway system. Many facilities offer convenient access from I-35W, I-30, or Loop 820.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🏙️</div>
+                    <h3>Downtown Convenience</h3>
+                    <p>Several indoor facilities near downtown Fort Worth offer easy access to the Cultural District and Sundance Square for post-park activities.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">⛈️</div>
+                    <h3>Storm Season Ready</h3>
+                    <p>Fort Worth's spring storm season makes indoor facilities essential. Many offer weather alerts and emergency shelter protocols.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🏈</div>
+                    <h3>Game Day Alternatives</h3>
+                    <p>When TCU or Cowboys games create traffic, indoor parks provide perfect alternatives to crowded outdoor spaces near stadiums.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">💰</div>
+                    <h3>Value Options</h3>
+                    <p>Fort Worth offers excellent value in indoor dog facilities. Look for package deals and membership options for regular visitors.</p>
+                </div>
+            </div>
+        </div>
+    </section>
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -156,6 +202,6 @@
     </footer>
 
     <script src="../indoor-parks-data-full.js"></script>
-    <script src="../js/shared-indoor-parks.js"></script>
+    <script src="../js/fort-worth-indoor-parks.js"></script>
 </body>
 </html>

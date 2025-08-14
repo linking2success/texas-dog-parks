@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="../main.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://barkandplaydirectory.com/indoor-dog-parks/san-antonio.html">
+    
+    <!-- Google Maps JavaScript API -->
+    <script async defer 
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq5N2wPKnNLz2yNJI_I1-NR4KnA3pNHBo&callback=initSanAntonioParksMap">
+    </script>
 </head>
 <body>
     <!-- Header -->
@@ -63,82 +68,116 @@
         <div class="container">
             <div class="hero-content">
                 <h1>San Antonio Indoor Dog Parks</h1>
-                <p class="hero-subtitle">Beat the Alamo City heat with 34+ climate-controlled dog play areas across San Antonio</p>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">34+</span>
-                        <span class="stat-label">Indoor Facilities</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">15+</span>
-                        <span class="stat-label">Neighborhoods</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">Year-Round</span>
-                        <span class="stat-label">Climate Control</span>
-                    </div>
-                </div>
+                <p class="hero-subtitle">Beat the Alamo City heat and escape unpredictable Texas weather at San Antonio's premier indoor dog facilities. From climate-controlled play areas to professional daycare services, these indoor spaces keep your furry friend comfortable year-round while providing safe socialization and exercise opportunities.</p>
             </div>
         </div>
     </section>
 
-    <!-- Search and Filter -->
-    <section class="search-section">
+    <!-- Why Indoor Parks in San Antonio -->
+    <section class="why-indoor-section">
         <div class="container">
-            <div class="search-controls">
-                <div class="search-box">
-                    <input type="text" id="park-search" placeholder="Search parks by name or location...">
-                    <button type="button" onclick="searchParks()">Search</button>
+            <div class="section-header">
+                <h2>Why Indoor Dog Parks Are Essential in San Antonio</h2>
+                <p>San Antonio's intense heat and unpredictable weather make indoor facilities a necessity</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🌡️</div>
+                    <h3>Extreme Heat Protection</h3>
+                    <p>San Antonio's scorching summers often exceed 100°F for weeks. Indoor parks provide essential cooling for safe dog exercise.</p>
                 </div>
-                <div class="filter-controls">
-                    <select id="area-filter">
-                        <option value="">All Areas</option>
-                        <option value="downtown">Downtown San Antonio</option>
-                        <option value="northside">North Side</option>
-                        <option value="southside">South Side</option>
-                        <option value="eastside">East Side</option>
-                        <option value="westside">West Side</option>
-                        <option value="stoneoaksouthwest">Stone Oak/Far North</option>
-                    </select>
-                    <select id="type-filter">
-                        <option value="">All Types</option>
-                        <option value="daycare">Dog Daycare</option>
-                        <option value="training">Training Facility</option>
-                        <option value="play-center">Play Center</option>
-                        <option value="boarding">Boarding Facility</option>
-                    </select>
-                    <button type="button" onclick="clearFilters()">Clear Filters</button>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⛈️</div>
+                    <h3>Flash Flood Safety</h3>
+                    <p>San Antonio's flash flood risks and severe weather events make indoor facilities crucial for year-round safety.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">❄️</div>
+                    <h3>Winter Weather</h3>
+                    <p>Occasional freezing temperatures and ice storms in San Antonio make indoor play areas necessary for consistent exercise.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🏢</div>
+                    <h3>Urban Living</h3>
+                    <p>Perfect for downtown San Antonio living and apartment dwellers who need secure, supervised play environments.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Parks Grid -->
+    <!-- Parks Listings -->
     <section class="parks-section">
         <div class="container">
             <div class="section-header">
                 <h2>Indoor Dog Parks in San Antonio</h2>
-                <div class="results-header">
-                    <div class="results-count">
-                        <span id="results-count">Showing 34 indoor dog parks and facilities</span>
-                    </div>
-                </div>
+                <p>Discover the best indoor dog facilities across the Alamo City</p>
             </div>
-            <div id="parks-grid" class="parks-grid">
+            <div id="park-listings" class="parks-grid">
                 <!-- Parks will be loaded here by JavaScript -->
-            </div>
-            <div id="no-results" class="no-results" style="display: none;">
-                <p>No parks found matching your criteria. Try adjusting your filters.</p>
-            </div>
-            
-            <!-- Pagination -->
-            <div class="pagination" id="pagination">
-                <!-- Pagination controls will be added here -->
+                <div style="padding: 40px; text-align: center; color: #666;">
+                    <p>Loading San Antonio indoor dog parks...</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>San Antonio Indoor Dog Parks Map</h2>
+                <p>Interactive map showing all indoor dog park locations across the Alamo City</p>
+            </div>
+            <div id="google-map" class="google-map" style="height: 500px; width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <div style="padding: 40px; text-align: center; color: #666; background: #f9f9f9; border-radius: 12px; height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                    <h3>Loading San Antonio Indoor Dog Parks Map...</h3>
+                    <p>Please wait while we load the interactive map showing all indoor dog facilities in San Antonio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- San Antonio Specific Tips -->
+    <section class="tips-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>San Antonio Indoor Dog Park Tips</h2>
+                <p>Local insights for making the most of Alamo City's indoor dog facilities</p>
+            </div>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-icon">🌡️</div>
+                    <h3>Beat the Heat Strategy</h3>
+                    <p>During San Antonio's intense summer months, indoor parks are essential. Visit early morning or evening for the coolest travel conditions.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🚗</div>
+                    <h3>Parking & Access</h3>
+                    <p>Many San Antonio indoor facilities offer covered parking. Look for locations with easy highway access from 1604, I-35, or I-10.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🏛️</div>
+                    <h3>Historic District Options</h3>
+                    <p>Several indoor facilities near downtown offer easy access to San Antonio's historic areas for post-park exploring.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">💧</div>
+                    <h3>Hydration Priority</h3>
+                    <p>San Antonio's heat makes hydration critical. Choose facilities with multiple water stations and bring extra water for travel.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">⛈️</div>
+                    <h3>Weather Backup Plan</h3>
+                    <p>Flash floods are common in San Antonio. Indoor facilities provide perfect backup plans when outdoor parks become unsafe.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🌮</div>
+                    <h3>Alamo City Perks</h3>
+                    <p>Many indoor facilities are near San Antonio's famous food scene. Combine dog park visits with exploring local taquerias and cafes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -163,6 +202,6 @@
     </footer>
 
     <script src="../indoor-parks-data-full.js"></script>
-    <script src="../js/shared-indoor-parks.js"></script>
+    <script src="../js/san-antonio-indoor-parks.js"></script>
 </body>
 </html>

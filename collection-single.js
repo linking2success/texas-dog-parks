@@ -66,7 +66,22 @@ class ParkDetailsManager {
         document.getElementById('parkAddress').textContent = address;
         
         // Update description - handle both regular and indoor park formats
-        const description = this.park.description || this.park.about || 'Indoor dog facility with climate-controlled environment for year-round play and exercise.';
+        let description = this.park.description || this.park.about;
+        
+        // Clean up any problematic text and provide fallbacks
+        if (!description || description.length < 10 || description.includes('undefined') || description.includes('null')) {
+            if (this.park.name && this.park.name.toLowerCase().includes('indoor')) {
+                description = `${this.park.name} is a climate-controlled indoor dog facility providing year-round comfort for dogs and their families. This modern indoor space offers safe play areas, professional supervision, and protection from Texas weather conditions.`;
+            } else if (this.park.name && (this.park.name.toLowerCase().includes('daycare') || this.park.name.toLowerCase().includes('boarding'))) {
+                description = `${this.park.name} offers professional dog care services with indoor play facilities. Dogs enjoy supervised playtime in a safe, clean environment with experienced staff and modern amenities.`;
+            } else {
+                description = `${this.park.name} provides indoor dog recreation facilities with climate-controlled comfort. This facility offers a safe, supervised environment for dogs to play and socialize year-round.`;
+            }
+        }
+        
+        // Ensure description is clean and readable
+        description = description.replace(/[\x00-\x1F\x7F-\x9F]/g, '').trim();
+        
         document.getElementById('parkDescription').textContent = description;
         
         // Update amenities
