@@ -68,6 +68,20 @@ class ParkDetailsManager {
         // Update description - handle both regular and indoor park formats
         let description = this.park.description || this.park.about;
         
+        // Check if description is JSON data and format it properly
+        if (description && typeof description === 'string') {
+            // Try to detect JSON format (starts with { and contains structured data)
+            if (description.trim().startsWith('{') && description.includes(':')) {
+                try {
+                    const jsonData = JSON.parse(description);
+                    description = this.formatJsonToDescription(jsonData);
+                } catch (e) {
+                    console.log('Failed to parse JSON description, using fallback');
+                    description = null; // Will trigger fallback logic below
+                }
+            }
+        }
+        
         // Clean up any problematic text and provide fallbacks
         if (!description || description.length < 10 || description.includes('undefined') || description.includes('null')) {
             if (this.park.name && this.park.name.toLowerCase().includes('indoor')) {
@@ -322,6 +336,114 @@ class ParkDetailsManager {
                 </div>
             `;
         }).join('');
+    }
+    
+    formatJsonToDescription(jsonData) {
+        let description = '';
+        
+        try {
+            // Extract meaningful information from JSON structure
+            const sections = [];
+            
+            // Handle Accessibility section
+            if (jsonData.Accessibility) {
+                const accessFeatures = [];
+                for (const [key, value] of Object.entries(jsonData.Accessibility)) {
+                    if (value === true) {
+                        accessFeatures.push(key.toLowerCase().replace(/_/g, ' '));
+                    }
+                }
+                if (accessFeatures.length > 0) {
+                    sections.push(`This facility offers ${accessFeatures.join(', ')}.`);
+                }
+            }
+            
+            // Handle Amenities section
+            if (jsonData.Amenities) {
+                const amenities = [];
+                for (const [key, value] of Object.entries(jsonData.Amenities)) {
+                    if (value === true) {
+                        amenities.push(key.toLowerCase().replace(/_/g, ' '));
+                    }
+                }
+                if (amenities.length > 0) {
+                    sections.push(`Available amenities include ${amenities.join(', ')}.`);
+                }
+            }
+            
+            // Handle Pets section
+            if (jsonData.Pets) {
+                const petFeatures = [];
+                for (const [key, value] of Object.entries(jsonData.Pets)) {
+                    if (value === true) {
+                        petFeatures.push(key.toLowerCase().replace(/_/g, ' '));
+                    }
+                }
+                if (petFeatures.length > 0) {
+                    sections.push(`Pet policies: ${petFeatures.join(', ')}.`);
+                }
+            }
+            
+            // Handle Services section
+            if (jsonData.Services) {
+                const services = [];
+                for (const [key, value] of Object.entries(jsonData.Services)) {
+                    if (value === true) {
+                        services.push(key.toLowerCase().replace(/_/g, ' '));
+                    }
+                }
+                if (services.length > 0) {
+                    sections.push(`Services offered: ${services.join(', ')}.`);
+                }
+            }
+            
+            // Handle Planning section
+            if (jsonData.Planning) {
+                const planning = [];
+                for (const [key, value] of Object.entries(jsonData.Planning)) {
+                    if (value === true) {
+                        planning.push(key.toLowerCase().replace(/_/g, ' '));
+                    }
+                }
+                if (planning.length > 0) {
+                    sections.push(`Planning features: ${planning.join(', ')}.`);
+                }
+            }
+            
+            // Handle other sections dynamically
+            for (const [sectionKey, sectionValue] of Object.entries(jsonData)) {
+                if (typeof sectionValue === 'object' && 
+                    !['Accessibility', 'Amenities', 'Pets', 'Services', 'Planning'].includes(sectionKey)) {
+                    const features = [];
+                    for (const [key, value] of Object.entries(sectionValue)) {
+                        if (value === true) {
+                            features.push(key.toLowerCase().replace(/_/g, ' '));
+                        }
+                    }
+                    if (features.length > 0) {
+                        sections.push(`${sectionKey}: ${features.join(', ')}.`);
+                    }
+                }
+            }
+            
+            // Combine all sections into a readable description
+            if (sections.length > 0) {
+                description = sections.join(' ');
+                
+                // Add a nice opening if it's an indoor facility
+                if (this.park.name && this.park.name.toLowerCase().includes('indoor')) {
+                    description = `This indoor dog facility provides a comfortable, climate-controlled environment for your pets. ${description}`;
+                } else {
+                    description = `This dog facility offers various amenities and services for you and your pets. ${description}`;
+                }
+            }
+            
+        } catch (error) {
+            console.error('Error formatting JSON description:', error);
+            return null; // Will trigger fallback
+        }
+        
+        return description;
     }
     
     setupEventListeners() {
