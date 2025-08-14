@@ -21,6 +21,27 @@
   
   <!-- Google Maps JavaScript API -->
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcAtlJkjujGslSxRv1nmP1FyxuGCXl-IE&callback=initMap&libraries=geometry"></script>
+  
+  <!-- Make initMap function globally accessible -->
+  <script>
+    window.initMap = function() {
+      console.log('Google Maps API loaded, initializing map...');
+      initializeHoustonMap();
+    };
+    
+    // Handle Google Maps API errors
+    window.gm_authFailure = function() {
+      console.error('Google Maps API authentication failed!');
+      document.getElementById('google-map').innerHTML = '<div style="padding: 20px; text-align: center; color: #ff0000;">Map authentication failed. Please check your API key.</div>';
+    };
+    
+    // Handle other Google Maps errors
+    window.addEventListener('error', function(e) {
+      if (e.message && e.message.includes('Google')) {
+        console.error('Google Maps error:', e);
+      }
+    });
+  </script>
 </head>
 <body>
   <!-- Header -->
@@ -113,8 +134,11 @@
         <p>View all indoor dog facilities on the map</p>
       </div>
       <div class="map-container">
-        <div id="google-map" style="width: 100%; height: 400px; background: #f5f5f5; border-radius: 12px;">
+        <div id="google-map" style="width: 100%; height: 400px; background: #f5f5f5; border-radius: 12px; min-height: 400px;">
           <!-- Google Map will load here -->
+        </div>
+        <div id="map-loading" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #666; display: none;">
+          Loading map...
         </div>
       </div>
     </div>
@@ -206,10 +230,12 @@
         
         async loadParksData() {
             try {
+                console.log('Loading parks data...');
                 // Filter for Houston indoor parks only
                 this.parks = indoorParksData.filter(park => 
                     park.city && park.city.toLowerCase().includes('houston')
                 );
+                console.log('Found', this.parks.length, 'Houston parks');
                 this.filteredParks = [...this.parks];
                 this.updateResultsCount();
                 this.populateAreaFilter();
@@ -526,28 +552,57 @@
     let map;
     let markers = [];
 
-    function initMap() {
+    function initializeHoustonMap() {
+        console.log('Initializing Houston map...');
         // Center the map on Houston
         const houstonCenter = { lat: 29.7604, lng: -95.3698 };
         
-        map = new google.maps.Map(document.getElementById("google-map"), {
-            zoom: 10,
-            center: houstonCenter,
-            styles: [
-                {
-                    "featureType": "poi",
-                    "elementType": "labels",
-                    "stylers": [{"visibility": "off"}]
-                }
-            ]
-        });
+        const mapElement = document.getElementById("google-map");
+        if (!mapElement) {
+            console.error('Map element not found!');
+            return;
+        }
 
-        // Wait for parks data to load, then add markers
-        setTimeout(() => {
-            if (houstonParksManager && houstonParksManager.parks) {
-                addMarkersToMap(houstonParksManager.parks);
-            }
-        }, 1000);
+        // Check if Google Maps is available
+        if (typeof google === 'undefined') {
+            console.error('Google Maps API not loaded!');
+            mapElement.innerHTML = '<div style="padding: 40px; text-align: center; color: #666; background: #f9f9f9; border-radius: 12px;"><h3>Map Loading Issue</h3><p>The Google Maps API could not be loaded. Please check your internet connection and try refreshing the page.</p></div>';
+            return;
+        }
+        
+        try {
+            map = new google.maps.Map(mapElement, {
+                zoom: 10,
+                center: houstonCenter,
+                styles: [
+                    {
+                        "featureType": "poi",
+                        "elementType": "labels",
+                        "stylers": [{"visibility": "off"}]
+                    }
+                ]
+            });
+
+            console.log('Map created successfully!');
+            
+            // Wait for parks data to load, then add markers
+            setTimeout(() => {
+                if (houstonParksManager && houstonParksManager.parks) {
+                    console.log('Adding markers for', houstonParksManager.parks.length, 'parks');
+                    addMarkersToMap(houstonParksManager.parks);
+                } else {
+                    console.log('Parks data not ready yet, trying again...');
+                    setTimeout(() => {
+                        if (houstonParksManager && houstonParksManager.parks) {
+                            addMarkersToMap(houstonParksManager.parks);
+                        }
+                    }, 2000);
+                }
+            }, 1000);
+        } catch (error) {
+            console.error('Error creating map:', error);
+            mapElement.innerHTML = '<div style="padding: 40px; text-align: center; color: #666; background: #f9f9f9; border-radius: 12px;"><h3>Map Error</h3><p>There was an error loading the map. Error: ' + error.message + '</p></div>';
+        }
     }
 
     function addMarkersToMap(parks) {
