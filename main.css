@@ -3650,6 +3650,46 @@ body {
   }
 }
 
+/* Dallas specific tips layout - 5 tips with flexible layout */
+.dallas-tips .tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .dallas-tips .tips-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .dallas-tips .tips-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Houston specific tips layout - 3x2 grid */
+.houston-tips .tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .houston-tips .tips-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .houston-tips .tips-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 /* Map Error Styles */
 .map-error {
   display: flex;
