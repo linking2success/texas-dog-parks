@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Featured Parks</title>
+    <style>
+        .parks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .park-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            background: white;
+        }
+        .park-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Featured Indoor Dog Parks Test</h1>
+    <div class="parks-grid" id="indoorParksGrid">
+        <!-- Parks will be loaded here -->
+    </div>
+
+    <script src="indoor-parks-data.js"></script>
+    <script>
+        console.log('Test page loaded');
+        console.log('indoorParksData available:', typeof indoorParksData !== 'undefined');
+        if (typeof indoorParksData !== 'undefined') {
+            console.log('indoorParksData length:', indoorParksData.length);
+            console.log('First park:', indoorParksData[0]);
+        }
+
+        function createParkCard(park) {
+            return `
+                <div class="park-card">
+                    <div class="park-image">
+                        <img src="${park.photo || 'imagesdogpardirectory/dopark_content_card.png'}" alt="${park.name}" loading="lazy">
+                    </div>
+                    <div class="park-content">
+                        <h3>${park.name}</h3>
+                        <p class="park-location">${park.city}, TX</p>
+                        <p class="park-description">${park.description || 'Climate-controlled indoor dog facility with professional amenities and safe play areas.'}</p>
+                        <div class="park-stats">
+                            <span class="park-status">${park.status || 'Open'}</span>
+                            ${park.phone ? `<span class="park-phone">${park.phone}</span>` : ''}
+                        </div>
+                        <a href="collection-single.html?park=${encodeURIComponent(park.name)}" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            `;
+        }
+
+        function loadFeaturedIndoorParks() {
+            console.log('loadFeaturedIndoorParks called');
+            const grid = document.getElementById('indoorParksGrid');
+            console.log('Grid element:', grid);
+            
+            if (!grid) {
+                console.error('Grid element not found!');
+                return;
+            }
+
+            if (typeof indoorParksData === 'undefined') {
+                console.error('indoorParksData not available!');
+                return;
+            }
+
+            // Get first 6 parks as featured
+            const featuredParks = indoorParksData.slice(0, 6);
+            console.log('Featured parks:', featuredParks);
+            
+            const cardHTML = featuredParks.map(park => createParkCard(park)).join('');
+            console.log('Generated HTML length:', cardHTML.length);
+            
+            grid.innerHTML = cardHTML;
+            console.log('Grid HTML updated');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, calling loadFeaturedIndoorParks');
+            loadFeaturedIndoorParks();
+        });
+    </script>
+</body>
+</html>

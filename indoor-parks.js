@@ -3,7 +3,10 @@ let map;
 let markers = [];
 
 document.addEventListener('DOMContentLoaded', function() {
-    loadFeaturedIndoorParks();
+    // Add a small delay to ensure all scripts are loaded
+    setTimeout(function() {
+        loadFeaturedIndoorParks();
+    }, 100);
     initializeFilters();
     // Map will be initialized by Google Maps callback
 });
@@ -128,7 +131,15 @@ function filterMapMarkers(selectedCity) {
 // Load featured indoor parks
 function loadFeaturedIndoorParks() {
     const grid = document.getElementById('indoorParksGrid');
-    if (!grid) return;
+    if (!grid) {
+        console.error('indoorParksGrid element not found');
+        return;
+    }
+
+    if (typeof indoorParksData === 'undefined' || !indoorParksData || indoorParksData.length === 0) {
+        console.error('indoorParksData not available or empty');
+        return;
+    }
 
     // Get first 6 parks as featured
     const featuredParks = indoorParksData.slice(0, 6);
@@ -155,7 +166,6 @@ function createParkCard(park) {
             </div>
         </div>
     `;
-}
 }
 
 // Initialize filters
