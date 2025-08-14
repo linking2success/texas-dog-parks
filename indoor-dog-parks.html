@@ -65,10 +65,26 @@
               <a href="indoor-dog-parks/fort-worth.html">Fort Worth Indoor Parks</a>
             </div>
           </div>
-          <a href="adoption.html">Adoption</a>
-          <a href="resources.html">Resources</a>
-          <a href="pet-services.html">Dog Services</a>
-          <a href="dog-care-guides.html">Dog Care Guides</a>
+          <div class="nav-dropdown">
+            <a href="#" class="nav-dropdown-toggle">
+              Services <span class="dropdown-arrow">▼</span>
+            </a>
+            <div class="nav-dropdown-content">
+              <a href="pet-services.html">Dog Services</a>
+              <a href="adoption.html">Adoption</a>
+              <a href="dog-care-guides.html">Dog Care Guides</a>
+            </div>
+          </div>
+          <div class="nav-dropdown">
+            <a href="#" class="nav-dropdown-toggle">
+              Resources <span class="dropdown-arrow">▼</span>
+            </a>
+            <div class="nav-dropdown-content">
+              <a href="resources.html">All Resources</a>
+              <a href="submit-dog-park.html">Submit a Park</a>
+              <a href="submit-featured-dog-park.html">Featured Listing</a>
+            </div>
+          </div>
           <a href="about.html">About</a>
           <a href="contact.html">Contact</a>
         </nav>
@@ -360,6 +376,26 @@
             <li>Follow facility staff guidance</li>
           </ul>
         </div>
+        <div class="tip-card">
+          <div class="tip-icon">🌡️</div>
+          <h4>Climate Benefits</h4>
+          <ul>
+            <li>Perfect temperature year-round</li>
+            <li>No weather-related cancellations</li>
+            <li>Protected from heat and storms</li>
+            <li>Consistent exercise schedule</li>
+          </ul>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">🏥</div>
+          <h4>Health & Safety</h4>
+          <ul>
+            <li>Sanitized and clean environment</li>
+            <li>Professional supervision available</li>
+            <li>First aid facilities on-site</li>
+            <li>Reduced risk of parasites</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -409,6 +445,26 @@
 
   <script src="indoor-parks-data.js"></script>
   <script src="indoor-parks.js"></script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyIoGaC2ZhGG-eJNaNQ50s5a0sNJCY6H8&callback=initMap&loading=async">
+  </script>
+  <script>
+    // Google Maps error handling
+    function gm_authFailure() {
+      console.warn('Google Maps authentication failed');
+      const mapElement = document.getElementById('texas-indoor-parks-map');
+      if (mapElement) {
+        mapElement.innerHTML = '<div class="map-error">Map temporarily unavailable</div>';
+      }
+    }
+    
+    // Handle other Google Maps errors
+    window.addEventListener('error', function(e) {
+      if (e.message && e.message.includes('Google')) {
+        console.error('Google Maps error:', e);
+      }
+    });
+  </script>
   <script>
     // Hamburger menu toggle
     const hamburger = document.getElementById('hamburgerMenu');

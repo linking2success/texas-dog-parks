@@ -50,8 +50,14 @@ class ParkDetailsManager {
         // Update page title
         document.title = `${this.park.name} - Bark & Play Directory`;
         
-        // Update breadcrumb
+        // Update breadcrumb and back navigation
         document.getElementById('parkName').textContent = this.park.name;
+        // Setup smart navigation system
+  setupSmartNavigation();
+  
+  // Setup mobile dropdown functionality
+  setupMobileDropdowns();
+}
         
         // Update main image
         const mainImage = document.getElementById('parkMainImage');
@@ -338,6 +344,62 @@ class ParkDetailsManager {
         }).join('');
     }
     
+    setupSmartNavigation() {
+        // Determine if this is an indoor park and set up appropriate navigation
+        const isIndoorPark = this.park && (
+            typeof indoorParksData !== 'undefined' && 
+            indoorParksData.some(park => park.name === this.park.name)
+        );
+        
+        const parentLink = document.getElementById('parentListingLink');
+        const backBtn = document.getElementById('backToListingsBtn');
+        
+        if (isIndoorPark) {
+            // Check if we can determine the specific city
+            const city = this.park.city ? this.park.city.toLowerCase() : '';
+            let cityPage = null;
+            let cityName = '';
+            
+            if (city.includes('houston')) {
+                cityPage = 'indoor-dog-parks/houston.html';
+                cityName = 'Houston';
+            } else if (city.includes('austin')) {
+                cityPage = 'indoor-dog-parks/austin.html';
+                cityName = 'Austin';
+            } else if (city.includes('dallas') || city.includes('plano') || city.includes('frisco') || city.includes('irving')) {
+                cityPage = 'indoor-dog-parks/dallas.html';
+                cityName = 'Dallas';
+            } else if (city.includes('san antonio')) {
+                cityPage = 'indoor-dog-parks/san-antonio.html';
+                cityName = 'San Antonio';
+            } else if (city.includes('fort worth') || city.includes('arlington')) {
+                cityPage = 'indoor-dog-parks/fort-worth.html';
+                cityName = 'Fort Worth';
+            }
+            
+            if (cityPage) {
+                parentLink.href = cityPage;
+                parentLink.textContent = `${cityName} Indoor Parks`;
+                backBtn.textContent = `← Back to ${cityName} Indoor Parks`;
+                
+                // Store the back URL globally for the button
+                window.backToListingsUrl = cityPage;
+            } else {
+                // Fallback to general indoor parks page
+                parentLink.href = 'indoor-dog-parks.html';
+                parentLink.textContent = 'Indoor Dog Parks';
+                backBtn.textContent = '← Back to Indoor Parks';
+                window.backToListingsUrl = 'indoor-dog-parks.html';
+            }
+        } else {
+            // Regular outdoor park
+            parentLink.href = 'collections.html';
+            parentLink.textContent = 'All Dog Parks';
+            backBtn.textContent = '← Back to All Parks';
+            window.backToListingsUrl = 'collections.html';
+        }
+    }
+    
     formatJsonToDescription(jsonData) {
         let description = '';
         
@@ -462,7 +524,53 @@ class ParkDetailsManager {
     }
 }
 
+// Setup mobile dropdown functionality for better navigation
+function setupMobileDropdowns() {
+  const dropdowns = document.querySelectorAll('.nav-dropdown');
+  
+  dropdowns.forEach(dropdown => {
+    const toggle = dropdown.querySelector('.nav-dropdown-toggle');
+    if (toggle) {
+      toggle.addEventListener('click', function(e) {
+        // On mobile devices, handle dropdown clicks
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          
+          // Close other dropdowns
+          dropdowns.forEach(otherDropdown => {
+            if (otherDropdown !== dropdown) {
+              otherDropdown.classList.remove('active');
+            }
+          });
+          
+          // Toggle current dropdown
+          dropdown.classList.toggle('active');
+        }
+      });
+    }
+  });
+  
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.nav-dropdown')) {
+      dropdowns.forEach(dropdown => {
+        dropdown.classList.remove('active');
+      });
+    }
+  });
+}
+
 // Initialize the park details manager when the page loads
 document.addEventListener('DOMContentLoaded', () => {
     new ParkDetailsManager();
-}); 
+});
+
+// Global function for back navigation
+function goBackToListings() {
+    if (window.backToListingsUrl) {
+        window.location.href = window.backToListingsUrl;
+    } else {
+        // Fallback to browser back button
+        window.history.back();
+    }
+} 

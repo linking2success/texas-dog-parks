@@ -1590,6 +1590,72 @@ body {
   text-decoration: underline;
 }
 
+/* Enhanced Navigation Header */
+.navigation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.navigation-header .breadcrumb {
+  margin-bottom: 0;
+  flex: 1;
+}
+
+.back-navigation {
+  display: flex;
+  align-items: center;
+}
+
+.back-navigation .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.back-navigation .btn:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-1px);
+}
+
+.back-navigation .btn-secondary {
+  background: #6c757d;
+}
+
+.back-navigation .btn-secondary:hover {
+  background: #5a6268;
+}
+
+/* Responsive navigation header */
+@media (max-width: 768px) {
+  .navigation-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .back-navigation {
+    width: 100%;
+  }
+  
+  .back-navigation .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 .park-hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -3452,4 +3518,107 @@ body {
   .map-header h2 {
     font-size: 1.5rem;
   }
+}
+
+/* Map Info Window Styles */
+.map-info-window {
+  max-width: 300px;
+  padding: 10px;
+}
+
+.map-info-window h4 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 16px;
+}
+
+.map-info-window p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.info-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.info-actions .btn {
+  padding: 5px 12px;
+  font-size: 12px;
+  text-decoration: none;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.info-actions .btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.info-actions .btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+/* Enhanced Park Card Styles */
+.park-status-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.park-status-badge.open {
+  background-color: #28a745;
+  color: white;
+}
+
+.park-status-badge.temporarily-closed {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.park-status-badge.permanently-closed {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Tips Grid Enhancement for 5 cards */
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .tips-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .tips-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* Map Error Styles */
+.map-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  background-color: #f8f9fa;
+  color: #6c757d;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 2px dashed #dee2e6;
 }

@@ -1,9 +1,129 @@
 // Indoor Dog Parks JavaScript Functionality
+let map;
+let markers = [];
+
 document.addEventListener('DOMContentLoaded', function() {
     loadFeaturedIndoorParks();
     initializeFilters();
-    initializeMap();
+    // Map will be initialized by Google Maps callback
 });
+
+// Initialize Google Map
+function initMap() {
+    const mapContainer = document.getElementById('texas-indoor-parks-map');
+    if (!mapContainer) return;
+
+    // Center map on Texas
+    const texasCenter = { lat: 31.9686, lng: -99.9018 };
+    
+    map = new google.maps.Map(mapContainer, {
+        zoom: 6,
+        center: texasCenter,
+        mapTypeId: 'roadmap',
+        styles: [
+            {
+                featureType: 'poi',
+                elementType: 'labels',
+                stylers: [{ visibility: 'off' }]
+            }
+        ]
+    });
+
+    // Add markers for indoor parks
+    if (typeof indoorParksData !== 'undefined') {
+        addMarkersToMap();
+    }
+
+    // Setup city filter functionality
+    setupMapFilters();
+}
+
+// Add markers to map
+function addMarkersToMap() {
+    // Clear existing markers
+    markers.forEach(marker => marker.setMap(null));
+    markers = [];
+
+    indoorParksData.forEach(park => {
+        if (park.latitude && park.longitude) {
+            const marker = new google.maps.Marker({
+                position: { lat: park.latitude, lng: park.longitude },
+                map: map,
+                title: park.name,
+                icon: {
+                    url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+                        <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="15" cy="15" r="12" fill="#007bff" stroke="white" stroke-width="2"/>
+                            <text x="15" y="20" text-anchor="middle" fill="white" font-size="16">🏠</text>
+                        </svg>
+                    `),
+                    scaledSize: new google.maps.Size(30, 30),
+                    anchor: new google.maps.Point(15, 15)
+                }
+            });
+
+            // Create info window
+            const infoWindow = new google.maps.InfoWindow({
+                content: createMapInfoWindow(park)
+            });
+
+            marker.addListener('click', () => {
+                // Close other info windows
+                markers.forEach(m => {
+                    if (m.infoWindow) m.infoWindow.close();
+                });
+                infoWindow.open(map, marker);
+            });
+
+            marker.infoWindow = infoWindow;
+            markers.push(marker);
+        }
+    });
+}
+
+// Create info window content
+function createMapInfoWindow(park) {
+    return `
+        <div class="map-info-window">
+            <h4>${park.name}</h4>
+            <p><strong>📍</strong> ${park.address}</p>
+            <p><strong>📞</strong> ${park.phone || 'Contact for info'}</p>
+            <p><strong>🕒</strong> ${park.hours?.Monday || 'Contact for hours'}</p>
+            <div class="info-actions">
+                ${park.website ? `<a href="${park.website}" target="_blank" class="btn btn-small btn-primary">Website</a>` : ''}
+                <a href="${park.mapLink}" target="_blank" class="btn btn-small btn-secondary">Directions</a>
+            </div>
+        </div>
+    `;
+}
+
+// Setup map filters
+function setupMapFilters() {
+    const cityFilter = document.getElementById('cityFilter');
+    if (cityFilter) {
+        cityFilter.addEventListener('change', function() {
+            filterMapMarkers(this.value);
+        });
+    }
+}
+
+// Filter map markers by city
+function filterMapMarkers(selectedCity) {
+    markers.forEach(marker => {
+        const parkData = indoorParksData.find(park => 
+            park.latitude && park.longitude &&
+            marker.getPosition().lat() === park.latitude && 
+            marker.getPosition().lng() === park.longitude
+        );
+        
+        if (!selectedCity || !parkData || parkData.city.toLowerCase().includes(selectedCity)) {
+            marker.setVisible(true);
+        } else {
+            marker.setVisible(false);
+            if (marker.infoWindow) marker.infoWindow.close();
+        }
+    });
+}
 
 // Load featured indoor parks
 function loadFeaturedIndoorParks() {
@@ -34,20 +154,24 @@ function createParkCard(park) {
             'Professional Staff': '👨‍⚕️',
             'Boarding': '🛏️',
             'Grooming': '✂️',
-            'Training': '🎓'
+            'Training': '🎓',
+            'Parking': '🅿️',
+            'Restrooms': '🚻',
+            'Water': '💧',
+            'Air Conditioning': '❄️'
         };
         
-        return amenities.slice(0, 4).map(amenity => {
+        return amenities.slice(0, 6).map(amenity => {
             const icon = iconMap[amenity] || '✅';
-            return `<span class="amenity-icon" title="${amenity}">${icon}</span>`;
+            return `<div class="amenity-icon" title="${amenity}"><span>${icon}</span><span>${amenity}</span></div>`;
         }).join('');
     };
 
     return `
-        <div class="park-card indoor-park-card" data-city="${park.city.toLowerCase()}">
+        <div class="park-card" data-city="${park.city.toLowerCase()}">
             <div class="park-image">
                 <img src="${park.photo}" alt="${park.name}" loading="lazy">
-                <div class="park-status ${park.status.toLowerCase()}">${park.status}</div>
+                <div class="park-status-badge ${park.status.toLowerCase().replace(/\s+/g, '-')}">${park.status}</div>
             </div>
             <div class="park-content">
                 <h3 class="park-name">${park.name}</h3>
@@ -57,7 +181,7 @@ function createParkCard(park) {
                 </div>
                 
                 <div class="park-description">
-                    <p>${park.description || 'Indoor dog park with climate-controlled facilities'}</p>
+                    <p>${park.description || 'Climate-controlled indoor dog park with professional facilities'}</p>
                 </div>
 
                 <div class="park-amenities">
@@ -78,14 +202,12 @@ function createParkCard(park) {
                 </div>
 
                 <div class="park-actions">
-                    <a href="${park.mapLink}" target="_blank" class="btn btn-primary btn-small">
-                        View on Map
+                    <a href="collection-single.html?park=${encodeURIComponent(park.name)}" class="btn btn-primary">
+                        View Details
                     </a>
-                    ${park.website ? `
-                        <a href="${park.website}" target="_blank" class="btn btn-secondary btn-small">
-                            Visit Website
-                        </a>
-                    ` : ''}
+                    <a href="${park.mapLink}" target="_blank" class="btn btn-secondary">
+                        Get Directions
+                    </a>
                 </div>
             </div>
         </div>
@@ -150,45 +272,9 @@ function applyFilters() {
     });
 }
 
-// Initialize map placeholder
-function initializeMap() {
-    const mapContainer = document.getElementById('texas-indoor-parks-map');
-    if (!mapContainer) return;
-    
-    // Add some interactive behavior to the map placeholder
-    setTimeout(() => {
-        const placeholder = mapContainer.querySelector('.map-placeholder');
-        if (placeholder) {
-            placeholder.innerHTML = `
-                <div class="map-placeholder-content">
-                    <h3>🗺️ Texas Indoor Dog Parks Map</h3>
-                    <p>Interactive map showing ${indoorParksData.length}+ indoor dog park locations</p>
-                    <div class="map-stats">
-                        <div class="map-stat">
-                            <span class="stat-number">${indoorParksData.length}+</span>
-                            <span class="stat-label">Locations</span>
-                        </div>
-                        <div class="map-stat">
-                            <span class="stat-number">${indoorParkCities.length}</span>
-                            <span class="stat-label">Cities</span>
-                        </div>
-                        <div class="map-stat">
-                            <span class="stat-number">5</span>
-                            <span class="stat-label">Metro Areas</span>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary" onclick="showMapModal()">
-                        View Full Map
-                    </button>
-                </div>
-            `;
-        }
-    }, 1000);
-}
-
-// Show map modal (placeholder for future Google Maps integration)
+// Show map modal (placeholder for future enhancements)
 function showMapModal() {
-    alert('Interactive map feature coming soon! For now, use the "View on Map" buttons on individual park cards to see locations.');
+    alert('Interactive map feature coming soon! Use individual park "Get Directions" buttons to view locations.');
 }
 
 // Search functionality
