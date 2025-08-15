@@ -35,7 +35,7 @@ RewriteRule ^state/iowa/.*$ - [R=404,L]
 # Handle old dog park individual URLs
 RewriteRule ^dog-parks/.*$ - [R=404,L]
 
-# Redirect useful legacy URLs to appropriate new pages
+# Redirect useful legacy URLs to appropriate new pages  
 RewriteRule ^state/texas/?$ /indoor-dog-parks.html [R=301,L]
 RewriteRule ^state/$ /collections.html [R=301,L]
-RewriteRule ^dog-parks-by-state/$ /collections.html [R=301,L]
+RewriteRule ^dog-parks-by-state/?(.*)$ /collections.html [R=301,L]
