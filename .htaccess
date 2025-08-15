@@ -23,14 +23,14 @@ RewriteRule ^index\.html$ / [R=301,L]
 RewriteRule ^cgi-bin/.*$ - [R=404,L]
 RewriteRule ^cgi-sys/.*$ - [R=404,L]
 
-# Handle old state-based URLs - return 404 for non-existent states
-RewriteRule ^state/state/.*$ - [R=404,L]
-RewriteRule ^state/oklahoma/.*$ - [R=404,L]
-RewriteRule ^state/north-carolina/.*$ - [R=404,L]
-RewriteRule ^state/illinois/.*$ - [R=404,L]
-RewriteRule ^state/california/.*$ - [R=404,L]
-RewriteRule ^state/north-dakota/.*$ - [R=404,L]
-RewriteRule ^state/iowa/.*$ - [R=404,L]
+# Handle old state-based URLs - redirect to relevant pages instead of 404
+RewriteRule ^state/north-carolina/.*$ /collections.html [R=301,L]
+RewriteRule ^state/oklahoma/.*$ /collections.html [R=301,L]
+RewriteRule ^state/illinois/.*$ /collections.html [R=301,L]
+RewriteRule ^state/california/.*$ /collections.html [R=301,L]
+RewriteRule ^state/north-dakota/.*$ /collections.html [R=301,L]
+RewriteRule ^state/iowa/.*$ /collections.html [R=301,L]
+RewriteRule ^state/state/.*$ /collections.html [R=301,L]
 
 # Handle old dog park individual URLs
 RewriteRule ^dog-parks/.*$ - [R=404,L]
