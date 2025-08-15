@@ -7,8 +7,12 @@ Disallow: /*.pdf$
 Disallow: /collection-single.html
 Disallow: /resource-single.html
 Disallow: /state/
+Disallow: /dog-parks/
 Disallow: /dog-parks-by-state/
 Disallow: /cgi-bin/
 Disallow: /cgi-sys/
+Disallow: /wp-admin/
+Disallow: /wp-content/
+Disallow: /wp-includes/
 
 Sitemap: https://dog-park.info/sitemap.xml

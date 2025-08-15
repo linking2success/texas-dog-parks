@@ -4,6 +4,9 @@ Redirect 301 /ads.txt https://srv.adstxtmanager.com/19390/dog-park.info
 RewriteEngine On
 RewriteRule ^ads\.txt$ https://srv.adstxtmanager.com/19390/dog-park.info [R=301,L]
 
+# Custom 404 error page
+ErrorDocument 404 /404.html
+
 # Force HTTPS
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
@@ -16,10 +19,23 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 RewriteCond %{THE_REQUEST} /index\.html[\s?] [NC]
 RewriteRule ^index\.html$ / [R=301,L]
 
-# Block access to CGI directories
-RewriteRule ^cgi-bin/ - [F,L]
-RewriteRule ^cgi-sys/ - [F,L]
+# Block access to CGI directories and return 404
+RewriteRule ^cgi-bin/.*$ - [R=404,L]
+RewriteRule ^cgi-sys/.*$ - [R=404,L]
 
-# Redirect legacy/non-existent URLs to appropriate pages
-RewriteRule ^state/north-carolina/$ /collections.html [R=301,L]
+# Handle old state-based URLs - return 404 for non-existent states
+RewriteRule ^state/state/.*$ - [R=404,L]
+RewriteRule ^state/oklahoma/.*$ - [R=404,L]
+RewriteRule ^state/north-carolina/.*$ - [R=404,L]
+RewriteRule ^state/illinois/.*$ - [R=404,L]
+RewriteRule ^state/california/.*$ - [R=404,L]
+RewriteRule ^state/north-dakota/.*$ - [R=404,L]
+RewriteRule ^state/iowa/.*$ - [R=404,L]
+
+# Handle old dog park individual URLs
+RewriteRule ^dog-parks/.*$ - [R=404,L]
+
+# Redirect useful legacy URLs to appropriate new pages
+RewriteRule ^state/texas/?$ /indoor-dog-parks.html [R=301,L]
+RewriteRule ^state/$ /collections.html [R=301,L]
 RewriteRule ^dog-parks-by-state/$ /collections.html [R=301,L]
