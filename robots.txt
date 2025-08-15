@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Allow: /indoor-dog-parks/
+Allow: /houston-indoor-dog-parks.html
 Disallow: /css/
 Disallow: /js/
 Disallow: /*.csv$
@@ -14,5 +16,6 @@ Disallow: /cgi-sys/
 Disallow: /wp-admin/
 Disallow: /wp-content/
 Disallow: /wp-includes/
+Disallow: /test-featured.html
 
 Sitemap: https://dog-park.info/sitemap.xml
