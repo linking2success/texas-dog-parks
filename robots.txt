@@ -8,7 +8,6 @@ Disallow: /*.csv$
 Disallow: /*.pdf$
 Disallow: /collection-single.html
 Disallow: /resource-single.html
-Disallow: /state/
 Disallow: /dog-parks/
 Disallow: /dog-parks-by-state/
 Disallow: /cgi-bin/
