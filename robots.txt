@@ -6,6 +6,7 @@ Disallow: /css/
 Disallow: /js/
 Disallow: /*.csv$
 Disallow: /*.pdf$
+Disallow: /*.php$
 Disallow: /collection-single.html
 Disallow: /resource-single.html
 Disallow: /dog-parks/
