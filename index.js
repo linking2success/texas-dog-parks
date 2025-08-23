@@ -159,13 +159,32 @@
   }
 
   function getLocalParkImage(park) {
-  // Use the photo field if available, otherwise fallback to a new local image
+  // Use the photo field if available, otherwise fallback to new or old local image
   if (park.photo && park.photo.startsWith('http')) return park.photo;
-  // Use new images from the uploaded folder
   const newImages = Array.from({length: 20}, (_, i) => `new_images_dog_park/new_images_dog_park/Untitled-${i+1}.png`);
-  // Use slug hash for variety
+  const oldImages = [
+    'imagesdogpardirectory/Untitled-3-dopark_content_card-min.png',
+    'imagesdogpardirectory/Untitled-6-dopark_content_card-min.png',
+    'imagesdogpardirectory/Untitled-7-min.png',
+    'imagesdogpardirectory/Untitled-8-dopark_content_card-min.png',
+    'imagesdogpardirectory/Untitled-9-dopark_content_card-min.png',
+    'imagesdogpardirectory/Untitled-10-min.png',
+    'imagesdogpardirectory/Untitled-11-dopark_content_card-min.png',
+    'imagesdogpardirectory/Untitled-16-dopark_content_card-min.png',
+    'imagesdogpardirectory/Untitled-17-dopark_content_card-min.png',
+    'imagesdogpardirectory/Untitled-18-dopark_content_card-min.png',
+    'imagesdogpardirectory/dopark_content_card.png'
+  ];
   const hash = park.slug.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
-  return newImages[hash % newImages.length];
+  const newImg = newImages[hash % newImages.length];
+  // Check if new image exists by preloading (sync fallback)
+  const img = new window.Image();
+  img.src = newImg;
+  if (img.complete && img.naturalWidth !== 0) {
+    return newImg;
+  }
+  // Fallback to old image
+  return oldImages[hash % oldImages.length];
   }
 
   // Fun fallback descriptions
