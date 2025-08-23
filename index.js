@@ -232,7 +232,9 @@
     ];
     const oldImg = oldImages[hash % oldImages.length];
     const imgSrc = park.photo && park.photo.startsWith('http') ? park.photo : newImg;
-    const imgOnError = park.photo && park.photo.startsWith('http') ? '' : `this.onerror=null;this.src='${oldImg}';`;
+    const imgOnError = park.photo && park.photo.startsWith('http')
+      ? 'console.error(`Broken image: ${this.src}`);'
+      : `console.error('Broken image: ' + this.src);this.onerror=null;this.src='${oldImg}';`;
     return `
       <div class="park-card">
         <div class="park-image">
