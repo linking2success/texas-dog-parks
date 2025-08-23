@@ -214,10 +214,29 @@
 
   featuredParksGrid.innerHTML = featuredParks.map((park, i) => {
     const amenities = extractAmenities(park.about);
+    // New and old image paths
+    const hash = park.slug.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
+    const newImg = `new_images_dog_park/new_images_dog_park/Untitled-${(hash % 20) + 1}.png`;
+    const oldImages = [
+      'imagesdogpardirectory/Untitled-3-dopark_content_card-min.png',
+      'imagesdogpardirectory/Untitled-6-dopark_content_card-min.png',
+      'imagesdogpardirectory/Untitled-7-min.png',
+      'imagesdogpardirectory/Untitled-8-dopark_content_card-min.png',
+      'imagesdogpardirectory/Untitled-9-dopark_content_card-min.png',
+      'imagesdogpardirectory/Untitled-10-min.png',
+      'imagesdogpardirectory/Untitled-11-dopark_content_card-min.png',
+      'imagesdogpardirectory/Untitled-16-dopark_content_card-min.png',
+      'imagesdogpardirectory/Untitled-17-dopark_content_card-min.png',
+      'imagesdogpardirectory/Untitled-18-dopark_content_card-min.png',
+      'imagesdogpardirectory/dopark_content_card.png'
+    ];
+    const oldImg = oldImages[hash % oldImages.length];
+    const imgSrc = park.photo && park.photo.startsWith('http') ? park.photo : newImg;
+    const imgOnError = park.photo && park.photo.startsWith('http') ? '' : `this.onerror=null;this.src='${oldImg}';`;
     return `
       <div class="park-card">
         <div class="park-image">
-          <img src="${getLocalParkImage(park)}" alt="${park.name}">
+          <img src="${imgSrc}" alt="${park.name}" onerror="${imgOnError}">
         </div>
         <div class="park-content">
           <h3>${park.name}</h3>

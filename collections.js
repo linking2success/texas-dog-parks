@@ -68,34 +68,52 @@ const fallbackDescriptions = [
 ];
 
 function createParkCard(park, i, extractAmenities, createAmenityIcons) {
-  const imageUrl = getLocalParkImage(park, i);
-  const amenities = extractAmenities(park.about);
-  const amenityIcons = createAmenityIcons(amenities.length ? amenities : ['Dog Park']);
-  let description = '';
-  if (park.description && !/great place for dogs to play and socialize/i.test(park.description)) {
-    description = park.description.substring(0, 120) + (park.description.length > 120 ? '...' : '');
-  } else if (park.city) {
-    description = `A favorite dog park in ${park.city}!`;
-  } else {
-    description = fallbackDescriptions[i % fallbackDescriptions.length];
-  }
-  return `
-      <div class="park-card">
-          <div class="park-image">
-              <img src="${imageUrl}" alt="${park.name}">
-          </div>
-          <div class="park-content">
-              <h3>${park.name}</h3>
-              <div class="park-location">
-                  <span>📍</span>
-                  <span>${park.city}, TX</span>
-              </div>
-              <p class="park-description">${description}</p>
-              ${amenityIcons ? `<div class="park-amenities-icons">${amenityIcons}</div>` : ''}
-              <a href="collection-single.html?slug=${park.slug}" class="park-link">View Details</a>
-          </div>
-      </div>
-  `;
+    // New and old image paths
+    const hash = park.slug ? park.slug.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0) : i;
+    const newImg = `new_images_dog_park/new_images_dog_park/Untitled-${(hash % 20) + 1}.png`;
+    const oldImages = [
+        'imagesdogpardirectory/Untitled-3-dopark_content_card-min.png',
+        'imagesdogpardirectory/Untitled-6-dopark_content_card-min.png',
+        'imagesdogpardirectory/Untitled-7-min.png',
+        'imagesdogpardirectory/Untitled-8-dopark_content_card-min.png',
+        'imagesdogpardirectory/Untitled-9-dopark_content_card-min.png',
+        'imagesdogpardirectory/Untitled-10-min.png',
+        'imagesdogpardirectory/Untitled-11-dopark_content_card-min.png',
+        'imagesdogpardirectory/Untitled-16-dopark_content_card-min.png',
+        'imagesdogpardirectory/Untitled-17-dopark_content_card-min.png',
+        'imagesdogpardirectory/Untitled-18-dopark_content_card-min.png',
+        'imagesdogpardirectory/dopark_content_card.png'
+    ];
+    const oldImg = oldImages[hash % oldImages.length];
+    const imgSrc = park.photo && park.photo.startsWith('http') ? park.photo : newImg;
+    const imgOnError = park.photo && park.photo.startsWith('http') ? '' : `this.onerror=null;this.src='${oldImg}';`;
+    const amenities = extractAmenities(park.about);
+    const amenityIcons = createAmenityIcons(amenities.length ? amenities : ['Dog Park']);
+    let description = '';
+    if (park.description && !/great place for dogs to play and socialize/i.test(park.description)) {
+        description = park.description.substring(0, 120) + (park.description.length > 120 ? '...' : '');
+    } else if (park.city) {
+        description = `A favorite dog park in ${park.city}!`;
+    } else {
+        description = fallbackDescriptions[i % fallbackDescriptions.length];
+    }
+    return `
+            <div class="park-card">
+                    <div class="park-image">
+                            <img src="${imgSrc}" alt="${park.name}" onerror="${imgOnError}">
+                    </div>
+                    <div class="park-content">
+                            <h3>${park.name}</h3>
+                            <div class="park-location">
+                                    <span>📍</span>
+                                    <span>${park.city}, TX</span>
+                            </div>
+                            <p class="park-description">${description}</p>
+                            ${amenityIcons ? `<div class="park-amenities-icons">${amenityIcons}</div>` : ''}
+                            <a href="collection-single.html?slug=${park.slug}" class="park-link">View Details</a>
+                    </div>
+            </div>
+    `;
 }
 
 class DogParksManager {
