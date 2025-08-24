@@ -89,12 +89,12 @@ class FortWorthIndoorParksManager {
     createParkCard(park, i) {
         const localImages = [
             'https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=200&fit=crop',
-            '../imagesdogpardirectory/Untitled-3-dopark_content_card-min.png',
-            '../imagesdogpardirectory/Untitled-6-dopark_content_card-min.png',
-            '../imagesdogpardirectory/Untitled-7-min.png',
-            '../imagesdogpardirectory/Untitled-8-dopark_content_card-min.png',
-            '../imagesdogpardirectory/Untitled-9-dopark_content_card-min.png',
-            '../imagesdogpardirectory/Untitled-10-min.png',
+            '../images/dogparkdirectory/Untitled-3-dopark_content_card-min.png',
+            '../images/dogparkdirectory/Untitled-6-dopark_content_card-min.png',
+            '../images/dogparkdirectory/Untitled-7-min.png',
+            '../images/dogparkdirectory/Untitled-8-dopark_content_card-min.png',
+            '../images/dogparkdirectory/Untitled-9-dopark_content_card-min.png',
+            '../images/dogparkdirectory/Untitled-10-min.png',
             '../imagesdogpardirectory/Untitled-11-dopark_content_card-min.png',
             '../imagesdogpardirectory/Untitled-16-dopark_content_card-min.png',
             '../imagesdogpardirectory/Untitled-17-dopark_content_card-min.png',

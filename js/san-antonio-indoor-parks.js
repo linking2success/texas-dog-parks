@@ -96,10 +96,10 @@ class SanAntonioIndoorParksManager {
             '../images/dogparkdirectory/Untitled-9-dopark_content_card-min.png',
             '../images/dogparkdirectory/Untitled-10-min.png',
             '../images/dogparkdirectory/Untitled-11-dopark_content_card-min.png',
-            '../imagesdogpardirectory/Untitled-16-dopark_content_card-min.png',
-            '../imagesdogpardirectory/Untitled-17-dopark_content_card-min.png',
-            '../imagesdogpardirectory/Untitled-18-dopark_content_card-min.png',
-            '../imagesdogpardirectory/dopark_content_card.png'
+            '../images/dogparkdirectory/Untitled-16-dopark_content_card-min.png',
+            '../images/dogparkdirectory/Untitled-17-dopark_content_card-min.png',
+            '../images/dogparkdirectory/Untitled-18-dopark_content_card-min.png',
+            '../images/dogparkdirectory/dopark_content_card.png'
         ];
         
         const imageUrl = park.photo || localImages[i % localImages.length];
