@@ -159,32 +159,9 @@
   }
 
   function getLocalParkImage(park) {
-  // Use the photo field if available, otherwise fallback to new or old local image
-  if (park.photo && park.photo.startsWith('http')) return park.photo;
-  const newImages = Array.from({length: 20}, (_, i) => `new_images_dog_park/new_images_dog_park/Untitled-${i+1}.png`);
-  const oldImages = [
-    'imagesdogpardirectory/Untitled-3-dopark_content_card-min.png',
-    'imagesdogpardirectory/Untitled-6-dopark_content_card-min.png',
-    'imagesdogpardirectory/Untitled-7-min.png',
-    'imagesdogpardirectory/Untitled-8-dopark_content_card-min.png',
-    'imagesdogpardirectory/Untitled-9-dopark_content_card-min.png',
-    'imagesdogpardirectory/Untitled-10-min.png',
-    'imagesdogpardirectory/Untitled-11-dopark_content_card-min.png',
-    'imagesdogpardirectory/Untitled-16-dopark_content_card-min.png',
-    'imagesdogpardirectory/Untitled-17-dopark_content_card-min.png',
-    'imagesdogpardirectory/Untitled-18-dopark_content_card-min.png',
-    'imagesdogpardirectory/dopark_content_card.png'
-  ];
-  const hash = park.slug.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
-  const newImg = newImages[hash % newImages.length];
-  // Check if new image exists by preloading (sync fallback)
-  const img = new window.Image();
-  img.src = newImg;
-  if (img.complete && img.naturalWidth !== 0) {
-    return newImg;
-  }
-  // Fallback to old image
-  return oldImages[hash % oldImages.length];
+    // Always use the photo field from parks-data.js, fallback to a single default if missing
+    if (park.photo && park.photo.trim() !== "") return park.photo;
+    return 'imagesdogpardirectory/dopark_content_card.png';
   }
 
   // Fun fallback descriptions
@@ -214,27 +191,8 @@
 
   featuredParksGrid.innerHTML = featuredParks.map((park, i) => {
     const amenities = extractAmenities(park.about);
-    // New and old image paths
-    const hash = park.slug.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
-    const newImg = `new_images_dog_park/new_images_dog_park/Untitled-${(hash % 20) + 1}.png`;
-    const oldImages = [
-      'imagesdogpardirectory/Untitled-3-dopark_content_card-min.png',
-      'imagesdogpardirectory/Untitled-6-dopark_content_card-min.png',
-      'imagesdogpardirectory/Untitled-7-min.png',
-      'imagesdogpardirectory/Untitled-8-dopark_content_card-min.png',
-      'imagesdogpardirectory/Untitled-9-dopark_content_card-min.png',
-      'imagesdogpardirectory/Untitled-10-min.png',
-      'imagesdogpardirectory/Untitled-11-dopark_content_card-min.png',
-      'imagesdogpardirectory/Untitled-16-dopark_content_card-min.png',
-      'imagesdogpardirectory/Untitled-17-dopark_content_card-min.png',
-      'imagesdogpardirectory/Untitled-18-dopark_content_card-min.png',
-      'imagesdogpardirectory/dopark_content_card.png'
-    ];
-    const oldImg = oldImages[hash % oldImages.length];
-    const imgSrc = park.photo && park.photo.startsWith('http') ? park.photo : newImg;
-    const imgOnError = park.photo && park.photo.startsWith('http')
-      ? 'console.error(`Broken image: ${this.src}`);'
-      : `console.error('Broken image: ' + this.src);this.onerror=null;this.src='${oldImg}';`;
+    const imgSrc = getLocalParkImage(park);
+    const imgOnError = `console.error('Broken image: ' + this.src);this.onerror=null;this.src='imagesdogpardirectory/dopark_content_card.png';`;
     return `
       <div class="park-card">
         <div class="park-image">

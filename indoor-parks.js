@@ -149,10 +149,13 @@ function loadFeaturedIndoorParks() {
 
 // Create park card HTML
 function createParkCard(park) {
+    // Always use the photo field from parks-data.js, fallback to a single default if missing
+    const imgSrc = (park.photo && park.photo.trim() !== "") ? park.photo : 'imagesdogpardirectory/dopark_content_card.png';
+    const imgOnError = `console.error('Broken image: ' + this.src);this.onerror=null;this.src='imagesdogpardirectory/dopark_content_card.png';`;
     return `
         <div class="park-card">
             <div class="park-image">
-                <img src="${park.photo || 'imagesdogpardirectory/dopark_content_card.png'}" alt="${park.name}" loading="lazy">
+                <img src="${imgSrc}" alt="${park.name}" loading="lazy" onerror="${imgOnError}">
             </div>
             <div class="park-content">
                 <h3>${park.name}</h3>
