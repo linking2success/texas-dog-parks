@@ -10,25 +10,41 @@ function shuffleArray(arr) {
 }
 
 const localImagesOriginal = [
-  'https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=200&fit=crop',
-  'imagesdogpardirectory/Untitled-3-dopark_content_card-min.png',
-  'imagesdogpardirectory/Untitled-6-dopark_content_card-min.png',
-  'imagesdogpardirectory/Untitled-7-min.png',
-  'imagesdogpardirectory/Untitled-8-dopark_content_card-min.png',
-  'imagesdogpardirectory/Untitled-9-dopark_content_card-min.png',
-  'imagesdogpardirectory/Untitled-10-min.png',
-  'imagesdogpardirectory/Untitled-11-dopark_content_card-min.png',
-  'imagesdogpardirectory/Untitled-16-dopark_content_card-min.png',
-  'imagesdogpardirectory/Untitled-17-dopark_content_card-min.png',
-  'imagesdogpardirectory/Untitled-18-dopark_content_card-min.png',
-  'imagesdogpardirectory/dopark_content_card.png'
+    'https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=200&fit=crop',
+    'images/dogparkdirectory/Untitled-3-dopark_content_card-min.png',
+    'images/dogparkdirectory/Untitled-6-dopark_content_card-min.png',
+    'images/dogparkdirectory/Untitled-7-min.png',
+    'images/dogparkdirectory/Untitled-8-dopark_content_card-min.png',
+    'images/dogparkdirectory/Untitled-9-dopark_content_card-min.png',
+    'images/dogparkdirectory/Untitled-10-min.png',
+    'images/dogparkdirectory/Untitled-11-dopark_content_card-min.png',
+    'images/dogparkdirectory/Untitled-16-dopark_content_card-min.png',
+    'images/dogparkdirectory/Untitled-17-dopark_content_card-min.png',
+    'images/dogparkdirectory/Untitled-18-dopark_content_card-min.png',
+    'images/dogparkdirectory/dopark_content_card.png',
+    // New images from new_dog_content
+    'images/dogparkdirectory/220_F_122185380_baKZ5HkR6EisiN4mKZ40MRCw0JRLI9pj.jpg',
+    'images/dogparkdirectory/220_F_479349005_InkGKWFtbjBEfv4GvijC3zb0pWKS8EZd.jpg',
+    'images/dogparkdirectory/220_F_433357009_HRn8ORXoRDWFP1ix19Z22xXbsKkf9KIH.jpg',
+    'images/dogparkdirectory/220_F_424414845_N3XrOlf0iGbkKbhg6ijKPScgZeCk5FaJ.jpg',
+    'images/dogparkdirectory/220_F_299681089_CQDqoCYfyb31gDFgcfulTxfY4XPIszev.jpg',
+    'images/dogparkdirectory/220_F_297654604_zEujuyLb3wMXTfXDSfmYrn4d7iaJ0Crq.jpg',
+    'images/dogparkdirectory/220_F_271743102_YQ6tvAS1ZysxZ82HRBYCaqDmPLrnUafs.jpg',
+    'images/dogparkdirectory/220_F_267467382_ZG11Hceare67raOZwb5cI7Gr0O2fjfl9.jpg',
+    'images/dogparkdirectory/220_F_262658458_YETQjNr9bulSfbaPHZQHPr6SkzqktXpH.jpg',
+    'images/dogparkdirectory/220_F_25657221_uYVlNdDKt87R8YAeboDYpAOFcsX2mExW.jpg',
+    'images/dogparkdirectory/220_F_1552943906_ch8y2FpOyYqVGrgVy3ik7UXvEn4haQd2.jpg',
+    'images/dogparkdirectory/220_F_1546378808_nwQClq8a76Mu9eMCOnHfQnqKZk1WHsx2.jpg',
+    'images/dogparkdirectory/220_F_1458636526_F5zI6tjBr5yuRJscCyhbq1K7D33lZqt2.jpg',
+    'images/dogparkdirectory/220_F_143685793_96cAnHzNa32YS2XgRcV4VL4wkn8DbeUb.jpg',
+    'images/dogparkdirectory/220_F_143685578_CMUknbtQBr59XM8luWcFCh945PmkSfFU.jpg'
 ];
 const localImages = shuffleArray(localImagesOriginal);
 
-function getLocalParkImage(park) {
-    // Always use the photo field from parks-data.js, fallback to a single default if missing
+function getLocalParkImage(park, i) {
+    // Always use the photo field from parks-data.js, fallback to a rotating local image
     if (park.photo && park.photo.trim() !== "") return park.photo;
-    return 'imagesdogpardirectory/dopark_content_card.png';
+    return localImages[i % localImages.length];
 }
 
 const fallbackDescriptions = [
@@ -46,8 +62,8 @@ const fallbackDescriptions = [
 
 function createParkCard(park, i, extractAmenities, createAmenityIcons) {
     // New and old image paths
-    const imgSrc = getLocalParkImage(park);
-    const imgOnError = `console.error('Broken image: ' + this.src);this.onerror=null;this.src='imagesdogpardirectory/dopark_content_card.png';`;
+    const imgSrc = getLocalParkImage(park, i);
+    const imgOnError = `console.error('Broken image: ' + this.src);this.onerror=null;this.src='images/dogparkdirectory/dopark_content_card.png';`;
     const amenities = extractAmenities(park.about);
     const amenityIcons = createAmenityIcons(amenities.length ? amenities : ['Dog Park']);
     let description = '';
