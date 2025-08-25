@@ -133,7 +133,7 @@ const indoorParksData = [
     mapLink: "https://www.google.com/maps/place/Dogtopia+of+Cypress/@29.912649499999997,-95.7275056,14z/data=!4m8!1m2!2m1!1sDogtopia+of+Cypress!3m4!1s0x8640d7114d19bb29:0x1c62a0d26b5f65f!8m2!3d29.912649499999997!4d-95.7275056",
     amenities: ["Daycare", "Boarding", "Spa Services", "Open-Play Environment"],
     category: "indoor"
-  }
+  },
   {
     id: 6,
     name: "Pawsome Playhouse",
