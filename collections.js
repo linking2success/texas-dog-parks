@@ -264,7 +264,10 @@ class DogParksManager {
             return;
         }
         
-        parksGrid.innerHTML = parksToShow.map((park, i) => createParkCard(park, i, this.extractAmenities.bind(this), this.createAmenityIcons.bind(this))).join('');
+        parksGrid.innerHTML = parksToShow.map((park, i) => {
+            const absoluteIndex = startIndex + i;
+            return createParkCard(park, absoluteIndex, this.extractAmenities.bind(this), this.createAmenityIcons.bind(this));
+        }).join('');
         this.createPagination();
     }
     
