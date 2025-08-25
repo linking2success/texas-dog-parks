@@ -141,9 +141,8 @@ function loadFeaturedIndoorParks() {
         return;
     }
 
-    // Get first 6 parks as featured
+    // Get first 6 parks as featured (ensure even grid)
     const featuredParks = indoorParksData.slice(0, 6);
-    
     grid.innerHTML = featuredParks.map(park => createParkCard(park)).join('');
 }
 
