@@ -73,11 +73,14 @@ const localImagesOriginal = [
     'new_images_dog_park/Untitled/Untitled-20.png',
 ];
 const localImages = shuffleArray(localImagesOriginal);
+console.log('[Dog Park Directory] Rotating local images:', localImages);
 
 function getLocalParkImage(park, i) {
     // If photo is missing or is the fallback, use a rotated local image
     if (!park.photo || park.photo.trim() === "" || park.photo.trim() === "images/dogparkdirectory/dopark_content_card.png") {
-        return localImages[i % localImages.length];
+        const img = localImages[i % localImages.length];
+        console.log(`[Dog Park Directory] Park: ${park.name} | Index: ${i} | Using rotated image:`, img);
+        return img;
     }
     // Otherwise, use the provided photo
     return park.photo;
