@@ -298,8 +298,8 @@ class DogParksManager {
         }
         
         parksGrid.innerHTML = parksToShow.map((park, i) => {
-            // Find the absolute index of this park in the filteredParks array
-            const absoluteIndex = this.filteredParks.indexOf(park);
+            // Calculate the absolute index of this park in the filteredParks array
+            const absoluteIndex = (this.currentPage - 1) * this.parksPerPage + i;
             return createParkCard(park, absoluteIndex, this.extractAmenities.bind(this), this.createAmenityIcons.bind(this));
         }).join('');
         this.createPagination();
