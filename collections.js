@@ -42,12 +42,11 @@ const localImagesOriginal = [
 const localImages = shuffleArray(localImagesOriginal);
 
 function getLocalParkImage(park, i) {
-    // Use the photo field if it exists and is not empty or whitespace only
-    if (park.photo && park.photo.trim() !== "") {
-        // If the photo is a valid image path or URL, use it
+    // Use the photo field if it exists, is not empty, and is not the fallback image
+    if (park.photo && park.photo.trim() !== "" && park.photo.trim() !== "images/dogparkdirectory/dopark_content_card.png") {
         return park.photo;
     }
-    // Otherwise, rotate through localImages for parks with missing/empty photo
+    // Otherwise, rotate through localImages for parks with missing/empty/fallback photo
     return localImages[i % localImages.length];
 }
 
