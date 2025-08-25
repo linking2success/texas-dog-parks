@@ -25,7 +25,7 @@ const indoorParksData = [
     mapLink: "https://www.google.com/maps/place/Wigglebottoms+Indoor+Dogpark+%26+Market/@30.132457799999997,-95.44153229999999,14z/data=!4m8!1m2!2m1!1sWigglebottoms+Indoor+Dogpark+%26+Market!3m4!1s0x864735067d2ad093:0x2181088eb9efa1d3!8m2!3d30.132457799999997!4d-95.44153229999999",
     amenities: ["Indoor Play", "Market", "Climate Controlled", "All Day Hours"],
     category: "indoor"
-  },
+    },
   {
     id: 2,
     name: "Work and Woof",
@@ -134,6 +134,33 @@ const indoorParksData = [
     amenities: ["Daycare", "Boarding", "Spa Services", "Open-Play Environment"],
     category: "indoor"
   }
+  {
+    id: 6,
+    name: "Pawsome Playhouse",
+    website: "https://www.pawsomeplayhouse.com/",
+    phone: "+1 555-123-4567",
+    address: "1234 Bark St, Plano, TX 75074",
+    city: "Plano",
+    postalCode: "75074",
+    state: "Texas",
+    latitude: 33.0198,
+    longitude: -96.6989,
+    photo: "images/texas_city_dog_content/240_F_506929994_6vYxEC7N6OSk39dmauhDgqqdaYOq6Ns0.jpg",
+    hours: {
+      "Sunday": "8AM-8PM",
+      "Monday": "8AM-8PM",
+      "Tuesday": "8AM-8PM",
+      "Wednesday": "8AM-8PM",
+      "Thursday": "8AM-8PM",
+      "Friday": "8AM-8PM",
+      "Saturday": "8AM-8PM"
+    },
+    status: "OPERATIONAL",
+    description: "A brand new, climate-controlled indoor dog park and daycare in Plano, TX. Spacious play areas, professional staff, and fun events for your pup!",
+    mapLink: "https://www.google.com/maps/place/Plano,+TX",
+    amenities: ["Indoor Play", "Daycare", "Events", "Climate Controlled"],
+    category: "indoor"
+  },
 ];
 
 // Group parks by city for easy filtering
