@@ -10,8 +10,7 @@ function shuffleArray(arr) {
 }
 
 const localImagesOriginal = [
-    // Unsplash fallback
-    'https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=200&fit=crop',
+    // (Unsplash fallback removed from rotation)
     // dogparkdirectory PNGs
     'images/dogparkdirectory/Untitled-3-dopark_content_card-min.png',
     'images/dogparkdirectory/Untitled-6-dopark_content_card-min.png',
