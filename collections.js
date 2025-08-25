@@ -10,7 +10,9 @@ function shuffleArray(arr) {
 }
 
 const localImagesOriginal = [
+    // Unsplash fallback
     'https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=200&fit=crop',
+    // dogparkdirectory PNGs
     'images/dogparkdirectory/Untitled-3-dopark_content_card-min.png',
     'images/dogparkdirectory/Untitled-6-dopark_content_card-min.png',
     'images/dogparkdirectory/Untitled-7-min.png',
@@ -22,32 +24,64 @@ const localImagesOriginal = [
     'images/dogparkdirectory/Untitled-17-dopark_content_card-min.png',
     'images/dogparkdirectory/Untitled-18-dopark_content_card-min.png',
     'images/dogparkdirectory/dopark_content_card.png',
-    // New images from new_dog_content
+    // dogparkdirectory JPGs
     'images/dogparkdirectory/220_F_122185380_baKZ5HkR6EisiN4mKZ40MRCw0JRLI9pj.jpg',
-    'images/dogparkdirectory/220_F_479349005_InkGKWFtbjBEfv4GvijC3zb0pWKS8EZd.jpg',
-    'images/dogparkdirectory/220_F_433357009_HRn8ORXoRDWFP1ix19Z22xXbsKkf9KIH.jpg',
-    'images/dogparkdirectory/220_F_424414845_N3XrOlf0iGbkKbhg6ijKPScgZeCk5FaJ.jpg',
-    'images/dogparkdirectory/220_F_299681089_CQDqoCYfyb31gDFgcfulTxfY4XPIszev.jpg',
-    'images/dogparkdirectory/220_F_297654604_zEujuyLb3wMXTfXDSfmYrn4d7iaJ0Crq.jpg',
-    'images/dogparkdirectory/220_F_271743102_YQ6tvAS1ZysxZ82HRBYCaqDmPLrnUafs.jpg',
-    'images/dogparkdirectory/220_F_267467382_ZG11Hceare67raOZwb5cI7Gr0O2fjfl9.jpg',
-    'images/dogparkdirectory/220_F_262658458_YETQjNr9bulSfbaPHZQHPr6SkzqktXpH.jpg',
-    'images/dogparkdirectory/220_F_25657221_uYVlNdDKt87R8YAeboDYpAOFcsX2mExW.jpg',
-    'images/dogparkdirectory/220_F_1552943906_ch8y2FpOyYqVGrgVy3ik7UXvEn4haQd2.jpg',
-    'images/dogparkdirectory/220_F_1546378808_nwQClq8a76Mu9eMCOnHfQnqKZk1WHsx2.jpg',
-    'images/dogparkdirectory/220_F_1458636526_F5zI6tjBr5yuRJscCyhbq1K7D33lZqt2.jpg',
-    'images/dogparkdirectory/220_F_143685793_96cAnHzNa32YS2XgRcV4VL4wkn8DbeUb.jpg',
-    'images/dogparkdirectory/220_F_143685578_CMUknbtQBr59XM8luWcFCh945PmkSfFU.jpg'
+    // texas_city_dog_content JPGs
+    'images/texas_city_dog_content/220_F_1072158505_HqBos1wUTIfsQEPlw9wG3BNfFZaHGttp.jpg',
+    'images/texas_city_dog_content/220_F_1072167199_60wbUwsPowqjbtZ0PtxWpVWAULPW5mIX.jpg',
+    'images/texas_city_dog_content/220_F_111710527_d3wKTsIeS2Vjc4DFbOLzZjt4f9p0WZ50.jpg',
+    'images/texas_city_dog_content/220_F_1540037270_KTzAikyRWV027Ag97SK6XPmY9A51tQjH.jpg',
+    'images/texas_city_dog_content/220_F_176241508_8DWdcgyyBauNzEGeteijAIFx5gGl7JO5.jpg',
+    'images/texas_city_dog_content/220_F_251689485_dsuuP00gvSDncOmhFJ7IhhseNuXUdm46.jpg',
+    'images/texas_city_dog_content/220_F_283563163_cocLR3bGNuFCczaapt999K62PFvOcL54.jpg',
+    'images/texas_city_dog_content/220_F_314172989_58UwpoEEL1zPKEisot2ArRaqamFrLTKH.jpg',
+    'images/texas_city_dog_content/220_F_314742253_bHfkW2e3zCaKMTRCrlLZSkMmKvCQRNis.jpg',
+    'images/texas_city_dog_content/220_F_372575591_xxKIgv9qXBZAoPmLPPl2D07bmEcGRkCE.jpg',
+    'images/texas_city_dog_content/220_F_479349005_InkGKWFtbjBEfv4GvijC3zb0pWKS8EZd (1).jpg',
+    'images/texas_city_dog_content/220_F_51708219_MdYfq9oR6U6XyvvS3z9WnN6kGicPR8sd.jpg',
+    'images/texas_city_dog_content/220_F_983655304_Ku91dzZBaUj6ODqFlqpXVf0YSFRJtObo.jpg',
+    'images/texas_city_dog_content/240_F_122753734_OG4ot7JpfdK4WNK9dvwwNYFRzTRWuns8.jpg',
+    'images/texas_city_dog_content/240_F_1292370572_Ff36XZ6xXV4hzVHNvtX5n4DkertBNy4q.jpg',
+    'images/texas_city_dog_content/240_F_1303303907_byeuSE8VLnNZWOsYX0SiaYLBt7wqxYcS.jpg',
+    'images/texas_city_dog_content/240_F_1315286686_ioxd1A1JZWgmH0J9ZXV1dhljyVF1wSIj.jpg',
+    'images/texas_city_dog_content/240_F_1345162324_vADe7EEGX3utsVHF2sVCYoqEPldpmF3k.jpg',
+    'images/texas_city_dog_content/240_F_1481399433_cDIKM4Vi1gbIq4jI5FjYMzEKRkQU8RL2.jpg',
+    'images/texas_city_dog_content/240_F_315214140_4po7QndT2WYLgyoVLIxv3j3J6jAgUONP.jpg',
+    'images/texas_city_dog_content/240_F_506929963_cNsJcRdlYBC8WkOnhh81kiQlHRmluGMV.jpg',
+    'images/texas_city_dog_content/240_F_506929994_6vYxEC7N6OSk39dmauhDgqqdaYOq6Ns0.jpg',
+    'images/texas_city_dog_content/240_F_536434604_XrhxBtaxo70qCVd1Jz2M0F3aXTaj7r7m.jpg',
+    'images/texas_city_dog_content/240_F_805347736_S66yplJZByQenKDr7AZqfaFQronaW7pC.jpg',
+    // new_images_dog_park/Untitled PNGs
+    'new_images_dog_park/Untitled/Untitled-1.png',
+    'new_images_dog_park/Untitled/Untitled-2.png',
+    'new_images_dog_park/Untitled/Untitled-3.png',
+    'new_images_dog_park/Untitled/Untitled-4.png',
+    'new_images_dog_park/Untitled/Untitled-5.png',
+    'new_images_dog_park/Untitled/Untitled-6.png',
+    'new_images_dog_park/Untitled/Untitled-7.png',
+    'new_images_dog_park/Untitled/Untitled-8.png',
+    'new_images_dog_park/Untitled/Untitled-9.png',
+    'new_images_dog_park/Untitled/Untitled-10.png',
+    'new_images_dog_park/Untitled/Untitled-11.png',
+    'new_images_dog_park/Untitled/Untitled-12.png',
+    'new_images_dog_park/Untitled/Untitled-13.png',
+    'new_images_dog_park/Untitled/Untitled-14.png',
+    'new_images_dog_park/Untitled/Untitled-15.png',
+    'new_images_dog_park/Untitled/Untitled-16.png',
+    'new_images_dog_park/Untitled/Untitled-17.png',
+    'new_images_dog_park/Untitled/Untitled-18.png',
+    'new_images_dog_park/Untitled/Untitled-19.png',
+    'new_images_dog_park/Untitled/Untitled-20.png',
 ];
 const localImages = shuffleArray(localImagesOriginal);
 
 function getLocalParkImage(park, i) {
-    // Use the photo field if it exists, is not empty, and is not the fallback image
-    if (park.photo && park.photo.trim() !== "" && park.photo.trim() !== "images/dogparkdirectory/dopark_content_card.png") {
-        return park.photo;
+    // If photo is missing or is the fallback, use a rotated local image
+    if (!park.photo || park.photo.trim() === "" || park.photo.trim() === "images/dogparkdirectory/dopark_content_card.png") {
+        return localImages[i % localImages.length];
     }
-    // Otherwise, rotate through localImages for parks with missing/empty/fallback photo
-    return localImages[i % localImages.length];
+    // Otherwise, use the provided photo
+    return park.photo;
 }
 
 const fallbackDescriptions = [
