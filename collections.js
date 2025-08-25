@@ -23,7 +23,7 @@ const localImagesOriginal = [
     'images/dogparkdirectory/Untitled-16-dopark_content_card-min.png',
     'images/dogparkdirectory/Untitled-17-dopark_content_card-min.png',
     'images/dogparkdirectory/Untitled-18-dopark_content_card-min.png',
-    'images/dogparkdirectory/dopark_content_card.png',
+    // (fallback image removed from rotation)
     // dogparkdirectory JPGs
     'images/dogparkdirectory/220_F_122185380_baKZ5HkR6EisiN4mKZ40MRCw0JRLI9pj.jpg',
     // texas_city_dog_content JPGs
