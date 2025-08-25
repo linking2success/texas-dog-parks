@@ -42,8 +42,12 @@ const localImagesOriginal = [
 const localImages = shuffleArray(localImagesOriginal);
 
 function getLocalParkImage(park, i) {
-    // Always use the photo field from parks-data.js, fallback to a rotating local image
-    if (park.photo && park.photo.trim() !== "") return park.photo;
+    // Use the photo field if it exists and is not empty or whitespace only
+    if (park.photo && park.photo.trim() !== "") {
+        // If the photo is a valid image path or URL, use it
+        return park.photo;
+    }
+    // Otherwise, rotate through localImages for parks with missing/empty photo
     return localImages[i % localImages.length];
 }
 
