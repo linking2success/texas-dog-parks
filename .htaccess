@@ -1,3 +1,8 @@
+# Serve sitemap.xml with the correct content type
+<FilesMatch "sitemap\.xml$">
+	ForceType application/xml
+	Header set Content-Type "application/xml"
+</FilesMatch>
 Redirect 301 /ads.txt https://srv.adstxtmanager.com/19390/dog-park.info
 
 # Ezoic Ads.txt Redirect - MUST BE FIRST LINE
