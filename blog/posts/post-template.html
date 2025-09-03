@@ -27,25 +27,23 @@
 
 								<!--
 									Bark & Play Blog Post Template
-									- Visually engaging, accessible, and responsive
-									- Includes sticky TOC, FAQ accordion, icons, brand colors, and clear comments
-									- Use as a starting point for all future blog posts
+									- Use this as a starting point for all future blog posts
+									- Modeled after the Dog Cooling Vest Ultimate Guide post for layout, structure, and style
+									- Add or remove sections as needed; see comments for guidance
 								-->
 								<!DOCTYPE html>
 								<html lang="en">
 								<head>
 									<meta charset="UTF-8">
 									<meta name="viewport" content="width=device-width, initial-scale=1.0">
-									<title>Blog Post Title | Bark & Play Blog</title>
-									<meta name="description" content="Blog post summary for SEO.">
+									<title><!-- Blog Post Title Here --></title>
+									<meta name="description" content="<!-- Blog post summary for SEO -->">
 									<link rel="stylesheet" href="../../main.css">
-									<!-- Google Fonts: Fun, readable -->
-									<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+									<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 									<!-- Font Awesome CDN for icons -->
 									<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 								</head>
 								<body>
-									<!-- Header (reuse site-wide) -->
 									<header class="header">
 										<div class="container">
 											<nav class="nav-container">
@@ -60,156 +58,92 @@
 											</nav>
 										</div>
 									</header>
-									<!-- Main Layout: Flexbox for sticky TOC + content -->
-									<main class="container blog-post-main" style="display:flex;gap:2.5rem;align-items:flex-start;">
-										<!-- Sticky Table of Contents Sidebar (Desktop) -->
-										<nav id="toc-sidebar" aria-label="Table of Contents" style="flex:0 0 270px;position:sticky;top:2rem;align-self:flex-start;max-height:90vh;overflow:auto;background:#fff;border-radius:18px;box-shadow:0 2px 16px rgba(107,61,237,0.08);padding:1.5rem 1rem 1.5rem 1.5rem;margin-bottom:2rem;display:none;">
-											<!--
-												Sticky TOC is hidden on mobile (shown via media query).
-												Each anchor links to a section in the article.
-												Update the href and section ids as needed.
-											-->
-											<h2 style="color:var(--primary-color);font-family:'Fredoka',Poppins,sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:1.2rem;">On This Page</h2>
-											<ul style="list-style:none;padding:0;margin:0;">
-												<li><a href="#section1" class="toc-link"><i class="fas fa-dog"></i> Section 1</a></li>
-												<li><a href="#section2" class="toc-link"><i class="fas fa-heart"></i> Section 2</a></li>
-												<li><a href="#section3" class="toc-link"><i class="fas fa-paw"></i> Section 3</a></li>
-												<li><a href="#faq" class="toc-link"><i class="fas fa-question-circle"></i> FAQ</a></li>
-											</ul>
-										</nav>
-										<!-- Main Article Content -->
-										<article class="blog-post-article" style="flex:1 1 700px;min-width:0;">
-											<a href="../index.html" class="back-to-blog" style="display:inline-block;margin:1.5rem 0 1rem 0;padding:0.6em 1.4em;background:var(--accent-color);color:var(--secondary-color);font-weight:700;border-radius:24px;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,0.04);transition:background 0.2s;">&larr; Back to Blog</a>
-											<!-- Custom Illustration Placeholder (replace src as needed) -->
-											<div class="blog-post-img-wrap" style="margin-bottom:2rem;text-align:center;">
-												<img src="../../images/blog/220_F_1228288197_r2DlDzMMYQiXSaWAOsAyDZBrDfl2uIm3.jpg" alt="Dog and park illustration" style="width:100%;max-width:420px;object-fit:cover;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,0.07);">
-												<!-- TODO: Replace with your own SVG/PNG illustration for this post -->
+									<main class="container blog-post-main">
+										<article class="blog-post-article">
+											<a href="../index.html" style="display:inline-block;margin:1.5rem 0 1rem 0;padding:0.6em 1.4em;background:#e0f7fa;color:#00796b;font-weight:700;border-radius:24px;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,0.04);transition:background 0.2s;">← Back to Blog</a>
+											<h1><!-- Blog Post Title Here --></h1>
+											<p class="blog-post-meta">By Bark & Play Directory | <!-- Date --></p>
+											<!-- Category Tags -->
+											<div style="margin-bottom:1.5rem;">
+												<a href="#" class="category-tag" style="background:#e0f7fa;color:#00796b;padding:0.4em 1em;border-radius:20px;margin-right:0.5em;text-decoration:none;font-weight:600;">Category 1</a>
+												<a href="#" class="category-tag" style="background:#fff3e0;color:#e65100;padding:0.4em 1em;border-radius:20px;margin-right:0.5em;text-decoration:none;font-weight:600;">Category 2</a>
+												<a href="#" class="category-tag" style="background:#f3e5f5;color:#6a1b9a;padding:0.4em 1em;border-radius:20px;margin-right:0.5em;text-decoration:none;font-weight:600;">Category 3</a>
 											</div>
-											<p class="blog-post-meta" style="color:var(--secondary-color);font-family:'Poppins',sans-serif;font-size:1rem;">By Bark & Play Directory | Month Day, Year</p>
-											<!-- Category Tags with Icons -->
-											<div style="margin-bottom:1.5rem;display:flex;gap:0.7em;flex-wrap:wrap;">
-												<a href="#" class="category-tag" style="background:var(--accent-color);color:var(--primary-color);padding:0.4em 1em;border-radius:20px;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:0.5em;"><i class="fas fa-heartbeat"></i> Category 1</a>
-												<a href="#" class="category-tag" style="background:var(--secondary-color);color:#fff;padding:0.4em 1em;border-radius:20px;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:0.5em;"><i class="fas fa-lightbulb"></i> Category 2</a>
+											<!-- Icon/Illustration Row (optional) -->
+											<div class="slideshow" style="max-width:700px;margin:2rem auto 2rem auto;text-align:center;">
+												<i class="fas fa-dog" style="font-size:4rem;color:#00796b;margin:0 1rem;"></i>
+												<i class="fas fa-person-walking" style="font-size:4rem;color:#e65100;margin:0 1rem;"></i>
+												<i class="fas fa-bone" style="font-size:4rem;color:#6a1b9a;margin:0 1rem;"></i>
 											</div>
-											<div class="blog-post-content" style="font-family:'Poppins',Fredoka,sans-serif;">
-												<!-- Table of Contents (Mobile) -->
-												<nav id="toc-mobile" aria-label="Table of Contents" style="background:var(--accent-color);border-radius:14px;padding:1em 1em 0.5em 1em;margin-bottom:2rem;display:none;">
-													<h2 style="color:var(--primary-color);font-family:'Fredoka',Poppins,sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:0.7rem;">On This Page</h2>
-													<ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:0.7em;">
-														<li><a href="#section1" class="toc-link"><i class="fas fa-dog"></i> Section 1</a></li>
-														<li><a href="#section2" class="toc-link"><i class="fas fa-heart"></i> Section 2</a></li>
-														<li><a href="#section3" class="toc-link"><i class="fas fa-paw"></i> Section 3</a></li>
-														<li><a href="#faq" class="toc-link"><i class="fas fa-question-circle"></i> FAQ</a></li>
-													</ul>
-												</nav>
-												<!-- Blog Content with Anchors for TOC -->
+											<div class="blog-post-content">
 												<!--
-													Use <section id="section1"> ... </section> for each major section.
-													Update ids and TOC links as needed.
+													Add your blog post content here, using h2/h3 for sections, highlight boxes, infographics, lists, etc.
+													See Dog Cooling Vest Ultimate Guide for reference on structure and style.
 												-->
-												<section id="section1">
-													<h1 style="color:var(--primary-color);font-family:'Fredoka',Poppins,sans-serif;font-size:2.2rem;font-weight:800;">Blog Post Title Goes Here</h1>
-													<p><!-- Intro content here --></p>
-												</section>
-												<section id="section2">
-													<h2>Section 2 Heading</h2>
-													<p><!-- Section 2 content here --></p>
-												</section>
-												<section id="section3">
-													<h2>Section 3 Heading</h2>
-													<p><!-- Section 3 content here --></p>
-												</section>
-												<!-- FAQ Section with Accessible Accordion -->
-												<section id="faq" aria-label="Frequently Asked Questions" style="margin-top:3rem;">
-													<h2 style="color:var(--primary-color);font-family:'Fredoka',Poppins,sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:1rem;"><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
-													<div class="faq-accordion" style="max-width:700px;margin:0 auto;">
-														<!-- FAQ Item Example -->
-														<div class="faq-item">
-															<button class="faq-question" aria-expanded="false" aria-controls="faq1" id="faq1-label" style="width:100%;text-align:left;background:var(--accent-color);color:var(--primary-color);font-weight:600;font-size:1.1rem;padding:1em 1.2em;border:none;border-radius:10px;cursor:pointer;transition:background 0.2s;display:flex;align-items:center;gap:0.7em;">
-																<i class="fas fa-plus-circle"></i> Example FAQ Question?
-															</button>
-															<div class="faq-answer" id="faq1" role="region" aria-labelledby="faq1-label" style="display:none;padding:1em 1.2em 1em 2.5em;background:#fff;border-radius:0 0 10px 10px;color:#333;">
-																Example answer goes here.
-															</div>
-														</div>
-														<!-- Add more FAQ items below, following the same structure -->
+												<h2><!-- Section Heading --></h2>
+												<p><!-- Section content --></p>
+												<!-- ...repeat for each section... -->
+												<!-- Highlight Box Example -->
+												<div style="background:#fff3e0;border-left:6px solid #ff9800;padding:1em 1.5em;margin:1.5em 0;border-radius:8px;display:flex;align-items:center;gap:1em;">
+													<i class="fas fa-triangle-exclamation" style="font-size:2rem;color:#ff9800;"></i>
+													<div><strong>Warning:</strong> Example warning or tip here.</div>
+												</div>
+												<!-- Infographic Row Example -->
+												<div style="display:flex;flex-wrap:wrap;gap:1.5em;margin:1.5em 0;justify-content:center;">
+													<div style="flex:1 1 220px;min-width:220px;text-align:center;">
+														<i class="fas fa-heart-pulse" style="font-size:2.5rem;color:#e65100;"></i>
+														<div style="font-weight:700;">Infographic Point</div>
 													</div>
-												</section>
-												<!-- Custom Illustration Placeholder for End of Article -->
-												<div style="margin:2.5rem 0 1.5rem 0;text-align:center;">
-													<img src="../../dog_icon_and_illustrations/10950128.webp" alt="Dog and park illustration" style="width:100%;max-width:320px;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,0.07);">
-													<!-- TODO: Replace with your own SVG/PNG for a custom dog/park illustration -->
+													<!-- ...add more infographic points as needed... -->
+												</div>
+												<!-- List Example -->
+												<ul>
+													<li>List item 1</li>
+													<li>List item 2</li>
+												</ul>
+												<!-- Table Example -->
+												<table style="width:100%;margin:1.5em 0;border-collapse:collapse;">
+													<tr style="background:#f8f9fa;font-weight:700;">
+														<td style="padding:0.7em;border:1px solid #e0e0e0;">Pros</td>
+														<td style="padding:0.7em;border:1px solid #e0e0e0;">Cons</td>
+													</tr>
+													<tr>
+														<td style="padding:0.7em;border:1px solid #e0e0e0;">Example Pro</td>
+														<td style="padding:0.7em;border:1px solid #e0e0e0;">Example Con</td>
+													</tr>
+												</table>
+												<!-- FAQ Section Example -->
+												<h2>FAQs</h2>
+												<ol>
+													<li><strong>Example FAQ?</strong><br>Example answer.</li>
+												</ol>
+												<!-- Related Posts Section Example -->
+												<div style="margin:3rem 0 2rem 0;padding:2rem 1rem;background:#f8f9fa;border-radius:12px;">
+													<h3 style="margin-bottom:1rem;">Related Posts</h3>
+													<div style="display:flex;flex-wrap:wrap;gap:1.5rem;">
+														<a href="#" style="flex:1 1 220px;min-width:220px;text-decoration:none;color:inherit;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.04);padding:1rem;display:flex;flex-direction:column;align-items:center;">
+															<i class="fas fa-dog" style="font-size:3rem;color:#00796b;"></i>
+															<div style="font-weight:700;margin:0.7em 0 0.2em 0;">Related Post Title</div>
+															<div style="font-size:0.95em;color:#666;">Short description of related post.</div>
+														</a>
+													</div>
+												</div>
+												<!-- Comment Section Example -->
+												<div style="margin:2rem 0 0 0;padding:2rem 1rem;background:#f1f8e9;border-radius:12px;">
+													<h3 style="margin-bottom:1rem;">Comments</h3>
+													<div style="margin-bottom:1.5rem;display:flex;align-items:center;gap:1em;">
+														<i class="fas fa-user-circle" style="font-size:2rem;color:#6a1b9a;"></i>
+														<div><strong>Name:</strong> Example comment here.</div>
+													</div>
+													<form style="margin-top:1.5rem;">
+														<input type="text" placeholder="Your name" style="padding:0.7em;border-radius:6px;border:1px solid #ccc;margin-bottom:0.7em;width:100%;max-width:300px;">
+														<textarea placeholder="Your comment" rows="3" style="padding:0.7em;border-radius:6px;border:1px solid #ccc;width:100%;max-width:500px;"></textarea>
+														<button type="submit" class="btn btn-primary" style="margin-top:1em;">Post Comment</button>
+													</form>
 												</div>
 											</div>
 										</article>
 									</main>
-									<!-- Responsive/Accessible/Interactive Styles & Scripts -->
-									<style>
-										:root {
-											--primary-color: #F26B38;
-											--secondary-color: #4A90E2;
-											--accent-color: #FFD166;
-										}
-										body {
-											font-family: 'Poppins', 'Fredoka', Arial, sans-serif;
-											background: #f8f9fa;
-											color: #222;
-										}
-										.blog-post-main { background: #fff; border-radius: 18px; box-shadow: 0 2px 16px rgba(107,61,237,0.08); }
-										.blog-post-article h1, .blog-post-article h2, .blog-post-article h3 { font-family: 'Fredoka', 'Poppins', sans-serif; }
-										.blog-post-article h1 { color: var(--primary-color); font-size: 2.2rem; font-weight: 800; }
-										.blog-post-article h2 { color: var(--secondary-color); font-size: 1.5rem; font-weight: 700; margin-top:2.2rem; }
-										.blog-post-article h3 { color: var(--primary-color); font-size: 1.15rem; font-weight: 600; margin-top:1.5rem; }
-										.blog-post-content a { color: var(--secondary-color); text-decoration: underline; transition: color 0.2s; }
-										.blog-post-content a:hover { color: var(--primary-color); }
-										.toc-link { color: var(--primary-color); font-weight: 600; transition: color 0.2s; }
-										.toc-link:hover, .toc-link:focus { color: var(--secondary-color); text-decoration: underline; }
-										.faq-question:focus { outline: 2px solid var(--secondary-color); }
-										.faq-question[aria-expanded="true"] { background: var(--secondary-color); color: #fff; }
-										.faq-question[aria-expanded="true"] i { transform: rotate(45deg); color: var(--accent-color); }
-										.faq-question i { transition: transform 0.2s, color 0.2s; }
-										@media (min-width: 900px) {
-											#toc-sidebar { display: block; }
-											#toc-mobile { display: none !important; }
-										}
-										@media (max-width: 899px) {
-											#toc-sidebar { display: none !important; }
-											#toc-mobile { display: block; }
-											.blog-post-main { flex-direction: column; }
-										}
-										/* Add hover/focus for icons and links */
-										.blog-post-content i, .toc-link i, .category-tag i { transition: color 0.2s, transform 0.2s; }
-										.blog-post-content i:hover, .toc-link:hover i, .category-tag:hover i { color: var(--secondary-color); transform: scale(1.15); }
-									</style>
-									<script>
-										// Accessible FAQ accordion
-										document.addEventListener('DOMContentLoaded', function() {
-											var faqButtons = document.querySelectorAll('.faq-question');
-											faqButtons.forEach(function(btn) {
-												btn.addEventListener('click', function() {
-													var expanded = btn.getAttribute('aria-expanded') === 'true';
-													btn.setAttribute('aria-expanded', !expanded);
-													var answer = document.getElementById(btn.getAttribute('aria-controls'));
-													if (!expanded) {
-														answer.style.display = 'block';
-														btn.querySelector('i').classList.remove('fa-plus-circle');
-														btn.querySelector('i').classList.add('fa-minus-circle');
-													} else {
-														answer.style.display = 'none';
-														btn.querySelector('i').classList.remove('fa-minus-circle');
-														btn.querySelector('i').classList.add('fa-plus-circle');
-													}
-												});
-												// Keyboard accessibility
-												btn.addEventListener('keydown', function(e) {
-													if (e.key === 'Enter' || e.key === ' ') {
-														e.preventDefault();
-														btn.click();
-													}
-												});
-											});
-										});
-									</script>
 								</body>
 								</html>
 					<h4>Quick Links</h4>
