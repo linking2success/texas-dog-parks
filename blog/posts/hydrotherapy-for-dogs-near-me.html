@@ -29,37 +29,17 @@
 
   <!-- Blog Post Main Layout: Responsive Flexbox Grid -->
   <main class="container blog-post-main" style="display:flex;gap:2.5rem;align-items:flex-start;">
-    <!-- Sticky Table of Contents Sidebar (Desktop) -->
-    <nav id="toc-sidebar" aria-label="Table of Contents" style="flex:0 0 270px;position:sticky;top:2rem;align-self:flex-start;max-height:90vh;overflow:auto;background:#fff;border-radius:18px;box-shadow:0 2px 16px rgba(107,61,237,0.08);padding:1.5rem 1rem 1.5rem 1.5rem;margin-bottom:2rem;display:none;">
-      <!--
-        Sticky TOC is hidden on mobile (shown via media query).
-        Each anchor links to a section in the article.
-      -->
-      <h2 style="color:var(--primary-color);font-family:'Fredoka',Poppins,sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:1.2rem;">On This Page</h2>
-      <ul style="list-style:none;padding:0;margin:0;">
-        <li><a href="#what-is-hydrotherapy" class="toc-link"><i class="fas fa-dog"></i> What Is Hydrotherapy?</a></li>
-        <li><a href="#benefits" class="toc-link"><i class="fas fa-heart"></i> Benefits</a></li>
-        <li><a href="#who-benefits" class="toc-link"><i class="fas fa-paw"></i> Who Benefits?</a></li>
-        <li><a href="#find-center" class="toc-link"><i class="fas fa-map-marker-alt"></i> Find a Center</a></li>
-        <li><a href="#facility" class="toc-link"><i class="fas fa-home"></i> Choosing a Facility</a></li>
-        <li><a href="#cost" class="toc-link"><i class="fas fa-dollar-sign"></i> Cost</a></li>
-        <li><a href="#preparing" class="toc-link"><i class="fas fa-clipboard-check"></i> Preparing</a></li>
-        <li><a href="#session" class="toc-link"><i class="fas fa-swimmer"></i> What to Expect</a></li>
-        <li><a href="#alternatives" class="toc-link"><i class="fas fa-water"></i> Alternatives</a></li>
-        <li><a href="#safety" class="toc-link"><i class="fas fa-shield-alt"></i> Safety</a></li>
-        <li><a href="#faq" class="toc-link"><i class="fas fa-question-circle"></i> FAQ</a></li>
-      </ul>
-    </nav>
+  <!-- No sticky TOC for this post, to match reference layout -->
     <!-- Main Article Content -->
     <article class="blog-post-article" style="flex:1 1 700px;min-width:0;">
-  <a href="../index.html" class="back-to-blog" style="display:inline-block;margin:1.5rem 0 1rem 0;padding:0.6em 1.4em;background:#e0f7fa;color:#00796b;font-weight:700;border-radius:24px;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,0.04);transition:background 0.2s;">&larr; Back to Blog</a>
+  <a href="../index.html" style="display:inline-block;margin:1.5rem 0 1rem 0;padding:0.6em 1.4em;background:#e0f7fa;color:#00796b;font-weight:700;border-radius:24px;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,0.04);transition:background 0.2s;">&larr; Back to Blog</a>
       <p class="blog-post-meta" style="color:var(--secondary-color);font-family:'Poppins',sans-serif;font-size:1rem;text-align:left;">By Bark & Play Directory | September 3, 2025</p>
       <!-- Category Tags with Icons -->
       <div style="margin-bottom:1.5rem;display:flex;gap:0.7em;flex-wrap:wrap;">
         <a href="../category-health.html" class="category-tag" style="background:var(--accent-color);color:var(--primary-color);padding:0.4em 1em;border-radius:20px;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:0.5em;"><i class="fas fa-heartbeat"></i> Health & Therapy</a>
         <a href="../category-tips.html" class="category-tag" style="background:var(--secondary-color);color:#fff;padding:0.4em 1em;border-radius:20px;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:0.5em;"><i class="fas fa-lightbulb"></i> Tips</a>
       </div>
-  <div class="blog-post-content" style="font-family:'Poppins',Fredoka,sans-serif;max-width:700px;margin:0 auto;">
+  <div class="blog-post-content" style="font-family:'Poppins',Fredoka,sans-serif;max-width:900px;margin:0 auto;text-align:left;">
         <!-- Icon Row -->
         <div class="slideshow" style="max-width:700px;margin:2rem auto 2rem auto;text-align:center;">
           <i class="fas fa-dog" style="font-size:4rem;color:#00796b;margin:0 1rem;"></i>
