@@ -1,14 +1,4 @@
 #Ads.txt dog-park.info
-#Ads.txt managed by AdsTxtManager.com - the free ads.txt management tool for publishers
-ownerdomain=dog-park.info
-contact=directsales@ezoic.com
-managerdomain=ezoic.ai
 
-ezoic.ai, c706679424aa9fc3ffe5e458fa016b52, DIRECT
-# 35
-themediagrid.com, Q19AKF, DIRECT, 35d5010d7789b49d
-sonobi.com, 192ecdea01, RESELLER, d1a215d9eb5aee9e
-google.com, pub-6644558441501035, DIRECT, f08c47fec0942fa0
-google.com, pub-1175987143200523, RESELLER, f08c47fec0942fa0
-# 21202
+# 11201
 google.com, pub-5196916620971431, DIRECT, f08c47fec0942fa0
